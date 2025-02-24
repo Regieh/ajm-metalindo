@@ -39,7 +39,7 @@ interface Props {
   alt?: string;
 }
 ---
-<section class="mx-auto max-w-full h-screen max-h-screen overflow-hidden w-screen">
+<section class="mx-auto max-w-full h-[120dvh] overflow-hidden w-screen mt-3 md:mt-2">
   <!-- Video Background -->
   <!-- <video
     src="https://doyuoc5cbvnwlzsd.public.blob.vercel-storage.com/ajmHeroVideo-FuT0UOctgdGZeABAyEVqGKYXW5jCS0.mp4"
@@ -54,14 +54,14 @@ interface Props {
   <Image
     src={src}
     alt="Hero Image"
-    class="absolute inset-0 w-screen h-[120dvh] object-cover object-left z-0"
+    class="absolute inset-0 w-screen h-[125dvh] object-cover object-left z-0"
   />
   
   <!-- Gradient Overlay -->
   <!-- <div class="absolute inset-0 bg-gradient-to-l from-transparent via-black/80 to-black/80 z-1"></div> -->
   
   <!-- Content Container -->
-  <div class="relative z-10 h-screen flex items-center default-p">
+  <div class="relative z-10 h-[120dvh] flex items-center default-p">
     <div class="max-w-2xl pl-4">
       <h1 class="block uppercase font-oswald text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-8xl lg:leading-tight">
         <Fragment set:html={title} />

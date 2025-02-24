@@ -33,6 +33,18 @@ export default {
         montserrat: ['Montserrat', 'sans-serif'],
         oswald: ['Oswald', 'sans-serif']
       },
+      keyframes: {
+        subtleMove: {
+          '0%': { transform: 'translate(0, 0)' },
+          '25%': { transform: 'translate(-10px, -5px)' },
+          '50%': { transform: 'translate(0, -10px)' },
+          '75%': { transform: 'translate(10px, -5px)' },
+          '100%': { transform: 'translate(0, 0)' },
+        },
+      },
+      animation: {
+        subtleMove: 'subtleMove 6s ease-in-out infinite',
+      },
     },
   },
   plugins: [
