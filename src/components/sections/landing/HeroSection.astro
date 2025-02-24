@@ -1,0 +1,87 @@
+---
+// Import the necessary dependencies
+import { Image } from "astro:assets";
+import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
+import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
+import ReviewComponent from "@components/ui/blocks/ReviewComponent.astro";
+
+// Define props from Astro
+const {
+  title,
+  subTitle,
+  primaryBtn,
+  primaryBtnURL,
+  secondaryBtn,
+  secondaryBtnURL,
+  withReview,
+  avatars,
+  starCount,
+  rating,
+  reviews,
+  src,
+  alt
+} = Astro.props;
+
+// Define TypeScript interface for props
+interface Props {
+  title: string;
+  subTitle?: string;
+  primaryBtn?: string;
+  primaryBtnURL?: string;
+  secondaryBtn?: string;
+  secondaryBtnURL?: string;
+  withReview?: boolean;
+  avatars?: Array<string>;
+  starCount?: number;
+  rating?: string;
+  reviews?: string;
+  src?: any;
+  alt?: string;
+}
+---
+<section class="mx-auto max-w-full h-screen max-h-screen overflow-hidden w-screen">
+  <!-- Video Background -->
+  <!-- <video
+    src="https://doyuoc5cbvnwlzsd.public.blob.vercel-storage.com/ajmHeroVideo-FuT0UOctgdGZeABAyEVqGKYXW5jCS0.mp4"
+    autoplay
+    loop
+    muted
+    playsinline
+    class="absolute inset-0 w-full h-full object-cover z-0"
+    draggable="false"
+  /> -->
+
+  <Image
+    src={src}
+    alt="Hero Image"
+    class="absolute inset-0 w-screen h-[120dvh] object-cover object-left z-0"
+  />
+  
+  <!-- Gradient Overlay -->
+  <!-- <div class="absolute inset-0 bg-gradient-to-l from-transparent via-black/80 to-black/80 z-1"></div> -->
+  
+  <!-- Content Container -->
+  <div class="relative z-10 h-screen flex items-center default-p">
+    <div class="max-w-2xl pl-4">
+      <h1 class="block uppercase font-oswald text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-8xl lg:leading-tight">
+        <Fragment set:html={title} />
+      </h1>
+      
+      <!-- CTA Buttons -->
+      <div class="mt-7 grid w-full gap-3 sm:inline-flex">
+        {primaryBtn && <PrimaryCTA title={primaryBtn} url={primaryBtnURL} />}
+        {secondaryBtn && <SecondaryCTA title={secondaryBtn} url={secondaryBtnURL} />}
+      </div>
+      
+      <!-- Reviews -->
+      {withReview && (
+        <ReviewComponent 
+          avatars={avatars} 
+          starCount={starCount} 
+          rating={rating} 
+          reviews={reviews} 
+        />
+      )}
+    </div>
+  </div>
+</section>

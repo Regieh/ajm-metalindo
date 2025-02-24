@@ -1,0 +1,48 @@
+---
+// Import necessary modules and utilities
+import { Image } from "astro:assets";
+import Icon from "@components/ui/icons/Icon.astro";
+import type { CollectionEntry } from "astro:content";
+
+const { product, productLocale = "" } = Astro.props;
+
+interface Props {
+  product: CollectionEntry<"projects">;
+  productLocale?: string;
+}
+
+// Define classes to be used with the Image component
+const imageClass =
+  "ratio-4/3 object-cover object-center transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110";
+---
+
+<!-- A clickable card that leads to the details of the product-->
+<div
+  data-astro-prefetch
+  class="group relative flex h-64 min-h-fit items-end overflow-hidden outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none md:h-80"
+>
+  <!-- The product's main image -->
+  <!-- An overlay gradient that sits on top of the product image-->
+  <!-- <div
+    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-800 via-transparent to-transparent opacity-50"
+  >
+  </div> -->
+  <!-- The product's subtitle and the anchor SVG icon-->
+   <div class="flex flex-col gap-y-1 text-black">
+    <Image
+      src={product.data.main.imgCard}
+      alt={product.data.main.imgAlt}
+      draggable={"false"}
+      class={imageClass}
+      format={"avif"}
+    />
+    <span
+      class="relative mb-3 ml-4 inline-block font-oswald text-lg font-bold transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:ml-5 md:text-lg"
+      >{product.data.description}
+    </span>
+    <span
+      class="relative mb-3 ml-4 inline-block text-sm font-bold transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:ml-5 md:text-lg"
+      >{product.data.main.content}
+    </span>
+  </div>
+</div>

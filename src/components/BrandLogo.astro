@@ -1,0 +1,15 @@
+---
+import { Image } from "astro:assets";
+import ajmLogo from '@/assets/logo-metalindo.png';
+
+// Destructure and rename the "class" prop to "className"
+const { class: className } = Astro.props;
+const {id: idName} = Astro.props;
+
+interface Props {
+  class?: string;
+  id?: string;
+}
+---
+
+<Image src={ajmLogo} alt="AJM Logo" id={idName} class={className} />

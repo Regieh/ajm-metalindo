@@ -1,0 +1,45 @@
+---
+// Import the necessary dependencies
+import { Image } from "astro:assets";
+
+interface Feature {
+  heading: string;
+  content: string;
+  svg: string;
+}
+
+interface Props {
+  title?: string;
+  subTitle?: string;
+  features?: Feature[];
+  src?: any;
+  alt?: string;
+}
+
+// Define props from Astro
+const { title, subTitle, src, alt, features } = Astro.props;
+---
+
+<section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+  <div class="relative flex flex-col md:flex-row items-center justify-center">
+    <!-- Image Section -->
+    <div class="w-full md:w-1/2 lg:w-1/3 relative z-0 md:z-10 -mb-12 md:mb-0"> <!-- Negative margin for overlap on mobile -->
+      {src && alt && (
+        <Image
+          src={src}
+          alt={alt}
+          class="w-full h-auto object-cover rounded-xs"
+          draggable={"false"}
+          format={"png"}
+          loading={"eager"}
+        />
+      )}
+    </div>
+
+    <!-- Text Section -->
+    <div class="w-full min-w-fit md:w-1/2 min-h-[30dvh] relative z-10 md:z-0 rounded-xs bg-redP p-8 -mt-2 -ml-12 sm:-ml-16 md:mt-20 text-white shadow-lg md:pl-24 flex flex-col justify-center items-start">
+      <h1 class="text-4xl font-bold mb-4" set:html={title}></h1>
+      <p class="mb-4 border-l-2 pl-6" set:html={subTitle}></p>
+    </div>
+  </div>
+</section>

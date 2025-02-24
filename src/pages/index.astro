@@ -1,0 +1,145 @@
+---
+// Import the necessary components
+import MainLayout from "@/layouts/MainLayout.astro";
+import HeroSection from "@components/sections/landing/HeroSection.astro";
+import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
+import ClientsSection from "@components/sections/landing/ClientsSection.astro";
+import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
+import FeaturesNavs from "@components/sections/features/FeaturesNavs.astro";
+import TestimonialsSection from "@components/sections/testimonials/TestimonialsSection.astro";
+import PricingSection from "@components/sections/pricing/PricingSection.astro";
+import FAQ from "@components/sections/misc/FAQ.astro";
+import AnnouncementBanner from "@components/ui/banners/AnnouncementBanner.astro";
+import heroImage from "@images/hero.png";
+import printerBg from "@images/printer-bg.png";
+import bg1 from "@images/bg-1.png";
+import experienceImg from "@images/experience.png";
+import faqs from "@data/faqs.json";
+import features from "@data/features.json";
+import pricing from "@data/pricing.json";
+import featureImage from "@images/features-image.avif";
+import construction from "@images/construction-image.avif";
+import tools from "@images/automated-tools.avif";
+import dashboard from "@images/dashboard-image.avif";
+import { partnersData } from "@/data_files/constants";
+import { recommendData } from "@/data_files/constants";
+import ProjectSection from "@/components/sections/projects/ProjectSection.astro";
+import { Image } from "astro:assets";
+
+import '@/styles/global.css';
+import FeatureOver from "@/components/sections/features/FeatureOver.astro";
+import RecommendSection from "@/components/sections/landing/RecommendSection.astro";
+import GiveHelp from "@/components/sections/landing/GiveHelp.astro";
+
+const avatarSrcs: Array<string> = [
+  "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&&auto=format&fit=facearea&facepad=3&w=300&h=300&q=80",
+  "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80",
+];
+---
+
+<MainLayout>
+  <!-- <AnnouncementBanner
+    btnId="dismiss-button"
+    btnTitle="Explore ScrewFast on GitHub"
+    url="https://github.com/mearashadowfax/ScrewFast"
+  /> -->
+
+  <HeroSection
+    title=`<span class="text-redP">activate</span>
+            your <br />
+            <span class="text-redP">idea</span>
+            is our <br /> responsibility`
+    subTitle="High-quality custom signage, acrylic works, and digital printing solutions to bring your vision to life."
+    primaryBtn="Our projects"
+    primaryBtnURL="/projects"
+    src={heroImage}
+    alt="Hero AJM Metalindo"
+  />
+
+  <!-- <FeaturesGeneral
+    title="Meeting Industry Demands"
+    subTitle="At ScrewFast, we tackle the unique challenges encountered in the hardware and construction sectors. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals."
+    src={featureImage}
+    alt="ScrewFast projects in floating boxes"
+    features={features}
+  /> -->
+
+  <div class="relative w-full">
+    <!-- Content -->
+    <div class="relative z-10 mx-auto max-w-screen-2xl">
+      <!-- Product Section with Proper Spacing -->
+      <div class="default-ps mx-auto">
+        <ProjectSection />
+
+        <FeatureOver
+          title={`WE BRING OVER <br />11 YEARS OF EXPERIENCE`}
+          subTitle={`Delivering high-quality and innovative solutions for<br />
+                    all your media and promotional needs. Our expertise<br />
+                    spans across multiple industries, offering tailored<br />
+                    services that align with your vision.`}
+          src={experienceImg}
+          alt="Experience"
+        />
+  
+        <RecommendSection
+          title="Why Choose Us?"
+          subTitle={`We believe every idea is a great opportunity to create something extraordinary. 
+                    <br/>That’s why <b>Metalindo</b> is here to be your trusted partner`}
+          datas={recommendData}
+        />
+      </div>
+
+      <GiveHelp />
+
+      <!-- <FeaturesNavs
+        title={`<span>Why Choose</span> <br/><span class="text-[#211E6D]">A</span><span class="text-[#3AB617]">J</span><span class="text-[#E12F13]">M</span> Creation?`}
+        tabs={[
+          {
+            heading: "High-Quality & Precision Results",
+            content:
+              "Utilizing the latest technology in digital printing, cutting stickers, and neon flex to ensure sharp details and vibrant colors",
+            svg: "ribbon",
+            src: tools,
+            alt: "Yellow and black heavy equipment on brown grass field",
+            first: true,
+          },
+          {
+            heading: "Unlimited Customization",
+            content:
+              "We provide complete flexibility to customize designs, sizes, and materials to fit your business needs.",
+            svg: "ribbon",
+            src: dashboard,
+            alt: "A screenshot or graphic representation of the intuitive dashboard",
+            second: true,
+          },
+          {
+            heading: "Fast & On-Time Service",
+            content:
+              "Efficient production without compromising quality, ensuring your orders are completed on schedule.",
+            svg: "ribbon",
+            src: construction,
+            alt: "Gray metal building frame near tower crane during daytime",
+          },
+        ]}
+      /> -->
+    </div>
+  </div>  
+
+  <ClientsSection
+    title="our client"
+    subTitle="We already working with a diverse range of clients across various industries"
+    partners={partnersData}
+  />
+
+  <!-- <PricingSection pricing={pricing} /> -->
+
+  <FAQ title="Frequently<br />asked questions" faqs={faqs} />
+
+  <!-- <HeroSectionAlt
+    title="Let's Build Together"
+    subTitle="ScrewFast is an open-source template, meticulously crafted with Astro, Tailwind CSS, and Preline UI frameworks."
+    url="https://github.com/mearashadowfax/ScrewFast"
+  /> -->
+</MainLayout>

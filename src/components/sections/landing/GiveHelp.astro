@@ -1,0 +1,31 @@
+---
+import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
+import { SITE } from "@/data_files/constants";
+import bg2   from "@images/bg-2.png";
+
+const title = `We Are Ready to Help You`;
+const subTitle = `Contact us today and bring your creative ideas to life with <b>${SITE.title}<b/>!`;
+---
+
+<section 
+  class="relative mx-auto w-screen default-p 2xl:max-w-full my-12 h-[65dvh] md:h-[35dvh] flex items-center bg-cover bg-center"
+  style={`background-image: url(${bg2   .src});`}
+>
+  <!-- Red Overlay -->
+  <div class="absolute inset-0 bg-redP bg-opacity-85"></div>
+
+  <!-- Text Content -->
+  <div class="relative z-10 flex flex-col items-start gap-6 w-full text-white">
+    <div class="flex flex-row justify-between items-center w-full">
+        <div class="flex flex-col gap-y-2">
+            <h1 class="font-oswald text-balance text-2xl font-bold tracking-tight md:text-6xl md:leading-tight">
+            <Fragment set:html={title} />
+            </h1>
+            <h3 class="text-balance text-lg md:text-base md:leading-tight">
+                <Fragment set:html={subTitle} />
+            </h3>
+        </div>
+        <SecondaryCTA title="Contact Us Now" url="/contact" noArrow={true} />
+    </div>
+  </div>
+</section>

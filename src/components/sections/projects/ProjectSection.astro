@@ -1,0 +1,61 @@
+---
+// Importing necessary components
+import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
+import CardSmall from "@components/ui/cards/CardSmall.astro";
+import bg1 from "@images/bg-1.png";
+import { Image } from "astro:assets";
+
+// Importing necessary functions from Astro
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+// Fetching all the product related content and sorting it by main.id
+const product: CollectionEntry<"projects">[] = (
+  await getCollection("projects", ({ id }) => {
+    return id.startsWith("en/");
+  })
+).sort(
+  (a: CollectionEntry<"projects">, b: CollectionEntry<"projects">) =>
+    a.data.main.id - b.data.main.id
+);
+
+// Define variables for page content
+const title: string = `<span class="font-bold">What We <br />OFFER?</span>`;
+const subTitle: string = `We are your solution for all creative and professional <b>custom production needs</b>. We proudly offer the following services`;
+---
+<div class="mx-auto max-w-screen px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full flex-col flex md:flex-row gap-x-4 justify-between overflow-x-hidden">
+    
+    <!-- Background Image: FULL WIDTH with Overlay -->
+    <div class="absolute -top-[86px] md:-top-[62px] inset-0 w-[140dvw] -left-16 md:-left-32 lg:-left-72 h-[65dvh] md:h-[43dvh] lg:h-[46dvh] xl:h-[50dvh] z-0">
+      <Image
+        src={bg1}
+        alt="A large printer in a room with a yellow wall"
+        class="absolute inset-0 w-full h-full object-cover object-left"
+      />
+      <div class="w-full h-full bg-redP opacity-85"></div>
+    </div>
+    <div class="z-10 mb-4 flex flex-col items-start justify-between gap-8 sm:mb-8 md:mb-12">
+      <div class="flex items-center gap-12">
+        <h1 class="font-oswald text-balance text-3xl font-bold tracking-tight text-white md:text-6xl md:leading-tight">
+            <Fragment set:html={title} />
+        </h1>
+      </div>
+      <div class="w-[80%] border-b-4 border-redP"></div>
+    </div>
+    <!-- Product grid -->
+    <div class="z-10 flex flex-col">
+      <div class="flex flex-col sm:flex-row items-center">
+        <h3 class="text-balance text-sm tracking-tight text-white md:text-base md:leading-tight pb-4 sm:pr-4">
+            <Fragment set:html={subTitle} />
+        </h3>
+        <SecondaryCTA title="More Services" url="/services" noArrow={true} />
+      </div>
+      <section class="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:gap-8 my-4">
+        {
+          product.map((product, index) => {
+            return <CardSmall product={product} />;
+          })
+        }
+      </section>
+    </div>
+  </div>

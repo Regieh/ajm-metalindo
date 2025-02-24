@@ -1,0 +1,84 @@
+---
+// Destructure the properties from Astro.props
+const { url, name } = Astro.props;
+
+// Define TypeScript interface for the properties
+interface Props {
+  url: string;
+  name: string;
+}
+---
+
+<!--
+Re-usable link component for navigation bar. Highlights the active link
+by comparing the current URL with the href of each link.
+We assign an ID matching the URL for easy reference in our script.
+If URL is '/' (home page), assign ID as 'home' 
+-->
+<a
+  id={url === "/" ? "home" : url.replace("/", "")}
+  href={url}
+  data-astro-prefetch
+  class="navlink rounded-lg text-base font-medium text-white outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base"
+>
+  {name}
+</a>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let url = window.location.pathname;
+    let urlSegments = url.split("/");
+    let navId;
+
+    if (url === "/") {
+      navId = "home";
+    } else {
+      navId = url.replace("/", "");
+    }
+
+    let nav = document.getElementById(navId);
+
+    if (nav) {
+      window.addEventListener('scroll', () => {
+        const elements = document.querySelectorAll('.navlink');
+        if (window.scrollY > 0) {
+          elements.forEach(element => {
+            if (element.id === navId) {
+              element.classList.add('text-redP');
+              element.classList.remove('text-white');
+            } else {
+              element.classList.add('text-black');
+              element.classList.remove('text-white');
+            }
+          });
+        } else {
+          elements.forEach(element => {
+            element.classList.add('text-white');
+            element.classList.remove('text-black');
+          });
+
+          nav.classList.remove(
+            "text-white",
+            "text-black",
+            "dark:text-neutral-400",
+            "hover:text-neutral-300",
+            "dark:hover:text-neutral-300",
+            "font-medium"
+          );
+          nav.classList.add("text-redP", "font-bold", "underline", "underline-offset-8");
+        }
+      });
+
+      nav.classList.remove(
+        "text-white",
+        "text-black",
+        "dark:text-neutral-400",
+        "hover:text-neutral-300",
+        "dark:hover:text-neutral-300",
+        "font-medium"
+      );
+      nav.classList.add("text-redP", "font-bold", "underline", "underline-offset-8");
+      nav.setAttribute("aria-current", "page");
+    }
+  });
+</script>
