@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 import ReviewComponent from "@components/ui/blocks/ReviewComponent.astro";
+import heroVideo from "@/assets/metalindo-hero.mp4";
 
 // Define props from Astro
 const {
@@ -41,24 +42,24 @@ interface Props {
 ---
 <section class="mx-auto max-w-full h-[120dvh] overflow-hidden w-screen mt-3 md:mt-2">
   <!-- Video Background -->
-  <!-- <video
-    src="https://doyuoc5cbvnwlzsd.public.blob.vercel-storage.com/ajmHeroVideo-FuT0UOctgdGZeABAyEVqGKYXW5jCS0.mp4"
+  <video
+    src="metalindo-hero.mp4"
     autoplay
     loop
     muted
     playsinline
-    class="absolute inset-0 w-full h-full object-cover z-0"
+    class="absolute inset-0 w-screen h-[125dvh] object-cover z-0"
     draggable="false"
-  /> -->
+  />
 
-  <Image
+  <!-- <Image
     src={src}
     alt="Hero Image"
     class="absolute inset-0 w-screen h-[125dvh] object-cover object-left z-0"
-  />
+  /> -->
   
   <!-- Gradient Overlay -->
-  <!-- <div class="absolute inset-0 bg-gradient-to-l from-transparent via-black/80 to-black/80 z-1"></div> -->
+  <div class="absolute w-screen h-[125dvh] inset-0 bg-gradient-to-l from-transparent via-black/80 to-black/80 z-1"></div>
   
   <!-- Content Container -->
   <div class="relative z-10 h-[120dvh] flex items-center default-p">
