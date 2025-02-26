@@ -104,7 +104,7 @@ const rack ={
         </div>
     </div>
     <!-- showroom -->
-    <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+    <div class="flex flex-col-reverse md:flex-row justify-center items-center gap-8 sm:mb-8 md:mb-12">
         <div class="flex flex-row space-x-4 mt-8 md:w-1/2">
             <Image
                 src={showroom1Image}
@@ -148,7 +148,7 @@ const rack ={
 
   <div class="default-p">
     <!-- acrylic -->
-    <div class="flex flex-col gap-8 md:flex-row justify-center items-center">
+    <div class="flex flex-col-reverse gap-8 md:flex-row justify-center items-center sm:mb-8 md:mb-12">
       <Image
           src={acrylicImage}
           alt="Acrylic Image"
@@ -162,7 +162,7 @@ const rack ={
       </div>
     </div>
     <!-- digital print -->
-    <div class="flex flex-col gap-8 md:flex-row justify-center items-center mt-12">
+    <div class="flex flex-col gap-8 md:flex-row justify-center items-center sm:mb-8 md:mb-12">
       <div class="flex flex-col gap-6 space-x-4">
           <h1 class="font-oswald text-balance text-3xl md:text-4xl font-bold tracking-tight md:leading-tight">
               <Fragment set:html={digitalPrint.title} />
@@ -183,7 +183,7 @@ const rack ={
       </div>
     </div>
     <!-- rack sliding -->
-    <div class="flex flex-col gap-8 md:flex-row justify-center items-center my-12">
+    <div class="flex flex-col-reverse gap-8 md:flex-row justify-center items-center sm:mb-8 md:mb-12">
       <Image
           src={rackImage}
           alt="Rack Image"
