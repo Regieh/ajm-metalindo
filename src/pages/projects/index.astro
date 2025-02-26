@@ -3,6 +3,7 @@
 import MainLayout from "@/layouts/MainLayout.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import CardSmall from "@components/ui/cards/CardSmall.astro";
+import SubHeroSection from "@/components/sections/landing/SubHeroSection.astro";
 
 // Importing necessary functions from Astro
 import { getCollection } from "astro:content";
@@ -24,7 +25,7 @@ const product: CollectionEntry<"projects">[] = (
 // Define variables for page content
 const title: string = "Our Projects";
 const subTitle: string =
-  "At AJM Metalindo, we offer a wide range of creative solutions tailored to meet your Designs:";
+  "At Metalindo, we offer a wide range of creative solutions tailored to meet your Designs:";
 
 // Testimonial data that will be rendered in the component
 const testimonials = [
@@ -82,27 +83,22 @@ const pageTitle: string = `Projects | ${SITE.title}`;
   }}
 >
 
-  <div class="absolute inset-0 w-[140dvw] h-[75dvh] -left-16 md:-left-32 lg:-left-72 z-0">
-    <Image
-      src={projectBg}
-      alt="A large printer in a room with a yellow wall"
-      class="inset-0 w-full h-full object-cover object-bottom opacity-10"
-    />
-    <div class="absolute inset-0 w-[140dvw] h-[75dvh] bg-black opacity-40"></div>
-  </div>
+
+  <SubHeroSection
+    title={title}
+    subTitle="Don't hesitate to contact us. Let's collaborate and bring your vision to life—because at Metalindo, your satisfaction is our priority."
+    src={projectBg}
+    alt="Contact Us"
+  />
+
   <div
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full relative z-10"
+    class="mx-auto max-w-[85rem] default-p 2xl:max-w-full relative z-10"
   >
-    <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
+    <div class="my-4 flex items-center justify-between gap-8 sm:my-8 md:my-12">
       <div class="flex items-center gap-12">
-        <h1
-          class="text-balance text-2xl font-bold tracking-tight text-neutral-200 md:text-4xl md:leading-tight"
-        >
-          {title}
-        </h1>
         {
           subTitle && (
-            <p class="hidden max-w-screen-sm text-pretty text-neutral-200 md:block">
+            <p class="hidden max-w-screen-sm text-pretty md:block">
               {subTitle}
             </p>
           )
