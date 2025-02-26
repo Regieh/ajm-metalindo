@@ -1,13 +1,41 @@
 ---
-title: "SF-FN F303"
-description: "Interior"
+title: "Letter Box"
+description: "Letter Box"
+tabName: "letter"
+show: false
 main:
-  id: 4
+  id: 6
   content: |
-    Interion set, exterior set, rack sliding, warehouse, etc
+    Stylish and personalized letter box designs for businesses.
+  mainDesc: "Stylish and personalized letter box designs for businesses."
   imgCard: "@/images/product-image-4.avif"
   imgMain: "@/images/product-image-main-4.avif"
-  imgAlt: "Interior"
+  imgAlt: "Letter"
+images:
+  - title: "Letter"
+    url: "@images/bg-1.png"
+    alt: "Letter Project"
+  - title: "Letter 2"
+    url: "@images/bg-1.png"
+    alt: "Letter Project"
+  - title: "Letter 3"
+    url: "@images/bg-1.png"
+    alt: "Letter Project"
+  - title: "Letter 4"
+    url: "@images/bg-1.png"
+    alt: "Letter Project"
+  - title: "Letter 5"
+    url: "@images/bg-1.png"
+    alt: "Letter Project"
+  - title: "Letter 6"
+    url: "@images/bg-1.png"
+    alt: "Letter Project"
+  - title: "Letter 7"
+    url: "@images/bg-1.png"
+    alt: "Letter Project"
+  - title: "Letter 8"
+    url: "@images/bg-1.png"
+    alt: "Letter Project"
 tabs:
   - id: "tabs-with-card-item-1"
     dataTab: "#tabs-with-card-1"

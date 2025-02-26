@@ -3,16 +3,13 @@
 import MainLayout from "@/layouts/MainLayout.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import CardSmall from "@components/ui/cards/CardSmall.astro";
-import CardWide from "@components/ui/cards/CardWide.astro";
-import FeaturesStatsAlt from "@components/sections/features/FeaturesStatsAlt.astro";
-import TestimonialsSectionAlt from "@components/sections/testimonials/TestimonialsSectionAlt.astro";
 
 // Importing necessary functions from Astro
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { SITE } from "@data/constants";
 import Image from "astro/components/Image.astro";
-import printerBg from "@images/printer-bg.png";
+import projectBg from "@images/project-hero.png";
 
 // Fetching all the product related content and sorting it by main.id
 const product: CollectionEntry<"projects">[] = (
@@ -25,9 +22,9 @@ const product: CollectionEntry<"projects">[] = (
 );
 
 // Define variables for page content
-const title: string = "Our projects";
+const title: string = "Our Projects";
 const subTitle: string =
-  "At AJM Metalindo, we offer a wide range of creative solutions tailored to meet your branding, personalization, and promotional needs. Here's what we bring to the table:";
+  "At AJM Metalindo, we offer a wide range of creative solutions tailored to meet your Designs:";
 
 // Testimonial data that will be rendered in the component
 const testimonials = [
@@ -63,7 +60,7 @@ const testimonials = [
   },
 ];
 
-const pageTitle: string = `projects | ${SITE.title}`;
+const pageTitle: string = `Projects | ${SITE.title}`;
 ---
 
 <MainLayout
@@ -87,24 +84,25 @@ const pageTitle: string = `projects | ${SITE.title}`;
 
   <div class="absolute inset-0 w-[140dvw] h-[75dvh] -left-16 md:-left-32 lg:-left-72 z-0">
     <Image
-      src={printerBg}
+      src={projectBg}
       alt="A large printer in a room with a yellow wall"
       class="inset-0 w-full h-full object-cover object-bottom opacity-10"
     />
+    <div class="absolute inset-0 w-[140dvw] h-[75dvh] bg-black opacity-40"></div>
   </div>
   <div
-    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full"
+    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full relative z-10"
   >
     <div class="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
       <div class="flex items-center gap-12">
         <h1
-          class="text-balance text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight"
+          class="text-balance text-2xl font-bold tracking-tight text-neutral-200 md:text-4xl md:leading-tight"
         >
           {title}
         </h1>
         {
           subTitle && (
-            <p class="hidden max-w-screen-sm text-pretty text-neutral-600 dark:text-neutral-400 md:block">
+            <p class="hidden max-w-screen-sm text-pretty text-neutral-200 md:block">
               {subTitle}
             </p>
           )
@@ -117,17 +115,7 @@ const pageTitle: string = `projects | ${SITE.title}`;
     <section class="grid grid-cols-4 gap-4 sm:grid-cols-2 md:grid-cols-4 xl:gap-8">
       {
         product.map((product, index) => {
-          return <CardSmall product={product} />
-        })
-      }
-      {
-        product.map((product, index) => {
-          return <CardSmall product={product} />
-        })
-      }
-      {
-        product.map((product, index) => {
-          return <CardSmall product={product} />
+          return <CardSmall product={product} className="bg-redS text-white shadow-lg outline-none ring-zinc-500 backdrop-blur-md rounded-xs" />
         })
       }
     </section>
@@ -143,8 +131,8 @@ const pageTitle: string = `projects | ${SITE.title}`;
     ]}
   /> -->
   <!--Testimonials section-->
-  <TestimonialsSectionAlt
+  <!-- <TestimonialsSectionAlt
     title="What Our Customers Say"
     testimonials={testimonials}
-  />
+  /> -->
 </MainLayout>

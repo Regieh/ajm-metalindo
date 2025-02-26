@@ -1,13 +1,41 @@
 ---
-title: "SF-BN B203"
+title: "Acrylic and Printing"
 description: "Acrylic & printing"
+tabName: "acrylic"
+show: true
 main:
-  id: 3
+  id: 7
   content: |
    Acrylic laser cut, digital printing, neon box, letter box, etc
+  mainDesc: "Unique acrylic designs and neon boxes to enhance brand visibility."
   imgCard: "@/images/product-image-3.avif"
   imgMain: "@/images/product-image-main-3.avif"
   imgAlt: "Mockup boxes of a tap bolts and nuts set"
+images:
+  - title: "Acrylic"
+    url: "@images/bg-1.png"
+    alt: "Acrylic Product"
+  - title: "Acrylic 2"
+    url: "@images/bg-1.png"
+    alt: "Acrylic Product"
+  - title: "Acrylic 3"
+    url: "@images/bg-1.png"
+    alt: "Acrylic Product"
+  - title: "Acrylic 4"
+    url: "@images/bg-1.png"
+    alt: "Acrylic Product"
+  - title: "Acrylic 5"
+    url: "@images/bg-1.png"
+    alt: "Acrylic Product"
+  - title: "Acrylic 6"
+    url: "@images/bg-1.png"
+    alt: "Acrylic Product"
+  - title: "Acrylic 7"
+    url: "@images/bg-1.png"
+    alt: "Acrylic Product"
+  - title: "Acrylic 8"
+    url: "@images/bg-1.png"
+    alt: "Acrylic Product"
 tabs:
   - id: "tabs-with-card-item-1"
     dataTab: "#tabs-with-card-1"

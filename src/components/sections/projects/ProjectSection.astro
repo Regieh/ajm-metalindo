@@ -12,7 +12,8 @@ import type { CollectionEntry } from "astro:content";
 // Fetching all the product related content and sorting it by main.id
 const product: CollectionEntry<"projects">[] = (
   await getCollection("projects", ({ id }) => id.startsWith("en/"))
-).sort((a, b) => a.data.main.id - b.data.main.id);
+).sort((a, b) => a.data.main.id - b.data.main.id)
+.filter(project => project.data.show);
 
 // Define variables for page content
 const title: string = `<span class="font-bold">What We <br />OFFER?</span>`;

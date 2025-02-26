@@ -1,13 +1,41 @@
 ---
-title: "SF-TB T845"
+title: "Booth & Display"
 description: "BOOTH & DISPLAY"
+tabName: "booth"
+show: true
 main:
-  id: 1
+  id: 3
   content: |
-    Exibition, pop up, bazaar, custom metal, wall, wood displays, etc
+    Customized booth and display solutions for events and promotions.
+  mainDesc: "Customized booth and display solutions for events and promotions."
   imgCard: "@/images/product-image-1.avif"
   imgMain: "@/images/product-image-main-1.avif"
   imgAlt: "Booth and Display"
+images:
+  - title: "Booth"
+    url: "@images/bg-1.png"
+    alt: "Boot Projects"
+  - title: "Booth 2"
+    url: "@images/bg-1.png"
+    alt: "Boot Projects"
+  - title: "Booth 3"
+    url: "@images/bg-1.png"
+    alt: "Boot Projects"
+  - title: "Booth 4"
+    url: "@images/bg-1.png"
+    alt: "Boot Projects"
+  - title: "Booth 5"
+    url: "@images/bg-1.png"
+    alt: "Boot Projects"
+  - title: "Booth 6"
+    url: "@images/bg-1.png"
+    alt: "Boot Projects"
+  - title: "Booth 7"
+    url: "@images/bg-1.png"
+    alt: "Boot Projects"
+  - title: "Booth 8"
+    url: "@images/bg-1.png"
+    alt: "Boot Projects"
 tabs:
   - id: "tabs-with-card-item-1"
     dataTab: "#tabs-with-card-1"

@@ -9,13 +9,23 @@ const projectsCollection = defineCollection({
     schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
+    tabName: z.string(),
+    show: z.boolean(),
     main: z.object({
       id: z.number(),
       content: z.string(),
+      mainDesc: z.string(),
       imgCard: image(),
       imgMain: image(),
       imgAlt: z.string(),
     }),
+    images: z.array(
+      z.object({
+        title: z.string(),
+        url: image(),
+        alt: z.string(),
+      })
+    ),
     tabs: z.array(
       z.object({
         id: z.string(),

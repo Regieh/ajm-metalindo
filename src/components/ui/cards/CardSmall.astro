@@ -4,11 +4,12 @@ import { Image } from "astro:assets";
 import Icon from "@components/ui/icons/Icon.astro";
 import type { CollectionEntry } from "astro:content";
 
-const { product, productLocale = "" } = Astro.props;
+const { product, productLocale = "", className = ""  } = Astro.props;
 
 interface Props {
   product: CollectionEntry<"projects">;
   productLocale?: string;
+  className?: string;
 }
 
 // Define classes to be used with the Image component
@@ -17,9 +18,12 @@ const imageClass =
 ---
 
 <!-- A clickable card that leads to the details of the product-->
-<div
+<a
+  href={productLocale && productLocale !== "en"
+    ? `/${productLocale}/projects/${product.id.replace(/^fr\//, "")}/`
+    : `/projects/${product.id.replace(/^en\//, "")}/`}
   data-astro-prefetch
-  class="group relative flex h-64 min-h-fit rounded-xs items-end overflow-hidden outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none md:h-80"
+  class={`group relative flex h-64 min-h-fit rounded-xs items-end overflow-hidden outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none md:h-80 ${className}`}
 >
   <!-- The product's main image -->
   <!-- An overlay gradient that sits on top of the product image-->
@@ -28,7 +32,7 @@ const imageClass =
   >
   </div> -->
   <!-- The product's subtitle and the anchor SVG icon-->
-   <div class="flex flex-col gap-y-1 text-black">
+   <div class="flex flex-col gap-y-1">
     <Image
       src={product.data.main.imgCard}
       alt={product.data.main.imgAlt}
@@ -37,12 +41,12 @@ const imageClass =
       format={"avif"}
     />
     <span
-      class="relative mb-3 ml-4 inline-block font-oswald text-lg font-bold transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:ml-5 md:text-lg"
+      class="relative mb-3 ml-4 inline-block font-oswald text-lg font-bold transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:ml-5 md:text-2xl"
       >{product.data.description}
     </span>
     <span
-      class="relative mb-3 ml-4 inline-block text-sm font-bold transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:ml-5 md:text-lg"
+      class="relative mb-3 ml-4 inline-block h-32 min-h-fit text-sm font-bold transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:ml-5 md:text-base"
       >{product.data.main.content}
     </span>
   </div>
-</div>
+</a>
