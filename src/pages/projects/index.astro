@@ -108,7 +108,7 @@ const pageTitle: string = `Projects | ${SITE.title}`;
     </div>
     <!--Displaying projects in alternating styles. Alternative product gets different card styling.-->
     <!--Maps through all product entries and displays them with either CardSmall or CardWide based on their position.-->
-    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-4 xl:gap-8">
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-4 xl:gap-8 mb-8">
       {
         product.map((product, index) => {
           return <CardSmall product={product} className="bg-redS text-white shadow-lg outline-none ring-zinc-500 backdrop-blur-md rounded-xs" />
