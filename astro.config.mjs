@@ -9,10 +9,10 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
-  site: "https://ajmcreation.co.id",
+  site: "https://ajmmetalindo.co.id",
   server: {
     headers: {
-      "Content-Security-Policy": "frame-src 'self' https://www.google.com https://maps.googleapis.com https://www.google.co.id https://maps.gstatic.com https://maps.google.com;"
+      "Content-Security-Policy": "frame-src 'self' https://www.google.com https://maps.googleapis.com https://www.google.co.id https://maps.gstatic.com https://maps.google.com https://up8f3ehqnpsxdkzx.public.blob.vercel-storage.com/;"
     }
   },
   image: {
@@ -31,7 +31,7 @@ export default defineConfig({
   prefetch: true,
   integrations: [tailwind(), sitemap({
     i18n: {
-      defaultLocale: "en", // All urls that don't contain `fr` after `https://ajmcreation.co.id/` will be treated as default locale, i.e. `en`
+      defaultLocale: "en", // All urls that don't contain `fr` after `https://ajmmetalindo.co.id/` will be treated as default locale, i.e. `en`
       locales: {
         en: "en", // The `defaultLocale` value must present in `locales` keys
         id: "id",
@@ -101,14 +101,14 @@ export default defineConfig({
         tag: "meta",
         attrs: {
           property: "og:image",
-          content: "https://ajmcreation.co.id" + "/social.webp",
+          content: "https://ajmmetalindo.co.id" + "/social.webp",
         },
       },
       {
         tag: "meta",
         attrs: {
           property: "twitter:image",
-          content: "https://ajmcreation.co.id" + "/social.webp",
+          content: "https://ajmmetalindo.co.id" + "/social.webp",
         },
       },
     ],

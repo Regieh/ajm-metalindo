@@ -26,12 +26,6 @@ const avatarSrcs: Array<string> = [
 ---
 
 <MainLayout>
-  <!-- <AnnouncementBanner
-    btnId="dismiss-button"
-    btnTitle="Explore ScrewFast on GitHub"
-    url="https://github.com/mearashadowfax/ScrewFast"
-  /> -->
-
   <HeroSection
     title=`<span class="text-redP">activate</span>
             your <br />
@@ -43,14 +37,6 @@ const avatarSrcs: Array<string> = [
     src={heroImage}
     alt="Hero AJM Metalindo"
   />
-
-  <!-- <FeaturesGeneral
-    title="Meeting Industry Demands"
-    subTitle="At ScrewFast, we tackle the unique challenges encountered in the hardware and construction sectors. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals."
-    src={featureImage}
-    alt="ScrewFast projects in floating boxes"
-    features={features}
-  /> -->
 
   <div class="relative w-full">
     <!-- Content -->
@@ -78,38 +64,6 @@ const avatarSrcs: Array<string> = [
       </div>
 
       <GiveHelp />
-
-      <!-- <FeaturesNavs
-        title={`<span>Why Choose</span> <br/><span class="text-[#211E6D]">A</span><span class="text-[#3AB617]">J</span><span class="text-[#E12F13]">M</span> Creation?`}
-        tabs={[
-          {
-            heading: "High-Quality & Precision Results",
-            content:
-              "Utilizing the latest technology in digital printing, cutting stickers, and neon flex to ensure sharp details and vibrant colors",
-            svg: "ribbon",
-            src: tools,
-            alt: "Yellow and black heavy equipment on brown grass field",
-            first: true,
-          },
-          {
-            heading: "Unlimited Customization",
-            content:
-              "We provide complete flexibility to customize designs, sizes, and materials to fit your business needs.",
-            svg: "ribbon",
-            src: dashboard,
-            alt: "A screenshot or graphic representation of the intuitive dashboard",
-            second: true,
-          },
-          {
-            heading: "Fast & On-Time Service",
-            content:
-              "Efficient production without compromising quality, ensuring your orders are completed on schedule.",
-            svg: "ribbon",
-            src: construction,
-            alt: "Gray metal building frame near tower crane during daytime",
-          },
-        ]}
-      /> -->
     </div>
   </div>  
 
@@ -119,13 +73,5 @@ const avatarSrcs: Array<string> = [
     partners={partnersData}
   />
 
-  <!-- <PricingSection pricing={pricing} /> -->
-
   <FAQ title="Frequently<br />asked questions" faqs={faqs} />
-
-  <!-- <HeroSectionAlt
-    title="Let's Build Together"
-    subTitle="ScrewFast is an open-source template, meticulously crafted with Astro, Tailwind CSS, and Preline UI frameworks."
-    url="https://github.com/mearashadowfax/ScrewFast"
-  /> -->
 </MainLayout>
