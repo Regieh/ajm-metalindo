@@ -34,7 +34,7 @@ interface Props {
           const formattedId = String(data.id).padStart(2, '0');
 
           return (
-            <div key={data.id} class="w-full h-52 min-h-fit bg-redP py-4 px-8 rounded-xs">
+            <div class="w-full h-52 min-h-fit bg-redP py-4 px-8 rounded-xs">
               <!-- Display the formatted ID -->
               <div class="flex flex-row justify-start items-center gap-x-2 border-b-2 border-white pb-4">
                 <span class="font-oswald text-white text-6xl font-bold">{formattedId}</span>
