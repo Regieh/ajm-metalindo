@@ -16,89 +16,91 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
 
 <!-- Main header component -->
 <header
-  class="sticky w-screen inset-x-0 top-0 z-50 flex flex-wrap text-sm md:flex-nowrap md:justify-start md:h-24"
+  class="sticky top-0 z-50 flex flex-wrap text-sm md:flex-nowrap md:justify-start md:h-24 w-screen"
 >
   <!-- Navigation container -->
   <nav
-    class="relative default-p !m-0 w-screen bg-transparant dark:border-neutral-700/40 dark:bg-transparant md:flex md:items-center md:justify-between"
+    class="relative w-screen bg-transparent dark:border-neutral-700/40 dark:bg-transparent md:flex md:items-center md:justify-between"
     aria-label="Global"
     id="global-nav"
   >
-    <div class="flex items-center justify-between">
-      <!-- Brand logo -->
-      <a
-        class="flex-none rounded-lg text-xl font-bold outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none"
-        href={homeUrl}
-        aria-label="Brand"
-      >
-        <BrandLogoWhite id="logo-w" class="h-auto w-16" />
-        <BrandLogo id="logo-p" class="h-auto w-16 hidden" />
-      </a>
-      <!-- Collapse toggle for smaller screens -->
-      <div class="ml-auto mr-5 md:hidden">
-        <button
-          type="button"
-          class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-neutral-600 transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-none"
-          data-hs-collapse="#navbar-collapse-with-animation"
-          aria-controls="navbar-collapse-with-animation"
-          aria-label="Toggle navigation"
+    <div class="default-p w-full flex items-center justify-between">
+      <div class="flex items-center justify-center">
+        <!-- Brand logo -->
+        <a
+          class="flex-none rounded-lg text-xl font-bold outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none"
+          href={homeUrl}
+          aria-label="Brand"
         >
-          <svg
-            class="h-[1.25rem] w-[1.25rem] flex-shrink-0 hs-collapse-open:hidden"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+          <BrandLogoWhite id="logo-w" class="h-auto w-16" />
+          <BrandLogo id="logo-p" class="h-auto w-16 hidden" />
+        </a>
+        <!-- Collapse toggle for smaller screens -->
+        <div class="ml-auto mr-5 md:hidden">
+          <button
+            type="button"
+            class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-neutral-600 transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-none"
+            data-hs-collapse="#navbar-collapse-with-animation"
+            aria-controls="navbar-collapse-with-animation"
+            aria-label="Toggle navigation"
           >
-            <line x1="3" x2="21" y1="6" y2="6"></line>
-            <line x1="3" x2="21" y1="12" y2="12"></line>
-            <line x1="3" x2="21" y1="18" y2="18"></line>
-          </svg>
-          <svg
-            class="hidden h-[1.25rem] w-[1.25rem] flex-shrink-0 hs-collapse-open:block"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M18 6 6 18"></path>
-            <path d="m6 6 12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <!-- ThemeIcon component specifically for smaller screens -->
-      <!-- <span class="inline-block md:hidden">
-        <ThemeIcon />
-      </span> -->
-    </div>
-    <!-- Contains navigation links -->
-    <div
-      id="navbar-collapse-with-animation"
-      class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block p-4 md:p-0"
-    >
-      <!-- Navigation links container -->
-      <div
-        class="mt-5 flex flex-col gap-x-0 gap-y-4 md:mt-0 md:flex-row md:items-center md:justify-end md:gap-x-4 lg:gap-x-7 md:gap-y-0 md:ps-7"
-      >
-        <!-- Navigation links and Authentication component -->
-        {strings.navBarLinks.map(link => (
-          <NavLink url={link.url} name={link.name} />
-        ))}
-
-        <!-- <Authentication /> -->
-        <!-- <LanguagePicker /> -->
-        <!-- ThemeIcon component specifically for larger screens -->
-        <!-- <span class="hidden md:inline-block">
+            <svg
+              class="h-[1.25rem] w-[1.25rem] flex-shrink-0 hs-collapse-open:hidden"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="3" x2="21" y1="6" y2="6"></line>
+              <line x1="3" x2="21" y1="12" y2="12"></line>
+              <line x1="3" x2="21" y1="18" y2="18"></line>
+            </svg>
+            <svg
+              class="hidden h-[1.25rem] w-[1.25rem] flex-shrink-0 hs-collapse-open:block"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <!-- ThemeIcon component specifically for smaller screens -->
+        <!-- <span class="inline-block md:hidden">
           <ThemeIcon />
         </span> -->
+      </div>
+      <!-- Contains navigation links -->
+      <div
+        id="navbar-collapse-with-animation"
+        class="hs-collapse hidden grow basis-full overflow-hidden transition-all duration-300 md:block p-4 md:p-0"
+      >
+        <!-- Navigation links container -->
+        <div
+          class="mt-5 flex flex-col gap-x-0 gap-y-4 md:mt-0 md:flex-row md:items-center md:justify-end md:gap-x-4 lg:gap-x-7 md:gap-y-0 md:ps-7"
+        >
+          <!-- Navigation links and Authentication component -->
+          {strings.navBarLinks.map(link => (
+            <NavLink url={link.url} name={link.name} />
+          ))}
+
+          <!-- <Authentication /> -->
+          <!-- <LanguagePicker /> -->
+          <!-- ThemeIcon component specifically for larger screens -->
+          <!-- <span class="hidden md:inline-block">
+            <ThemeIcon />
+          </span> -->
+        </div>
       </div>
     </div>
   </nav>
@@ -114,12 +116,14 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
       window.addEventListener('scroll', () => {
         if (window.scrollY > 0) {
           nav.classList.add('bg-white/50', 'backdrop-blur-md', 'dark:backdrop-blur-md');
+          nav.classList.remove('bg-transparent');
           whiteLogoSrc?.classList.add('hidden');
           brandLogo?.classList.add('block');
           brandLogo?.classList.remove('hidden');
           whiteLogoSrc?.classList.remove('block');
         } else {
           nav.classList.remove('bg-white/50', 'backdrop-blur-md', 'dark:backdrop-blur-md');
+          nav.classList.add('bg-transparent');
           brandLogo?.classList.remove('block');
           brandLogo?.classList.add('hidden');
           whiteLogoSrc?.classList.add('block');
