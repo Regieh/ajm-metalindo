@@ -28,9 +28,9 @@ const footerLinks = [
     links: [
       // { name: "0813-2020-1311", url: "#" },
       // { name: "Blog", url: "/blog" },
-      { name: "0813-9880-0869", url: "tel:+6281398800869", icon: "/src/images/footer/tel.svg" },
-      { name: "adorrajayamakmur@gmail.com", url: "mailto:adorrajayamakmur@gmail.com", icon: "/src/images/footer/mail.svg" },
-      { name: "@adorrajm", url: "https://www.instagram.com/adorrajm/", icon: "/src/images/footer/insta.svg" },
+      { name: "0813-9880-0869", url: "tel:+6281398800869", icon: "tel.svg" },
+      { name: "adorrajayamakmur@gmail.com", url: "mailto:adorrajayamakmur@gmail.com", icon: "mail.svg" },
+      { name: "@adorrajm", url: "https://www.instagram.com/adorrajm/", icon: "insta.svg" },
     ],
   },
 ];

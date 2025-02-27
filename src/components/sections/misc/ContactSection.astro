@@ -1,5 +1,4 @@
 ---
-// Import the necessary dependencies.
 import AuthBtn from "@components/ui/buttons/AuthBtn.astro";
 import ContactIconBlock from "@components/ui/blocks/ContactIconBlock.astro";
 import TextInput from "@components/ui/forms/input/TextInput.astro";
@@ -7,23 +6,36 @@ import EmailContactInput from "@components/ui/forms/input/EmailContactInput.astr
 import PhoneInput from "@components/ui/forms/input/PhoneInput.astro";
 import TextAreaInput from "@components/ui/forms/input/TextAreaInput.astro";
 import Icon from "@components/ui/icons/Icon.astro";
+import { Image } from "astro:assets";
 
-// Define the variables that will be used in this component
+// Define variables for the section
 const title: string = "Contact us";
-const subTitle: string = "for more question";
+const subTitle: string = "for more questions";
 const desc: string =
   "Don’t hesitate to contact us. Let’s collaborate and bring your vision to life because at Metalindo, your satisfaction is our priority.";
 const formTitle: string = "Fill in the form below";
 const formSubTitle: string = "We'll get back to you in 1-2 business days.";
 
+// Import contact icons
+import telIcon from "@/images/tel-r.svg";
+import mailIcon from "@/images/mail-r.svg";
+import gpsIcon from "@/images/gps-r.svg";
+
+// Create an icon map to reference images dynamically
+const iconMap = {
+  "tel-r.svg": telIcon,
+  "mail-r.svg": mailIcon,
+  "gps-r.svg": gpsIcon
+} as const;
+
 const links = [
-  { title: "Phone Number", name: "0813-9880-0869", url: "tel:+6281398800869", icon: "/src/images/tel-r.svg" },
-  { title: "E-Mail", name: "adorrajayamakmur@gmail.com", url: "mailto:adorrajayamakmur@gmail.com", icon: "/src/images/mail-r.svg" },
-  { title: "Address", name: "Jl. Raya Pondok Jagung Timur Gg. Mawi No. 26, Serpong, Tangerang, Banten", url: "https://maps.app.goo.gl/TJhZtHGns9zjKxKc9", icon: "/src/images/gps-r.svg" },
-]
+  { title: "Phone Number", name: "0813-9880-0869", url: "tel:+6281398800869", icon: "tel-r.svg" },
+  { title: "E-Mail", name: "adorrajayamakmur@gmail.com", url: "mailto:adorrajayamakmur@gmail.com", icon: "mail-r.svg" },
+  { title: "Address", name: "Jl. Raya Pondok Jagung Timur Gg. Mawi No. 26, Serpong, Tangerang, Banten", url: "https://maps.app.goo.gl/TJhZtHGns9zjKxKc9", icon: "gps-r.svg" },
+];
 ---
 
-<!-- Contact Us -->
+<!-- Contact Us Section -->
 <section class="mx-auto w-full default-ps mt-12">
   <div class="mx-auto max-w-2xl lg:max-w-5xl">
     <div class="flex flex-col md:flex-row justify-between items-center w-full">
@@ -35,57 +47,49 @@ const links = [
           {desc}
         </p>
         {
-          links.map((link) => (
-            <div class="flex flex-row items-center gap-x-2 mt-4">
-              <img src={link.icon} alt={link.title} class="w-8 h-8" />
-              <div class="flex flex-col">
-                <p class="text-pretty font-bold">{link.title}</p>
-                <a href={link.url} class="text-pretty text-neutral-600 dark:text-neutral-400">{link.name}</a>
+          links.map((link) => {
+            const iconSrc = iconMap[link.icon as keyof typeof iconMap];
+
+            return (
+              <div class="flex flex-row items-center gap-x-2 mt-4">
+                {iconSrc && (
+                  <Image src={iconSrc} alt={link.title} class="w-8 h-8" />
+                )}
+                <div class="flex flex-col">
+                  <p class="text-pretty font-bold">{link.title}</p>
+                  <a href={link.url} class="text-pretty text-neutral-600 dark:text-neutral-400">{link.name}</a>
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         }
       </div>
+
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d495.7656221931445!2d106.6721678!3d-6.2472573!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb97d3a57f57%3A0x202eb3a235935f55!2sAdorra%20Jaya%20Metalindo!5e0!3m2!1sen!2sid!4v1740383836030!5m2!1sen!2sid"
-        width="400" 
-        height="300" 
-        style="border:0;" 
-        allowfullscreen 
+        width="400"
+        height="300"
+        style="border:0;"
+        allowfullscreen
         loading="lazy"
       ></iframe>
     </div>
 
     <div class="mt-12 grid items-center gap-6 lg:grid-cols-2 lg:gap-16">
       <div class="flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
-        <h2
-          class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300"
-        >
+        <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
           {formTitle}
         </h2>
-        <!-- Form for user input with various input fields.-->
-        <!-- Each field utilizes a different input component for the specific type of input (text, email, phone, and textarea)-->
+
         <form>
           <div class="grid gap-4">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <TextInput
-                id="hs-firstname-contacts"
-                label="First Name"
-                name="hs-firstname-contacts"
-              />
-              <TextInput
-                id="hs-lastname-contacts"
-                label="Last Name"
-                name="hs-firstname-contacts"
-              />
+              <TextInput id="hs-firstname-contacts" label="First Name" name="hs-firstname-contacts" />
+              <TextInput id="hs-lastname-contacts" label="Last Name" name="hs-firstname-contacts" />
             </div>
             <EmailContactInput id="hs-email-contacts" />
             <PhoneInput id="hs-phone-number" />
-            <TextAreaInput
-              id="hs-about-contacts"
-              label="Details"
-              name="hs-about-contacts"
-            />
+            <TextAreaInput id="hs-about-contacts" label="Details" name="hs-about-contacts" />
           </div>
 
           <div class="mt-4 grid">
@@ -100,7 +104,7 @@ const links = [
         </form>
       </div>
 
-      <!--ContactIconBlocks are used to display different methods of contacting, including visiting office, email, browsing knowledgebase, and FAQ.-->
+      <!-- Contact Icon Blocks -->
       <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
         <ContactIconBlock
           heading="Knowledgebase"
@@ -109,7 +113,8 @@ const links = [
           linkTitle="Visit guides & tutorials"
           linkURL="#"
           isArrowVisible={true}
-          ><Icon name="question" />
+        >
+          <Icon name="question" />
         </ContactIconBlock>
 
         <ContactIconBlock
@@ -119,7 +124,8 @@ const links = [
           linkTitle="Visit FAQ"
           linkURL="#"
           isArrowVisible={true}
-          ><Icon name="chatBubble" />
+        >
+          <Icon name="chatBubble" />
         </ContactIconBlock>
 
         <ContactIconBlock
@@ -127,7 +133,8 @@ const links = [
           content="UK ScrewFast"
           isAddressVisible={true}
           addressContent="72 Union Terrace, E10 4PE London"
-          ><Icon name="mapPin" />
+        >
+          <Icon name="mapPin" />
         </ContactIconBlock>
 
         <ContactIconBlock
@@ -136,7 +143,8 @@ const links = [
           isLinkVisible={true}
           linkTitle="support@screwfast.uk"
           linkURL="#"
-          ><Icon name="envelopeOpen" />
+        >
+          <Icon name="envelopeOpen" />
         </ContactIconBlock>
       </div>
     </div>
