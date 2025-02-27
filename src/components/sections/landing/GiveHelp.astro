@@ -2,6 +2,7 @@
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 import { SITE } from "@/data_files/constants";
 import bg2 from "@images/bg-2.png";
+import { Image } from "astro:assets";
 
 const title = `We Are Ready to Help You`;
 const subTitle = `Contact us today and bring your creative ideas to life with <b>${SITE.title}</b>!`;
@@ -9,10 +10,12 @@ const subTitle = `Contact us today and bring your creative ideas to life with <b
 
 <section class="relative min-w-screen w-screen default-p 2xl:max-w-full my-12 h-[65dvh] md:h-[35dvh] flex items-center overflow-hidden">
   <!-- Background Image Container -->
-  <div
-    class="bg-image w-screen absolute inset-0 bg-cover bg-center"
-    style={`background-image: url(${bg2.src});`}
-  ></div>
+  <div class="bg-container absolute inset-0 w-[150dvw] h-full overflow-hidden">
+    <div
+      class="bg-image w-[150dvw] h-full absolute bg-cover bg-center"
+      style={`background-image: url(${bg2.src});`}
+    ></div>
+  </div>
 
   <!-- Red Overlay -->
   <div class="absolute inset-0 bg-redP bg-opacity-85"></div>
@@ -34,29 +37,22 @@ const subTitle = `Contact us today and bring your creative ideas to life with <b
 </section>
 
 <script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-  
-    gsap.registerPlugin(ScrollTrigger);
-  
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: ".bg-image", // the background image container
-        start: "top bottom",   // when the top of the element hits the bottom of the viewport
-        end: "middle top",     // when the bottom of the element hits the middle of the viewport
-        scrub: true,           // links the animation progress to the scroll position
-      }
-    })
-    // From: background image is off-screen at the bottom with zero opacity
-    .fromTo(
-      ".bg-image",
-      { y: "100%", opacity: 0 },
-      { y: "0%", opacity: 1, ease: "none" }
-    )
-    // Then: the background image continues upward and fades out
-    .to(
-      ".bg-image",
-      { y: "-100%", opacity: 0, ease: "none" }
-    );
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: ".bg-container", // Ensures the image moves within its section
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    }
+  })
+  .fromTo(
+    ".bg-image",
+    { y: "20%", opacity: 0.4 },
+    { y: "-15%", opacity: 1, ease: "none" }
+  );  
 </script>
-  
