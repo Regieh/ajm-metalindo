@@ -8,7 +8,7 @@ main:
   content: |
     Customized booth and display solutions for events and promotions.
   mainDesc: "Customized booth and display solutions for events and promotions."
-  imgCard: "@/images/product-image-1.avif"
+  imgCard: "@images/booth/15.jpeg"
   imgMain: "@/images/product-image-main-1.avif"
   imgAlt: "Booth and Display"
 images:

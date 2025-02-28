@@ -1,5 +1,4 @@
 ---
-// Import necessary modules and utilities
 import { Image } from "astro:assets";
 import Icon from "@components/ui/icons/Icon.astro";
 import type { CollectionEntry } from "astro:content";
@@ -12,41 +11,38 @@ interface Props {
   className?: string;
 }
 
-// Define classes to be used with the Image component
+// Define classes for uniform image styling
 const imageClass =
-  "ratio-4/3 object-cover object-center transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110";
+  "w-full h-[20dvh] sm:h-[30dvh] md:h-[25dvh] object-cover object-center transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110";
 ---
 
-<!-- A clickable card that leads to the details of the product-->
+<!-- Clickable card leading to product details -->
 <a
   href={productLocale && productLocale !== "en"
     ? `/${productLocale}/projects/${product.id.replace(/^fr\//, "")}/`
     : `/projects/${product.id.replace(/^en\//, "")}/`}
   data-astro-prefetch
-  class={`group relative flex h-64 min-h-fit rounded-xs items-end overflow-hidden outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none md:h-80 ${className}`}
+  class={`group relative flex flex-col items-start rounded-xs overflow-hidden outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none ${className}`}
 >
-  <!-- The product's main image -->
-  <!-- An overlay gradient that sits on top of the product image-->
-  <!-- <div
-    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-800 via-transparent to-transparent opacity-50"
-  >
-  </div> -->
-  <!-- The product's subtitle and the anchor SVG icon-->
-   <div class="flex flex-col gap-y-1">
-    <Image
-      src={product.data.main.imgCard}
-      alt={product.data.main.imgAlt}
-      draggable={"false"}
-      class={imageClass}
-      format={"avif"}
-    />
+  <!-- Product Image -->
+  <Image
+    src={product.data.main.imgCard}
+    alt={product.data.main.imgAlt}
+    draggable={"false"}
+    class={imageClass}
+  />
+
+  <!-- Product Description & Content -->
+  <div class="flex flex-col w-full px-4 py-3">
     <span
-      class="relative mb-3 ml-4 inline-block font-oswald text-lg font-bold transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:ml-5 md:text-2xl"
-      >{product.data.description}
+      class="text-lg font-bold font-oswald transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:text-2xl"
+    >
+      {product.data.description}
     </span>
     <span
-      class="relative mb-3 ml-4 inline-block h-32 min-h-fit text-sm font-bold transition duration-[600ms] ease-[cubic-bezier(0.45,0,0.55,1)] group-hover:scale-110 md:ml-5 md:text-base"
-      >{product.data.main.content}
+      class="text-sm font-bold min-h-[100px] md:text-base"
+    >
+      {product.data.main.content}
     </span>
   </div>
 </a>

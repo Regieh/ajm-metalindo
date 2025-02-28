@@ -8,7 +8,7 @@ main:
   content: |
     We create functional and stylish showroom designs to showcase your products effectively.
   mainDesc: "We create functional and stylish showroom designs to showcase your products effectively."
-  imgCard: "@/images/product-image-4.avif"
+  imgCard: "@images/showroom/4.jpeg"
   imgMain: "@/images/product-image-main-4.avif"
   imgAlt: "Showroom"
 images:
