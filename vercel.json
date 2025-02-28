@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; frame-src 'self' https://player.cloudinary.com/ https://www.google.com https://maps.googleapis.com https://maps.gstatic.com https://maps.google.com; script-src 'self' 'unsafe-inline' https://maps.googleapis.com https://maps.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://images.unsplash.com https://maps.gstatic.com; media-src 'self' https://doyuoc5cbvnwlzsd.public.blob.vercel-storage.com/ https://up8f3ehqnpsxdkzx.public.blob.vercel-storage.com/"
+          "value": "default-src 'self'; frame-src 'self' https://player.cloudinary.com/ https://www.google.com https://maps.googleapis.com https://maps.gstatic.com https://maps.google.com; script-src 'self' 'unsafe-inline' https://maps.googleapis.com https://maps.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' https://images.unsplash.com https://maps.gstatic.com; media-src 'self' https://doyuoc5cbvnwlzsd.public.blob.vercel-storage.com/ https://up8f3ehqnpsxdkzx.public.blob.vercel-storage.com/"
         },
         {
           "key": "Permissions-Policy",

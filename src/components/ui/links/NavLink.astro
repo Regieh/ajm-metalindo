@@ -79,6 +79,26 @@ If URL is '/' (home page), assign ID as 'home'
       );
       nav.classList.add("text-redP", "font-bold", "underline", "underline-offset-8");
       nav.setAttribute("aria-current", "page");
+    } else {
+      window.addEventListener('scroll', () => {
+        const elements = document.querySelectorAll('.navlink');
+        if (window.scrollY > 0) {
+          elements.forEach(element => {
+            if (element.id === navId) {
+              element.classList.add('text-redP');
+              element.classList.remove('text-white');
+            } else {
+              element.classList.add('text-black');
+              element.classList.remove('text-white');
+            }
+          });
+        } else {
+          elements.forEach(element => {
+            element.classList.add('text-white');
+            element.classList.remove('text-black');
+          });
+        }
+      });
     }
   });
 </script>

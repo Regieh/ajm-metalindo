@@ -65,88 +65,44 @@ const links = [
         }
       </div>
 
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d495.7656221931445!2d106.6721678!3d-6.2472573!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb97d3a57f57%3A0x202eb3a235935f55!2sAdorra%20Jaya%20Metalindo!5e0!3m2!1sen!2sid!4v1740383836030!5m2!1sen!2sid"
-        width="400"
-        height="300"
-        style="border:0;"
-        allowfullscreen
-        loading="lazy"
-      ></iframe>
-    </div>
-
-    <div class="mt-12 grid items-center gap-6 lg:grid-cols-2 lg:gap-16">
-      <div class="flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
-        <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
-          {formTitle}
-        </h2>
-
-        <form>
-          <div class="grid gap-4">
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <TextInput id="hs-firstname-contacts" label="First Name" name="hs-firstname-contacts" />
-              <TextInput id="hs-lastname-contacts" label="Last Name" name="hs-firstname-contacts" />
+      <div class="w-full">
+        <div class="flex flex-col rounded-xl p-4 sm:p-6 lg:p-8">
+          <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
+            {formTitle}
+          </h2>
+  
+          <form>
+            <div class="grid gap-4">
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <TextInput id="hs-firstname-contacts" label="First Name" name="hs-firstname-contacts" />
+                <TextInput id="hs-lastname-contacts" label="Last Name" name="hs-firstname-contacts" />
+              </div>
+              <EmailContactInput id="hs-email-contacts" />
+              <PhoneInput id="hs-phone-number" />
+              <TextAreaInput id="hs-about-contacts" label="Details" name="hs-about-contacts" />
             </div>
-            <EmailContactInput id="hs-email-contacts" />
-            <PhoneInput id="hs-phone-number" />
-            <TextAreaInput id="hs-about-contacts" label="Details" name="hs-about-contacts" />
-          </div>
-
-          <div class="mt-4 grid">
-            <AuthBtn title="Send Message" />
-          </div>
-
-          <div class="mt-3 text-center">
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">
-              {formSubTitle}
-            </p>
-          </div>
-        </form>
-      </div>
-
-      <!-- Contact Icon Blocks -->
-      <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
-        <ContactIconBlock
-          heading="Knowledgebase"
-          content="Browse through all of our knowledgebase articles."
-          isLinkVisible={true}
-          linkTitle="Visit guides & tutorials"
-          linkURL="#"
-          isArrowVisible={true}
-        >
-          <Icon name="question" />
-        </ContactIconBlock>
-
-        <ContactIconBlock
-          heading="FAQ"
-          content="Explore our FAQ for quick, clear answers to common queries."
-          isLinkVisible={true}
-          linkTitle="Visit FAQ"
-          linkURL="#"
-          isArrowVisible={true}
-        >
-          <Icon name="chatBubble" />
-        </ContactIconBlock>
-
-        <ContactIconBlock
-          heading="Visit our office"
-          content="UK ScrewFast"
-          isAddressVisible={true}
-          addressContent="72 Union Terrace, E10 4PE London"
-        >
-          <Icon name="mapPin" />
-        </ContactIconBlock>
-
-        <ContactIconBlock
-          heading="Contact us by email"
-          content="Prefer the written word? Drop us an email at"
-          isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
-          linkURL="#"
-        >
-          <Icon name="envelopeOpen" />
-        </ContactIconBlock>
+  
+            <div class="mt-4 grid">
+              <AuthBtn title="Send Message" />
+            </div>
+  
+            <div class="mt-3 text-center">
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">
+                {formSubTitle}
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d495.7656221931445!2d106.6721678!3d-6.2472573!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb97d3a57f57%3A0x202eb3a235935f55!2sAdorra%20Jaya%20Metalindo!5e0!3m2!1sen!2sid!4v1740383836030!5m2!1sen!2sid"
+    width="400"
+    height="300"
+    style="border:0;"
+    allowfullscreen
+    loading="lazy"
+    class="mx-auto my-8"
+  ></iframe>
 </section>

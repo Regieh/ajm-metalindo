@@ -144,7 +144,7 @@ const visibleItems = 3;
     >
       {product.data.images.map((project) => (
         <div class="relative group">
-          <Image src={project.url} alt={project.alt} class="w-full h-auto object-cover aspect-[3/2]" />
+          <Image src={project.url} alt={project.alt} loading="lazy" decoding="async" class="w-full h-auto object-cover aspect-[3/2]" />
           
           {/* Overlay on hover */}
           <div class="absolute inset-0 bg-red-600 bg-opacity-80 flex items-start justify-start opacity-0 group-hover:opacity-100 transition-opacity">
