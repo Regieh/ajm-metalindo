@@ -25,8 +25,8 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
     aria-label="Global"
     id="global-nav"
   >
-    <div class="default-p w-full flex items-center justify-between">
-      <div class="flex items-center justify-center">
+    <div class="default-p w-full flex flex-col md:flex-row items-center justify-between">
+      <div class="flex items-center justify-between w-full">
         <!-- Brand logo -->
         <a
           class="flex-none rounded-lg text-xl font-bold outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none"
@@ -39,8 +39,9 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
         <!-- Collapse toggle for smaller screens -->
         <div class="ml-auto mr-5 md:hidden">
           <button
+            id="hamburger"
             type="button"
-            class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-neutral-600 transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-none"
+            class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white hover:text-gray-600 transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-none"
             data-hs-collapse="#navbar-collapse-with-animation"
             aria-controls="navbar-collapse-with-animation"
             aria-label="Toggle navigation"
@@ -129,6 +130,17 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
         }
       });
     }
+
+    window.addEventListener('scroll', () => {
+      const hamburger = document.getElementById('hamburger');
+      if (window.scrollY > 0) {
+        hamburger?.classList.add('text-neutral-600');
+        hamburger?.classList.remove('text-whitet');
+      } else {
+        hamburger?.classList.remove('text-neutral-600');
+        hamburger?.classList.add('text-whitet');
+      }
+    });
   });
 </script>
 <script is:inline>
