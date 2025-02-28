@@ -8,6 +8,7 @@ import enStrings from "@utils/navigation.ts";
 import frStrings from "@/utils/id/navigation";
 import BrandLogo from "@components/BrandLogo.astro";
 import LanguagePicker from "@components/ui/LanguagePicker.astro";
+import DropdownLink from "@/components/ui/links/DropdownLink.astro";
 
 // Select the correct translation based on the page's lang prop:
 const strings = Astro.currentLocale === "id" ? frStrings : enStrings;
@@ -92,7 +93,11 @@ const homeUrl = Astro.currentLocale === "id" ? "/fr" : "/";
             if (link.name === "Services") {
               return <MegaMenuLink />;
             } else {
-              return <NavLink url={link.url} name={link.name} />;
+              if (link.dropdown) {
+                return <DropdownLink url={link.url} name={link.name} dropdown={link.dropdown} />;
+              } else {
+                return <NavLink url={link.url} name={link.name} />;
+              }
             }
           })
         }

@@ -1,0 +1,92 @@
+---
+const { url, name, dropdown } = Astro.props;
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+const currentPath = Astro.url.pathname; // Get current page path
+
+// Fetch projects for dropdown
+const projects: CollectionEntry<"projects">[] = (
+  await getCollection("projects", ({ id }) => id.startsWith("en/"))
+).sort((a, b) => a.data.main.id - b.data.main.id);
+
+// Check if the current page is inside the `/projects/*` section
+const isActive = currentPath.startsWith("/projects");
+---
+
+<!-- Navigation Item -->
+<div class="relative z-30">
+  <button
+    id={url === "/" ? "home" : url.replace("/", "")}
+    data-dropdown-toggle
+    class={`navlink rounded-lg text-base font-medium outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base transition ${
+      isActive ? "text-redP font-bold underline underline-offset-8" : "text-white"
+    }`}
+  >
+    {name}
+  </button>
+
+  {dropdown && (
+    <div id="dropdown" class="absolute hidden bg-white shadow-lg rounded-xs mt-1 z-40">
+      {projects.map((project) => (
+        <a
+          href={`/projects/${project.data.tabName.toLowerCase()}`}
+          class={`block px-4 py-2 text-sm transition ${
+            currentPath.includes(project.data.tabName.toLowerCase()) ? "bg-redP text-white" : "bg-white text-redP"
+          } hover:bg-redP hover:text-white`}
+        >
+          {project.data.title}
+        </a>
+      ))}
+    </div>
+  )}
+</div>
+
+<!-- Fix Scroll-based Styling & Dropdown Toggling -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const dropdownToggles = document.querySelectorAll("[data-dropdown-toggle]");
+
+    // Toggle dropdown on click
+    dropdownToggles.forEach((toggle) => {
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        const dropdown = toggle.parentElement?.querySelector("#dropdown");
+        if (dropdown) dropdown.classList.toggle("hidden");
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+
+      if (!target.closest("[data-dropdown-toggle]")) {
+        document.querySelectorAll("#dropdown").forEach((dropdown) => {
+          dropdown.classList.add("hidden");
+        });
+      }
+    });
+
+    // Scroll-based styling for navlinks
+    const elements = document.querySelectorAll(".navlink");
+
+    function updateNavOnScroll() {
+      const isScrolled = window.scrollY > 0;
+      elements.forEach((element) => {
+        if (!element.classList.contains("text-redP")) { // Prevents overriding active class
+          if (isScrolled) {
+            element.classList.add("text-black");
+            element.classList.remove("text-white");
+          } else {
+            element.classList.add("text-white");
+            element.classList.remove("text-black");
+          }
+        }
+      });
+    }
+
+    // Run on scroll and when page loads
+    window.addEventListener("scroll", updateNavOnScroll);
+    updateNavOnScroll();
+  });
+</script>

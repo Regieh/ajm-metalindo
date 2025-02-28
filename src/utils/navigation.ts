@@ -1,11 +1,11 @@
 // An array of links for navigation bar
 const navBarLinks = [
-  { name: "Home", url: "/" },
-  { name: "About Us", url: "/about" },
-  { name: "Projects", url: "/projects" },
-  { name: "Services", url: "/services" },
+  { name: "Home", url: "/", dropdown: false },
+  { name: "About Us", url: "/about", dropdown: false },
+  { name: "Projects", url: "/projects", dropdown: true },
+  { name: "Services", url: "/services", dropdown: false  },
   // { name: "Blog", url: "/blog" },
-  { name: "Contact", url: "/contact" },
+  { name: "Contact", url: "/contact", dropdown: false  },
 ];
 // An array of links for footer
 const footerLinks = [
