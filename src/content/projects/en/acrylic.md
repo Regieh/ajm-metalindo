@@ -8,7 +8,7 @@ main:
   content: |
    Acrylic laser cut, digital printing, neon box, letter box, etc
   mainDesc: "Unique acrylic designs and neon boxes to enhance brand visibility."
-  imgCard: "@images/acrylic/2.jpeg"
+  imgCard: "@images/acrylic/23.jpeg"
   imgMain: "@/images/product-image-main-3.avif"
   imgAlt: "Mockup boxes of a tap bolts and nuts set"
 images:
