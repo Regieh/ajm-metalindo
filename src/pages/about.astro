@@ -5,10 +5,12 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import ContactSection from "@components/sections/misc/ContactSection.astro";
 import { SITE } from "@data/constants";
 import bg1 from "@images/about.png";
-import about1 from "@images/about-1.png";
 import { Image } from "astro:assets";
 import FeatureOver from "@/components/sections/features/FeatureOver.astro";
 import experienceImg from "@images/experience.png";
+import about1 from "@images/About1.jpeg";
+import about3 from "@images/About3.jpg";
+
 
 const pageTitle: string = `About | ${SITE.title}`;
 ---
@@ -49,18 +51,18 @@ const pageTitle: string = `About | ${SITE.title}`;
         </div>
         <Image
           class="md:w-1/2 rounded-xs"
-          src={about1}
+          src={experienceImg}
           alt="About Us"
         />
     </div>
     <div class="">
         <FeatureOver
-          title={`WE BRING OVER <br />11 YEARS OF EXPERIENCE`}
+          title={`WE BRING OVER <br />25 YEARS OF EXPERIENCE`}
           subTitle={`Delivering high-quality and innovative solutions for<br />
                     all your media and promotional needs. Our expertise<br />
                     spans across multiple industries, offering tailored<br />
                     services that align with your vision.`}
-          src={experienceImg}
+          src={about1}
           alt="Experience"
         />
     </div>
@@ -76,7 +78,7 @@ const pageTitle: string = `About | ${SITE.title}`;
         </div>
         <Image
           class="md:w-1/2 rounded-xs"
-          src={about1}
+          src={about3}
           alt="About Us"
         />
     </div>
