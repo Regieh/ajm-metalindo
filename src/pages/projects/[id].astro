@@ -60,75 +60,25 @@ const visibleItems = 3;
     alt="Contact Us"
   />
 
-  <nav class="bg-redP text-white relative min-[425px]:mt-8 sm:mt-18 md:-mt-3">
-    <!-- Desktop Navigation (Always Visible) -->
-    <div class="hidden md:flex flex-wrap justify-center items-center gap-y-2">
+  <nav class="bg-redP text-white relative mt-8 sm:mt-18 md:-mt-3">
+    <!-- Responsive Navigation -->
+    <div class="flex sm:justify-center overflow-x-auto sm:overflow-visible whitespace-nowrap no-scrollbar">
       {projects.map((project, index) => {
         const isActive = currentPath.includes(project.data.tabName.toLowerCase());
   
         return (
           <a
             href={`/projects/${project.data.tabName.toLowerCase()}`}
-            class={`relative px-4 py-2 ${isActive ? 'bg-white text-redP' : 'bg-redP text-white'} 
+            class={`relative px-4 py-2 flex-shrink-0 ${isActive ? 'bg-white text-redP' : 'bg-redP text-white'} 
             hover:bg-white hover:text-redP transition
-             ${index !== 0 ? 'before:absolute before:left-0 before:inset-y-0 before:w-[2px] before:bg-white' : ''}`}
+            ${index !== 0 ? 'before:absolute before:left-0 before:inset-y-0 before:w-[2px] before:bg-white' : ''}`}
           >
             {project.data.title}
           </a>
         );
       })}
     </div>
-  
-    <!-- Mobile Navigation (Collapsible) -->
-    <div class="md:hidden flex flex-col items-center">
-      <!-- Always Visible Items -->
-      <div class="flex flex-wrap justify-center items-center gap-y-2">
-        {projects.slice(0, visibleItems).map((project, index) => {
-          const isActive = currentPath.includes(project.data.tabName.toLowerCase());
-  
-          return (
-            <a
-              href={`/projects/${project.data.tabName.toLowerCase()}`}
-              class={`relative px-4 py-2 ${isActive ? 'bg-white text-redP' : 'bg-redP text-white'} 
-              hover:bg-white hover:text-redP transition
-               ${index !== 0 ? 'before:absolute before:left-0 before:inset-y-0 before:w-[2px] before:bg-white' : ''}`}
-            >
-              {project.data.title}
-            </a>
-          );
-        })}
-      </div>
-  
-      <!-- Toggle Button -->
-      {projects.length > visibleItems && (
-        <button
-          id="toggle-button-project"
-          class="mt-2 px-4 py-2 bg-white text-redP rounded-xs flex items-center gap-2"
-        >
-          <span id="toggle-text">All Projects ▼</span>
-        </button>
-      )}
-  
-      <!-- Collapsible Extra Projects -->
-      <div id="extra-projects" class="hidden w-full flex flex-wrap justify-center items-center gap-y-2 mt-2">
-        {projects.slice(visibleItems).map((project,index) => {
-          const isActive = currentPath.includes(project.data.tabName.toLowerCase());
-  
-          return (
-            <a
-              href={`/projects/${project.data.tabName.toLowerCase()}`}
-              class={`relative px-4 py-2 ${isActive ? 'bg-white text-redP' : 'bg-redP text-white'} 
-              hover:bg-white hover:text-redP transition
-               ${index !== 0 ? 'before:absolute before:left-0 before:inset-y-0 before:w-[2px] before:bg-white' : 'before:absolute before:left-0 before:inset-y-0 before:w-[2px] before:bg-white'}
-               `}
-            >
-              {project.data.title}
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  </nav>
+  </nav>  
   <section
     class="mx-auto flex max-w-[85rem] flex-col default-p 2xl:max-w-full"
   >
@@ -160,6 +110,55 @@ const visibleItems = 3;
       partners={partnersData}
     />
 </MainLayout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<!-- smooth horizontal -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const scrollContainer = document.querySelector(".overflow-x-auto") as HTMLElement | null;
+  
+  if (!scrollContainer) return;
+
+  let isDown: boolean = false;
+  let startX: number = 0;
+  let scrollLeft: number = 0;
+
+  scrollContainer.addEventListener("mousedown", (e: MouseEvent) => {
+    isDown = true;
+    scrollContainer.classList.add("active");
+    startX = e.pageX - scrollContainer.offsetLeft;
+    scrollLeft = scrollContainer.scrollLeft;
+  });
+
+  scrollContainer.addEventListener("mouseleave", () => {
+    isDown = false;
+    scrollContainer.classList.remove("active");
+  });
+
+  scrollContainer.addEventListener("mouseup", () => {
+    isDown = false;
+    scrollContainer.classList.remove("active");
+  });
+
+  scrollContainer.addEventListener("mousemove", (e: MouseEvent) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainer.offsetLeft;
+    const walk = (x - startX) * 2; // Adjust scroll speed
+    scrollContainer.scrollLeft = scrollLeft - walk;
+  });
+});
+
+</script>
 
 <script>
   import { gsap } from "gsap";
