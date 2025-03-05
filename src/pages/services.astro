@@ -80,10 +80,10 @@ const rack = {
   }}
 >
   <SubHeroSection title="Services" src={bg1} alt="Services" />
-  <div class="default-p mt-8 sm:mt-12 md:-mt-8">
+  <div class="default-p mt-2 md:-mt-8">
     <div class="relative">
       <div
-        class="bg-container z-5 absolute inset-0 -left-40 h-[35dvh] w-[150dvw] overflow-hidden bg-white sm:-left-80 md:h-[30dvh] lg:-left-96 xl:h-[30dvh]"
+        class="bg-container z-5 absolute inset-0 -left-40 w-[150dvw] overflow-hidden bg-white sm:-left-80 h-[35dvh] md:h-[20dvh] lg:-left-96"
       >
         <div
           class="bg-image absolute h-full w-[150dvw] bg-cover bg-center"
@@ -104,12 +104,12 @@ const rack = {
         >
           <div class="flex flex-col gap-6 md:w-2/5">
             <h1
-              class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight text-black"
+              class="text-white text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight h-1/2"
             >
               <Fragment set:html={exhibition.title} />
             </h1>
             <p
-              class="border-l-2 md:border-l-0 border-redP pl-8 md:pl-0 pt-8"
+              class="text-white md:text-black border-l-2 md:border-l-0 border-redP pl-8 md:pl-0 pt-8 h-1/2"
               set:html={exhibition.description}
             />
           </div>
