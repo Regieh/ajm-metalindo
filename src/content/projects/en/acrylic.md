@@ -1,5 +1,5 @@
 ---
-title: "Acrylic and Printing"
+title: "Acrylic & Printing"
 description: "Acrylic & printing"
 tabName: "acrylic"
 show: true
@@ -84,14 +84,8 @@ images:
   - title: "Acrylic 24"
     url: "@images/acrylic/24.jpeg"
     alt: "Acrylic Product"
-  - title: "Acrylic 25"
-    url: "@images/acrylic/25.jpeg"
-    alt: "Acrylic Product"
   - title: "Acrylic 26"
     url: "@images/acrylic/26.jpeg"
-    alt: "Acrylic Product"
-  - title: "Acrylic 27"
-    url: "@images/acrylic/27.jpeg"
     alt: "Acrylic Product"
   - title: "Acrylic 28"
     url: "@images/acrylic/28.jpeg"

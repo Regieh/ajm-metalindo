@@ -80,7 +80,7 @@ const visibleItems = 3;
     </div>
   </nav>  
   <section
-    class="mx-auto flex max-w-[85rem] flex-col default-p 2xl:max-w-full"
+    class="mx-auto max-w-[85rem] default-p 2xl:max-w-full relative z-10"
   >
     <div
      id="fadeText" class="flex flex-col sm:flex-row justify-between items-center py-2 my-8"
@@ -94,7 +94,7 @@ const visibleItems = 3;
     >
       {product.data.images.map((project) => (
         <div class="relative group">
-          <Image src={project.url} alt={project.alt} loading="lazy" decoding="async" class="w-full h-auto object-cover aspect-[3/2]" />
+          <Image src={project.url} alt={project.alt} loading="lazy" decoding="async" class="w-full h-auto object-fit aspect-[3/2]" />
           
           {/* Overlay on hover */}
           <div class="absolute inset-0 bg-red-600 bg-opacity-80 flex items-start justify-start opacity-0 group-hover:opacity-100 transition-opacity">
@@ -103,12 +103,12 @@ const visibleItems = 3;
         </div>
       ))}
     </div>
-    
+  </section>
     <ClientsSection
-      title="our client"
-      subTitle="We already working with a diverse range of clients across various industries"
-      partners={partnersData}
-    />
+    title="our client"
+    subTitle="We already working with a diverse range of clients across various industries"
+    partners={partnersData}
+  />
 </MainLayout>
 
 <style>
