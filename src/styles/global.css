@@ -35,6 +35,8 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+
+/* animation */
 @keyframes bgMove {
   0% {
     background-position: 50% 50%;
