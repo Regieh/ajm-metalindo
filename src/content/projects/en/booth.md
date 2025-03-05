@@ -1,6 +1,6 @@
 ---
 title: "Booth & Display"
-description: "BOOTH & DISPLAY"
+description: "Booth & Display"
 tabName: "booth"
 show: true
 main:
@@ -44,9 +44,6 @@ images:
     alt: "Booth Projects"
   - title: "Booth 11"
     url: "@images/booth/11.jpeg"
-    alt: "Booth Projects"
-  - title: "Booth 12"
-    url: "@images/booth/12.jpeg"
     alt: "Booth Projects"
   - title: "Booth 13"
     url: "@images/booth/13.jpeg"

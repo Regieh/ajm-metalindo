@@ -1,6 +1,6 @@
 ---
 title: "Booth & Display"
-description: "BOOTH & DISPLAY"
+description: "Booth & Display"
 tabName: "booth"
 show: true
 main:

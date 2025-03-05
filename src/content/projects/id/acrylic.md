@@ -1,5 +1,5 @@
 ---
-title: "Acrylic and Printing"
+title: "Acrylic & Printing"
 description: "Acrylic & printing"
 tabName: "acrylic"
 show: true

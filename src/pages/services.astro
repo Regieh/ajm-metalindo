@@ -9,189 +9,226 @@ import showroom1Image from "@images/services/services-sh-1.png";
 import showroom2Image from "@images/services/services-sh-2.png";
 import totemImage from "@images/services/services-tt.png";
 import acrylicImage from "@images/services/services-ac.png";
-import digitalPrint1Image from "@images/services/services-dp-1.png";
-import digitalPrint2Image from "@images/services/services-dp-2.png";
+import exterior1Image from "@images/services/services-dp-1.png";
+import exterior2Image from "@images/services/services-dp-2.png";
 import rackImage from "@images/services/services-rs.png";
 import { Image } from "astro:assets";
 import GiveHelp from "@/components/sections/landing/GiveHelp.astro";
+import racksliding from "@images/racksliding.jpeg";
+import boothdisplay from "@images/boothdisplay.jpeg"
+import interior from "@images/interior.jpeg"
+import acrylicdigitalprinting from "@images/acrylicdigitalprinting.jpeg"
 
 const pageTitle: string = `About | ${SITE.title}`;
 
 const exhibition = {
-    "title" : "Exhibition, Booth and Display",
-    "description" : "We create custom exhibition booths and displays to make your brand stand out at events and trade shows.",
+  title: "Booth & Display",
+  description:
+    "We create custom Booths and Displays to make your brand stand out at events and trade shows.",
 };
 
 const showroom = {
-    "title" : "Showroom, Interior Set, and Exterior Set",
-    "description" : "We design and build functional and visually stunning interior and exterior setups for your spaces.",
+  title: "Showroom",
+  description:
+  "We design and build functional and visually stunning interior and exterior setups for your spaces.",
 };
 
 const totem = {
-    "title" : "Totem, Signage, and Neon box",
-    "description" : "Custom totem signage and neon boxes to enhance your brand’s visibility, day and night.",
+  title: "Rack Sliding",
+  description:
+  "Optimize your storage and display needs with our custom rack solutions. From sliding racks for space efficiency to durable shelving for supermarkets and warehouses.",
 };
 
 const acrylic = {
-    "title" : "Acrylic Laser Cut",
-    "description" : "Precision laser cutting for acrylic logos, signage, and decorative pieces.",
+  title: "Interior",
+  description:
+    "Custom interior solutions for various home needs, including kitchen sets, living rooms, meeting rooms, and decorative pieces.",
 };
 
-const digitalPrint = {
-    "title" : "Digital Printing",
-    "description" : "High-quality digital printing for banners, signage, and promotional materials.",
+
+const exterior = {
+  title: "Exterior",
+  description:
+    "Durable exterior solutions for houses, as well as outdoor and indoor courts, offering high-quality signage and decorative installations.",
 };
 
-const rack ={
-    "title" : "Rack Sliding, Supermarket, and Warehouse Solutions ",
-    "description" : "Optimize your storage and display needs with our custom rack solutions. From sliding racks for space efficiency to durable shelving for supermarkets and warehouses",
-}
+const rack = {
+  title: "Acrylic & Digital Printing",
+  description:
+    "Custom acrylic and digital printing solutions for signage, promotional displays, and personalized decorative items.",
+};
 ---
-
-<!--Utilizing MainLayout for the outer layout of the page, and defining meta for SEO purposes-->
 
 <MainLayout
   title={pageTitle}
   structuredData={{
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://Metalindo.uk/contact",
-    "url": "https://Metalindo.uk/contact",
-    "name": "Services | Metalindo",
-    "description":
+    "@id": "http://localhost:4321/contact",
+    url: "http://localhost:4321/contact",
+    name: "Services | Metalindo",
+    description:
       "Don't hesitate to contact us. Let's collaborate and bring your vision to life—because at Metalindo, your satisfaction is our priority.",
-    "isPartOf": {
+    isPartOf: {
       "@type": "WebSite",
-      "url": "https://Metalindo.uk",
-      "name": "Metalindo",
-      "description":
+      url: "http://localhost:4321",
+      name: "Metalindo",
+      description:
         "Metalindo offers top-tier hardware tools and expert construction services to meet all your project needs.",
     },
-    "inLanguage": "en-US"
+    inLanguage: "en-US",
   }}
 >
-  <SubHeroSection
-    title="Services"
-    src={bg1}
-    alt="Services"
-  />
+  <SubHeroSection title="Services" src={bg1} alt="Services" />
   <div class="default-p mt-8 sm:mt-12 md:-mt-8">
-      <div class="relative">
-        <!-- Background Image: FULL WIDTH with Overlay -->
-        <div class="bg-container absolute z-5 inset-0 w-[150dvw] h-[35dvh] md:h-[20dvh] xl:h-[25dvh] -left-40 sm:-left-80 lg:-left-96 overflow-hidden bg-white">
-    <div class="bg-image w-[150dvw] h-full absolute bg-cover bg-center"
-      style={`background-image: url(${bg1.src});`}
-    ></div>
-    <div class="absolute z-6 inset-0 w-[150dvw] h-full bg-redP bg-opacity-85"></div>
-  </div> 
+    <div class="relative">
+      <div
+        class="bg-container z-5 absolute inset-0 -left-40 h-[35dvh] w-[150dvw] overflow-hidden bg-white sm:-left-80 md:h-[30dvh] lg:-left-96 xl:h-[30dvh]"
+      >
+        <div
+          class="bg-image absolute h-full w-[150dvw] bg-cover bg-center"
+          style={`background-image: url(${bg1.src});`}
+        >
+        </div>
+        <div
+          class="z-6 absolute inset-0 h-full w-[150dvw] bg-redP bg-opacity-85"
+        >
+        </div>
+      </div>
 
-        <div class="relative z-10 mb-4 flex flex-col items-start justify-between gap-8 sm:mb-8 md:mb-12">
-            <div class="flex flex-col-reverse md:flex-row justify-center items-center pt-4">
-                <div class="flex flex-col gap-6">
-                    <h1 class="font-oswald text-balance text-3xl md:text-4xl font-bold tracking-tight text-white md:leading-tight">
-                        <Fragment set:html={exhibition.title} />
-                    </h1>
-                    <p class="border-l-2 border-redP pl-4 pt-8" set:html={exhibition.description} />
-                </div>
-                <Image
-                    src={exhiImage}
-                    alt="Exhibition Image"
-                    class="w-1/2 aspect-video rounded-xs mt-6 md:mt-0"
-                />
-            </div>
-        </div>
-    </div>
-    <!-- showroom -->
-    <div class="flex flex-col-reverse md:flex-row justify-center items-center gap-8 sm:mb-8 md:mb-12">
-        <div class="flex flex-row space-x-4 mt-8 md:w-1/2">
-            <Image
-                src={showroom1Image}
-                alt="Showroom Image 1"
-                class="w-1/2 aspect-[3/4] rounded-xs relative -top-12"
-            />
-            <Image
-                src={showroom2Image}
-                alt="Showroom Image 2"
-                class="w-1/2 aspect-[3/4] rounded-xs"
-            />
-        </div>
-        <div class="flex flex-col gap-6 md:w-1/2">
-            <h1 class="font-oswald text-balance text-3xl md:text-4xl font-bold tracking-tight md:leading-tight">
-                <Fragment set:html={showroom.title} />
-                <div class="w-[30%] border-b-4 border-redP"></div>
+      <div
+        class="relative z-10 mb-4 pb-8 flex flex-col items-start justify-between gap-8 sm:mb-8 md:mb-12"
+      >
+        <div
+          class="mx-auto flex max-w-3xl flex-col-reverse items-center justify-center pt-4 md:flex-row"
+        >
+          <div class="flex flex-col gap-6">
+            <h1
+              class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight text-black"
+            >
+              <Fragment set:html={exhibition.title} />
             </h1>
-            <p class="pt-8" set:html={showroom.description} />
-        </div>
-    </div>
-    <!-- totem -->
-    <div class="flex flex-col md:flex-row justify-center items-center gap-8">
-        <div class="flex flex-col gap-6 md:w-1/2">
-            <h1 class="font-oswald text-balance text-3xl md:text-4xl font-bold tracking-tight md:leading-tight">
-                <Fragment set:html={totem.title} />
-                <div class="w-[30%] border-b-4 border-redP"></div>
-            </h1>
-            <p class="pt-8" set:html={totem.description} />
-        </div>
-        <div class="flex flex-row space-x-4 mt-8 md:w-1/2">
-            <Image
-                src={totemImage}
-                alt="Totem Image 1"
-                class="w-full aspect-[5/3] rounded-xs"
+            <p
+              class="border-l-2 md:border-l-0 border-redP pl-8 md:pl-0 pt-8"
+              set:html={exhibition.description}
             />
+          </div>
+          <Image
+            src={boothdisplay}
+            alt="Exhibition Image"
+            class="rounded-xs aspect-[5/3] w-full pb-4"
+          />
         </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col-reverse items-center justify-center gap-8 sm:mb-8 md:mb-12 md:flex-row"
+    >
+      <div class="mt-8 flex flex-row space-x-4 md:w-1/2">
+        <Image
+          src={showroom1Image}
+          alt="Showroom Image 1"
+          class="rounded-xs relative -top-12 aspect-[3/4] w-1/2"
+        />
+        <Image
+          src={showroom2Image}
+          alt="Showroom Image 2"
+          class="rounded-xs aspect-[3/4] w-1/2"
+        />
+      </div>
+      <div class="flex flex-col gap-6 md:w-1/2">
+        <h1
+          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight"
+        >
+          <Fragment set:html={showroom.title} />
+          <div class="w-[30%] border-b-4 border-redP"></div>
+        </h1>
+        <p class="pt-8" set:html={showroom.description} />
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-center gap-8 md:flex-row">
+      <div class="flex flex-col gap-6 md:w-1/2">
+        <h1
+          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight"
+        >
+          <Fragment set:html={totem.title} />
+          <div class="w-[30%] border-b-4 border-redP"></div>
+        </h1>
+        <p class="pt-8" set:html={totem.description} />
+      </div>
+      <div class="mt-8 flex flex-row space-x-4 md:w-1/2">
+        <Image
+          src={racksliding}
+          alt="RackSliding Image"
+          class="rounded-xs aspect-[5/3] w-full"
+        />
+      </div>
     </div>
   </div>
 
   <GiveHelp />
 
   <div class="default-p">
-    <!-- acrylic -->
-    <div class="flex flex-col-reverse gap-8 md:flex-row justify-center items-center sm:mb-8 md:mb-12">
+    <div
+      class="flex flex-col-reverse items-center justify-center gap-8 sm:mb-8 md:mb-12 md:flex-row"
+    >
       <Image
-          src={acrylicImage}
-          alt="Acrylic Image"
-          class="w-1/2 aspect-[5/3] rounded-xs"
+        src={interior}
+        alt="Interior Image"
+        class="rounded-xs aspect-[5/3] w-1/2"
       />
       <div class="flex flex-col gap-6 space-x-4">
-          <h1 class="font-oswald text-balance text-3xl md:text-4xl font-bold tracking-tight md:leading-tight">
-              <Fragment set:html={acrylic.title} />
-          </h1>
-          <p class="border-l-2 border-redP pl-4" set:html={acrylic.description} />
+        <h1
+          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight"
+        >
+          <Fragment set:html={acrylic.title} />
+        </h1>
+        <p class="border-l-2 border-redP pl-4" set:html={acrylic.description} />
       </div>
     </div>
-    <!-- digital print -->
-    <div class="flex flex-col gap-8 md:flex-row justify-center items-center sm:mb-8 md:mb-12">
+    <div
+      class="flex flex-col items-center justify-center gap-8 sm:mb-8 md:mb-12 md:flex-row"
+    >
       <div class="flex flex-col gap-6 space-x-4">
-          <h1 class="font-oswald text-balance text-3xl md:text-4xl font-bold tracking-tight md:leading-tight">
-              <Fragment set:html={digitalPrint.title} />
-          </h1>
-          <p class="border-l-2 border-redP pl-4" set:html={digitalPrint.description} />
+        <h1
+          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight"
+        >
+          <Fragment set:html={exterior.title} />
+        </h1>
+        <p
+          class="border-l-2 border-redP pl-4"
+          set:html={exterior.description}
+        />
       </div>
       <div class="flex flex-row space-x-1">
-      <Image
-        src={digitalPrint1Image}
-        alt="Digital Print Image 1"
-        class="w-1/2 aspect-square rounded-xs"
-      />
-      <Image
-        src={digitalPrint2Image}
-        alt="Digital Print Image 2"
-        class="w-1/2 aspect-square rounded-xs"
-      />
+        <Image
+          src={exterior1Image}
+          alt="Digital Print Image 1"
+          class="rounded-xs aspect-square w-1/2"
+        />
+        <Image
+          src={exterior2Image}
+          alt="Digital Print Image 2"
+          class="rounded-xs aspect-square w-1/2"
+        />
       </div>
     </div>
-    <!-- rack sliding -->
-    <div class="flex flex-col-reverse gap-8 md:flex-row justify-center items-center sm:mb-8 md:mb-12">
-      <Image
-          src={rackImage}
-          alt="Rack Image"
-          class="w-1/2 aspect-[6/4] rounded-xs"
-      />
+    <div
+      class="flex flex-col-reverse items-center justify-center gap-8 sm:mb-8 md:mb-12 md:flex-row"
+    >
+    <Image
+  src={acrylicdigitalprinting}
+  alt="Acrylic & Digital Printing Image"
+  class="rounded-xs aspect-[4/4] w-1/2 object-cover"
+/>
+  
       <div class="flex flex-col gap-6 space-x-4">
-          <h1 class="font-oswald text-balance text-3xl md:text-4xl font-bold tracking-tight md:leading-tight">
-              <Fragment set:html={rack.title} />
-          </h1>
-          <p class="border-b-2 border-redP pb-4" set:html={rack.description} />
+        <h1
+          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight"
+        >
+          <Fragment set:html={rack.title} />
+        </h1>
+        <p class="border-b-2 border-redP pb-4" set:html={rack.description} />
       </div>
     </div>
   </div>
@@ -203,17 +240,18 @@ const rack ={
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: ".bg-container",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-    }
-  })
-  .fromTo(
-    ".bg-image",
-    { y: "10%", opacity: 0.6 },  // Moves slightly within container
-    { y: "-10%", opacity: 1, ease: "none" } // Keeps movement inside container
-  );
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: ".bg-container",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    })
+    .fromTo(
+      ".bg-image",
+      { y: "10%", opacity: 0.6 }, // Moves slightly within container
+      { y: "-10%", opacity: 1, ease: "none" }, // Keeps movement inside container
+    );
 </script>
