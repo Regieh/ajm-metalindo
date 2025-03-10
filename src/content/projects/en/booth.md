@@ -6,8 +6,8 @@ show: true
 main:
   id: 3
   content: |
-    Customized booth and display solutions for events and promotions.
-  mainDesc: "Customized booth and display solutions for events and promotions."
+    Solusi booth dan display kustom untuk acara dan promosi.
+  mainDesc: "Solusi booth dan display kustom untuk acara dan promosi."
   imgCard: "@images/booth/12.jpeg"
   imgMain: "@/images/product-image-main-1.avif"
   imgAlt: "Booth and Display"

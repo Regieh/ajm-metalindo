@@ -5,8 +5,8 @@ import ogImageSrc from "@images/social.png";
 export const SITE = {
   title: "Metalindo",
   tagline: "Top-quality Hardware Tools",
-  description: "Metalindo offers top-tier hardware tools and expert construction services to meet all your project needs. Start exploring and contact our sales team for superior quality and reliability.",
-  description_short: "Metalindo offers top-tier hardware tools and expert construction services to meet all your project needs.",
+  description: "Kita menyediakan solusi untuk layanan pembuatan custom & modular berbasis metal, kayu, akrilik hingga printing untuk keperluan kegiatan event dan promosi, seperti booth, display, rak, interior, eksterior dll, termasuk keperluan interior set dan eksterior set bangunan anda.",
+  description_short: "Kita menyediakan solusi untuk layanan pembuatan custom & modular berbasis metal, kayu, akrilik hingga printing untuk keperluan kegiatan event dan promosi.",
   url: "https://ajmmetalindo.co.id",
   author: "AJM Metalindo",
 };
@@ -36,7 +36,7 @@ export const OG = {
   type: "website",
   url: SITE.url,
   title: `${SITE.title}: : Hardware Tools & Construction Services`,
-  description: "Equip your projects with Metalindo's top-quality hardware tools and expert construction services. Trusted by industry leaders, Metalindo offers simplicity, affordability, and reliability. Experience the difference with user-centric design and cutting-edge tools. Start exploring now!",
+  description: "Kita menyediakan solusi untuk layanan pembuatan custom & modular berbasis metal, kayu, akrilik hingga printing untuk keperluan kegiatan event dan promosi, seperti booth, display, rak, interior, eksterior dll, termasuk keperluan interior set dan eksterior set bangunan anda.",
   image: ogImageSrc,
 };
 
@@ -44,17 +44,17 @@ export const recommendData = [
   {
     id: 1,
     title: `one-stop<br/>service`,
-    desc:"We handle everything from design to installation.",
+    desc:"Kami menangani semuanya mulai dari desain hingga instalasi.",
   },
   {
     id: 2,
     title: `premium<br/>quality`,
-    desc:"We take pride in providing precise, innovative, and high-quality results.",
+    desc:"Kami bangga memberikan hasil yang tepat, inovatif, dan berkualitas tinggi.",
   },
   {
     id: 3,
     title: `Flexible<br/>Approach`,
-    desc:"Every project is tailored to meet our clients' specific needs.",
+    desc:"Setiap proyek dirancang untuk memenuhi kebutuhan spesifik klien kami.",
   },
 ]
 

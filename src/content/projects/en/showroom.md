@@ -6,8 +6,8 @@ show: true
 main:
   id: 1
   content: |
-    We create functional and stylish showroom designs to showcase your products effectively.
-  mainDesc: "We create functional and stylish showroom designs to showcase your products effectively."
+    Kami menciptakan desain showroom yang fungsional dan stylish untuk memamerkan produk Anda secara efektif.
+  mainDesc: "Kami menciptakan desain showroom yang fungsional dan stylish untuk memamerkan produk Anda secara efektif."
   imgCard: "@images/showroom/1.jpeg"
   imgMain: "@/images/product-image-main-4.avif"
   imgAlt: "Showroom"

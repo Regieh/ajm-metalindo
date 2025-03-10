@@ -6,7 +6,7 @@ show: true
 main:
   id: 7
   content: |
-   Acrylic laser cut, digital printing, neon box, letter box, etc
+   Acrylic laser cut, digital printing, neon box, letter box, dll
   mainDesc: "Unique acrylic designs and neon boxes to enhance brand visibility."
   imgCard: "@images/acrylic/23.jpeg"
   imgMain: "@/images/product-image-main-3.avif"

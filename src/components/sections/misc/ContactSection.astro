@@ -10,26 +10,26 @@ import { Image } from "astro:assets";
 
 // Define variables for the section
 const title: string = "Contact us";
-const subTitle: string = "for more questions";
+const subTitle: string = "Untuk pertanyaan lebih lanjut";
 const desc: string =
-  "Don’t hesitate to contact us. Let’s collaborate and bring your vision to life because at Metalindo, your satisfaction is our priority.";
-const formTitle: string = "Fill in the form below";
-const formSubTitle: string = "We'll get back to you in 1-2 business days.";
+  "Jangan ragu untuk menghubungi kami. Mari berkolaborasi dan wujudkan visi Anda, karena di Metalindo, kepuasan Anda adalah prioritas kami.";
+const formTitle: string = "Silakan isi formulir di bawah ini.";
+const formSubTitle: string = "Kami akan menghubungi Anda kembali dalam 1-2 hari kerja.";
 
 // Import contact icons
-import telIcon from "@/images/tel-r.svg";
+import waIcon from "@/images/wa-r.svg";
 import mailIcon from "@/images/mail-r.svg";
 import gpsIcon from "@/images/gps-r.svg";
 
 // Create an icon map to reference images dynamically
 const iconMap = {
-  "tel-r.svg": telIcon,
+  "wa-r.svg": waIcon,
   "mail-r.svg": mailIcon,
   "gps-r.svg": gpsIcon
 } as const;
 
 const links = [
-  { title: "Phone Number", name: "0813-9880-0869", url: "tel:+6281398800869", icon: "tel-r.svg" },
+  { title: "Phone Number", name: "0813-9880-0869", url: "https://wa.me/6281398800869?text=Halo%20%5BNama%20Anda%5D%2C%0A%0ASaya%20tertarik%20dengan%20layanan%20Anda%20untuk%20solusi%20media%20dan%20promosi.%20Bisakah%20saya%20mendapatkan%20informasi%20lebih%20lanjut%20terkait%3A%0A%0A1.%20Desain%20grafis%20dan%20branding%0A2.%20Produksi%20konten%20media%20sosial%0A3.%20Strategi%20pemasaran%20digital%0A4.%20Layanan%20lain%20yang%20Anda%20tawarkan%0A%0ATerima%20kasih.%20Saya%20menunggu%20respon%20dari%20tim%20Anda.", icon: "wa-r.svg" },
   { title: "E-Mail", name: "adorrajayamakmur@gmail.com", url: "mailto:adorrajayamakmur@gmail.com", icon: "mail-r.svg" },
   { title: "Address", name: "Jl. Raya Pondok Jagung Timur Gg. Mawi No. 26, Serpong, Tangerang, Banten", url: "https://maps.app.goo.gl/TJhZtHGns9zjKxKc9", icon: "gps-r.svg" },
 ];
@@ -83,7 +83,7 @@ const links = [
             </div>
   
             <div class="mt-4 grid">
-              <AuthBtn title="Send Message" />
+              <AuthBtn title="Kirim Pesan" />
             </div>
   
             <div class="mt-3 text-center">
