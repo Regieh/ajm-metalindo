@@ -4,7 +4,7 @@ import EmailFooterInput from "@components/ui/forms/input/EmailFooterInput.astro"
 import enStrings from "@utils/navigation.ts";
 import frStrings from "@/utils/id/navigation";
 import Icon from "@components/ui/icons/Icon.astro";
-import BrandLogo from "@components/BrandLogo.astro";
+import BrandLogoWhite from "@components/BrandLogoWhite.astro";
 import { SITE } from "@data/constants";
 import { Image } from "astro:assets";
 
@@ -36,7 +36,7 @@ const crafted: string = Astro.currentLocale === "id" ? "Fabriqué par" : "Crafte
     <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
       <div class="col-span-full lg:col-span-1">
         <!-- Brand Logo -->
-        <BrandLogo class="h-auto w-32" />
+        <BrandLogoWhite class="h-auto w-32" />
 
         <p class="mt-3 text-md text-white dark:text-neutral-400 flex flex-col items-start gap-y-2">
           <span>Activate your idea</span>
