@@ -4,10 +4,76 @@ import { Image } from "astro:assets";
 
 // Import images (Astro does not support dynamic imports)
 import strabag from "@images/client/strabag.png";
+import aquaproof from "@images/client/aquaproof.webp";
+import boardriders from "@images/client/boardriders.png";
+import depoBangunan from "@images/client/depo-bangunan.png";
+import eleganza from "@images/client/eleganza.jpg";
+import ikad from "@images/client/ikad.png";
+import IMG_0852 from "@images/client/IMG_0852.png";
+import IMG_0853 from "@images/client/IMG_0853.png";
+import IMG_0854 from "@images/client/IMG_0854.png";
+import IMG_0855 from "@images/client/IMG_0855.png";
+import IMG_0856 from "@images/client/IMG_0856.png";
+import IMG_0857 from "@images/client/IMG_0857.jpg";
+import IMG_0858 from "@images/client/IMG_0858.png";
+import IMG_0859 from "@images/client/IMG_0859.png";
+import infinitiGranite from "@images/client/infiniti-granite.png";
+import inlite from "@images/client/inlite.png";
+import kiaSanitary from "@images/client/kia-sanitary.jpg";
+import kohler from "@images/client/kohler.png";
+import levoit from "@images/client/levoit.png";
+import mitra10 from "@images/client/mitra10.png";
+import muliaCeramics from "@images/client/mulia-ceramics.png";
+import niroGranite from "@images/client/niro-granite.png";
+import Photoroom_20250314_150424 from "@images/client/Photoroom_20250314_150424.png";
+import Photoroom_20250314_150442 from "@images/client/Photoroom_20250314_150442.png";
+import Photoroom_20250314_150513 from "@images/client/Photoroom_20250314_150513.png";
+import pralon from "@images/client/pralon.png";
+import qnqlogo from "@images/client/qnqlogo.png";
+import roman from "@images/client/roman.png";
+import sandimas from "@images/client/sandimas.jpeg";
+import selfietime from "@images/client/selfietime.png";
+import solid from "@images/client/solid.png";
+import toto from "@images/client/toto.png";
+import unikey from "@images/client/unikey.png";
+import visiFocus from "@images/client/visi-focus.jpg";
+
 
 // Map image names to imported assets
 const iconMap = {
-  "strabag.png": strabag,
+  "aquaproof.webp": { src: aquaproof, scale: "scale-125" },
+  "boardriders.png": { src: boardriders, scale: "scale-100" },
+  "depo-bangunan.png": { src: depoBangunan, scale: "scale-125" },
+  "eleganza.jpg": { src: eleganza, scale: "scale-110" },
+  "ikad.png": { src: ikad, scale: "scale-100" },
+  "IMG_0852.png": { src: IMG_0852, scale: "scale-125" },
+  "IMG_0853.png": { src: IMG_0853, scale: "scale-125" },
+  "IMG_0854.png": { src: IMG_0854, scale: "scale-125" },
+  "IMG_0855.png": { src: IMG_0855, scale: "scale-125" },
+  "IMG_0856.png": { src: IMG_0856, scale: "scale-125" },
+  "IMG_0857.jpg": { src: IMG_0857, scale: "scale-110" },
+  "IMG_0858.png": { src: IMG_0858, scale: "scale-125" },
+  "IMG_0859.png": { src: IMG_0859, scale: "scale-125" },
+  "infiniti-granite.png": { src: infinitiGranite, scale: "scale-100" },
+  "inlite.png": { src: inlite, scale: "scale-110" },
+  "kia-sanitary.jpg": { src: kiaSanitary, scale: "scale-100" },
+  "kohler.png": { src: kohler, scale: "scale-100" },
+  "levoit.png": { src: levoit, scale: "scale-110" },
+  "mitra10.png": { src: mitra10, scale: "scale-100" },
+  "mulia-ceramics.png": { src: muliaCeramics, scale: "scale-125" },
+  "niro-granite.png": { src: niroGranite, scale: "scale-110" },
+  "Photoroom_20250314_150424.png": { src: Photoroom_20250314_150424, scale: "scale-125" },
+  "Photoroom_20250314_150442.png": { src: Photoroom_20250314_150442, scale: "scale-125" },
+  "Photoroom_20250314_150513.png": { src: Photoroom_20250314_150513, scale: "scale-125" },
+  "pralon.png": { src: pralon, scale: "scale-110" },
+  "qnqlogo.png": { src: qnqlogo, scale: "scale-100" },
+  "roman.png": { src: roman, scale: "scale-100" },
+  "sandimas.webp": { src: sandimas, scale: "scale-125" },
+  "selfietime.png": { src: selfietime, scale: "scale-100" },
+  "solid.png": { src: solid, scale: "scale-100" },
+  "toto.png": { src: toto, scale: "scale-110" },
+  "unikey.png": { src: unikey, scale: "scale-100" },
+  "visi-focus.jpg": { src: visiFocus, scale: "scale-100" },
 } as const;
 
 // Define TypeScript interface for props
@@ -51,21 +117,17 @@ interface Props {
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         {partners.map((partner) => {
-          const iconSrc = iconMap[partner.icon as keyof typeof iconMap];
-
-          return (
-            iconSrc ? (
-              <div class="swiper-slide flex justify-center w-auto px-4">
-                <a href={partner.href || "#"} class="flex items-center">
-                  <Image
-                    src={iconSrc}
-                    alt={`${partner.name} logo`}
-                    class="h-12 w-auto"
-                  />
-                </a>
-              </div>
-            ) : null
-          );
+          const iconData = iconMap[partner.icon as keyof typeof iconMap];
+        
+          return iconData ? (
+            <div class="swiper-slide flex justify-center w-auto">
+              <Image
+                src={iconData.src} 
+                alt={`${partner.name} logo`}
+                class="h-16 max-h-16 w-auto object-contain"
+              />
+            </div>
+          ) : null;
         })}
       </div>
     </div>

@@ -1,13 +1,13 @@
 ---
-title: "Acrylic & Printing"
-description: "Acrylic & printing"
+title: "Acrylic & Digital Printing"
+description: "Acrylic & Digital printing"
 tabName: "acrylic"
 show: true
 main:
   id: 7
   content: |
-   Acrylic laser cut, digital printing, neon box, letter box, dll
-  mainDesc: "Unique acrylic designs and neon boxes to enhance brand visibility."
+   Acrylic laser cut, digital printing, print uv, neon box, letter box, neon flex, dll
+  mainDesc: "Custom acrylic dan digital printing yang dapat meningkatkan visibilitas brand."
   imgCard: "@images/acrylic/23.jpeg"
   imgMain: "@/images/product-image-main-3.avif"
   imgAlt: "Mockup boxes of a tap bolts and nuts set"

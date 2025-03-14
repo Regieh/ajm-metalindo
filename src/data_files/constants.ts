@@ -59,55 +59,27 @@ export const recommendData = [
 ]
 
 export const partnersData = [
-    {
-        icon: "strabag.png",
-        name: "first",
-        href: "#",
-    },
-    {
-        icon: "strabag.png",
-        name: "Second",
-        href: "#",
-    },
-    {
-        icon: "strabag.png",
-        name: "Third",
-        href: "#",
-    },
-
-    {
-        icon: "strabag.png",
-        name: "Fourth",
-        href: "#",
-    },
-    {
-        icon: "strabag.png",
-        name: "Fifth",
-        href: "#",
-    },
-    {
-        icon: "strabag.png",
-        name: "Sixth",
-        href: "#",
-    },
-    {
-        icon: "strabag.png",
-        name: "Seventh",
-        href: "#",
-    },
-    {
-        icon: "strabag.png",
-        name: "Eighth",
-        href: "#",
-    },
-    {
-        icon: "strabag.png",
-        name: "Ninth",
-        href: "#",
-    },
-    {
-        icon: "strabag.png",
-        name: "Tenth",
-        href: "#",
-    }
-]
+  { icon: "aquaproof.webp", name: "Aquaproof", href: "#" },
+  { icon: "boardriders.png", name: "Boardriders", href: "#" },
+  { icon: "depo-bangunan.png", name: "Depo Bangunan", href: "#" },
+  { icon: "eleganza.jpg", name: "Eleganza", href: "#" },
+  { icon: "ikad.png", name: "IKAD", href: "#" },
+  { icon: "inifiti-granite.PNG", name: "Inifiti Granite", href: "#" },
+  { icon: "inlite.png", name: "Inlite", href: "#" },
+  { icon: "kia-sanitary.jpg", name: "KIA Sanitary", href: "#" },
+  { icon: "kohler.png", name: "Kohler", href: "#" },
+  { icon: "levoit.png", name: "Levoit", href: "#" },
+  { icon: "mitra10.png", name: "Mitra10", href: "#" },
+  { icon: "mulia-ceramics.png", name: "Mulia Ceramics", href: "#" },
+  { icon: "niro-granite.png", name: "Niro Granite", href: "#" },
+  { icon: "pralon.png", name: "Pralon", href: "#" },
+  { icon: "qnqlogo.png", name: "QnQ", href: "#" },
+  { icon: "roman.png", name: "Roman", href: "#" },
+  { icon: "sandimas.webp", name: "Sandimas", href: "#" },
+  { icon: "selfietime.png", name: "Selfie Time", href: "#" },
+  { icon: "solid.png", name: "Solid", href: "#" },
+  { icon: "strabag.png", name: "Strabag", href: "#" },
+  { icon: "toto.png", name: "Toto", href: "#" },
+  { icon: "unikey.png", name: "Unikey", href: "#" },
+  { icon: "visi-focus.jpg", name: "Visi Focus", href: "#" },
+];
