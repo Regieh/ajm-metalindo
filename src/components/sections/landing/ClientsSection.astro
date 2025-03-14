@@ -9,14 +9,14 @@ import boardriders from "@images/client/boardriders.png";
 import depoBangunan from "@images/client/depo-bangunan.png";
 import eleganza from "@images/client/eleganza.jpg";
 import ikad from "@images/client/ikad.png";
-import IMG_0852 from "@images/client/IMG_0852.png";
-import IMG_0853 from "@images/client/IMG_0853.png";
-import IMG_0854 from "@images/client/IMG_0854.png";
-import IMG_0855 from "@images/client/IMG_0855.png";
-import IMG_0856 from "@images/client/IMG_0856.png";
-import IMG_0857 from "@images/client/IMG_0857.jpg";
-import IMG_0858 from "@images/client/IMG_0858.png";
-import IMG_0859 from "@images/client/IMG_0859.png";
+import panama from "@images/client/panama.png";
+import arwana from "@images/client/arwana.png";
+import arna from "@images/client/arna.png";
+import sinarmas from "@images/client/sinarmas.png";
+import motul from "@images/client/motul.png";
+import scarlett from "@images/client/scarlett.jpg";
+import strepsil from "@images/client/strepsil.png";
+import laruso from "@images/client/laruso.png";
 import infinitiGranite from "@images/client/infiniti-granite.png";
 import inlite from "@images/client/inlite.png";
 import kiaSanitary from "@images/client/kia-sanitary.jpg";
@@ -25,9 +25,9 @@ import levoit from "@images/client/levoit.png";
 import mitra10 from "@images/client/mitra10.png";
 import muliaCeramics from "@images/client/mulia-ceramics.png";
 import niroGranite from "@images/client/niro-granite.png";
-import Photoroom_20250314_150424 from "@images/client/Photoroom_20250314_150424.png";
-import Photoroom_20250314_150442 from "@images/client/Photoroom_20250314_150442.png";
-import Photoroom_20250314_150513 from "@images/client/Photoroom_20250314_150513.png";
+import morgen from "@images/client/morgen.png";
+import concord from "@images/client/concord.png";
+import evomab from "@images/client/evomab.png";
 import pralon from "@images/client/pralon.png";
 import qnqlogo from "@images/client/qnqlogo.png";
 import roman from "@images/client/roman.png";
@@ -46,14 +46,14 @@ const iconMap = {
   "depo-bangunan.png": { src: depoBangunan, scale: "scale-125" },
   "eleganza.jpg": { src: eleganza, scale: "scale-110" },
   "ikad.png": { src: ikad, scale: "scale-100" },
-  "IMG_0852.png": { src: IMG_0852, scale: "scale-125" },
-  "IMG_0853.png": { src: IMG_0853, scale: "scale-125" },
-  "IMG_0854.png": { src: IMG_0854, scale: "scale-125" },
-  "IMG_0855.png": { src: IMG_0855, scale: "scale-125" },
-  "IMG_0856.png": { src: IMG_0856, scale: "scale-125" },
-  "IMG_0857.jpg": { src: IMG_0857, scale: "scale-110" },
-  "IMG_0858.png": { src: IMG_0858, scale: "scale-125" },
-  "IMG_0859.png": { src: IMG_0859, scale: "scale-125" },
+  "panama.png": { src: panama, scale: "scale-125" },
+  "arwana.png": { src: arwana, scale: "scale-125" },
+  "arna.png": { src: arna, scale: "scale-125" },
+  "sinarmas.png": { src: sinarmas, scale: "scale-125" },
+  "motul.png": { src: motul, scale: "scale-125" },
+  "scarlett.jpg": { src: scarlett, scale: "scale-110" },
+  "strepsil.png": { src: strepsil, scale: "scale-125" },
+  "laruso.png": { src: laruso, scale: "scale-125" },
   "infiniti-granite.png": { src: infinitiGranite, scale: "scale-100" },
   "inlite.png": { src: inlite, scale: "scale-110" },
   "kia-sanitary.jpg": { src: kiaSanitary, scale: "scale-100" },
@@ -62,9 +62,9 @@ const iconMap = {
   "mitra10.png": { src: mitra10, scale: "scale-100" },
   "mulia-ceramics.png": { src: muliaCeramics, scale: "scale-125" },
   "niro-granite.png": { src: niroGranite, scale: "scale-110" },
-  "Photoroom_20250314_150424.png": { src: Photoroom_20250314_150424, scale: "scale-125" },
-  "Photoroom_20250314_150442.png": { src: Photoroom_20250314_150442, scale: "scale-125" },
-  "Photoroom_20250314_150513.png": { src: Photoroom_20250314_150513, scale: "scale-125" },
+  "morgen.png": { src: morgen, scale: "scale-125" },
+  "concord.png": { src: concord, scale: "scale-125" },
+  "evomab.png": { src: evomab, scale: "scale-125" },
   "pralon.png": { src: pralon, scale: "scale-110" },
   "qnqlogo.png": { src: qnqlogo, scale: "scale-100" },
   "roman.png": { src: roman, scale: "scale-100" },
@@ -122,7 +122,7 @@ interface Props {
               <Image
                 src={iconData.src} 
                 alt={`${partner.name} logo`}
-                class="h-16 max-h-16 w-auto object-contain"
+                class={`h-16 max-h-16 w-auto object-contain`}
               />
             </div>
           ) : null;
