@@ -27,6 +27,7 @@ export default {
       redS: "#E4584A",
       blackS: "#525252",
       zinc: colors.zinc,
+      orange: colors.orange,
     },
     extend: {
       fontFamily: {
