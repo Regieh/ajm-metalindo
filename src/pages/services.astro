@@ -79,10 +79,10 @@ const rack = {
   <div class="default-p mt-2 md:-mt-8">
     <div class="relative">
       <div
-        class="bg-container z-5 absolute inset-0 -left-40 w-[150dvw] overflow-hidden bg-white sm:-left-80 h-[35dvh] md:h-[35dvh] lg:-left-96 3xl:-left-[48rem]"
+        class="bg-containermain z-5 absolute inset-0 -left-40 w-[150dvw] overflow-hidden bg-white sm:-left-80 h-[35dvh] md:h-[35dvh] lg:-left-96 3xl:-left-[48rem]"
       >
         <div
-          class="bg-image absolute h-full w-[150dvw] bg-cover bg-center"
+          class="bg-imagemain absolute h-full w-[150dvw] bg-cover bg-center"
           style={`background-image: url(${bg1.src});`}
         >
         </div>
@@ -100,12 +100,12 @@ const rack = {
         >
           <div class="flex flex-col gap-6 md:w-2/5">
             <h1
-              class="text-white text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight h-1/2"
+              class="text-white text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight h-1/2 pt-4 md:pt-2"
             >
               <Fragment set:html={exhibition.title} />
             </h1>
             <p
-              class="text-white md:text-black border-l-2 md:border-l-0 border-redP pl-8 md:pl-0 pt-8 xl:-mb-20 h-1/2"
+              class="text-white md:text-black border-l-2 md:border-l-0 border-redP pl-8 md:pl-0 py-8 xl:-mb-20 h-1/2"
               set:html={exhibition.description}
             />
           </div>
@@ -162,7 +162,7 @@ const rack = {
     </div>
   </div>
 
-  <GiveHelp />
+  <GiveHelp client:visible />
 
   <div class="default-p">
     <div
@@ -187,7 +187,7 @@ const rack = {
     >
       <div class="flex flex-col gap-6 space-x-4 md:w-1/2">
         <h1
-          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight"
+          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight pt-8 sm:pt-0"
         >
           <Fragment set:html={exterior.title} />
         </h1>
@@ -220,7 +220,7 @@ const rack = {
   
       <div class="flex flex-col gap-6 space-x-4">
         <h1
-          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight"
+          class="text-balance font-oswald text-3xl font-bold tracking-tight md:text-4xl md:leading-tight pt-8 sm:pt-0"
         >
           <Fragment set:html={rack.title} />
         </h1>
@@ -237,8 +237,8 @@ const rack = {
   gsap.registerPlugin(ScrollTrigger);
 
   const scrollDistance = () => {
-    const bgImage = document.querySelector<HTMLElement>('.bg-image');
-    const container = document.querySelector<HTMLElement>('.bg-container');
+    const bgImage = document.querySelector<HTMLElement>('.bg-imagemain');
+    const container = document.querySelector<HTMLElement>('.bg-containermain');
     if (!bgImage || !container) return 0;
     return bgImage.offsetHeight - container.offsetHeight;
   };
@@ -246,7 +246,7 @@ const rack = {
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: ".bg-container",
+        trigger: ".bg-containermain",
         start: "top bottom",
         end: "bottom top",
         scrub: true,
@@ -254,7 +254,7 @@ const rack = {
       },
     })
     .fromTo(
-      ".bg-image",
+      ".bg-imagemain",
       { y: 0 }, // Start at top position
       { 
         y: () => -scrollDistance(), // Move up by the difference between image and container height

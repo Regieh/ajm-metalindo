@@ -47,6 +47,7 @@ export default {
         subtleMove: 'subtleMove 6s ease-in-out infinite',
       },
       screens: {
+        "2md": "850px",
         "3xl": "1920px",
         "4xl": "2560px",
         "5xl": "3840px",
