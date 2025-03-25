@@ -236,6 +236,13 @@ const rack = {
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const scrollDistance = () => {
+    const bgImage = document.querySelector<HTMLElement>('.bg-image');
+    const container = document.querySelector<HTMLElement>('.bg-container');
+    if (!bgImage || !container) return 0;
+    return bgImage.offsetHeight - container.offsetHeight;
+  };
+
   gsap
     .timeline({
       scrollTrigger: {
@@ -243,11 +250,15 @@ const rack = {
         start: "top bottom",
         end: "bottom top",
         scrub: true,
+        invalidateOnRefresh: true // Ensures recalculation on resize
       },
     })
     .fromTo(
       ".bg-image",
-      { y: "10%", opacity: 0.6 }, // Moves slightly within container
-      { y: "-10%", opacity: 1, ease: "none" }, // Keeps movement inside container
+      { y: 0 }, // Start at top position
+      { 
+        y: () => -scrollDistance(), // Move up by the difference between image and container height
+        ease: "none"
+      }
     );
 </script>
