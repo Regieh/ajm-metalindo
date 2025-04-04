@@ -15,6 +15,7 @@ const footerLinks = [
       { name: "Outils et Équipements", url: "/id/projects", icon: '' },
       { name: "Services de Construction", url: "/id/services", icon: '' },
     ],
+    class: "",
   },
   {
     section: "Sosial",
@@ -24,6 +25,7 @@ const footerLinks = [
       { name: "Carrières", url: "#", icon: '' },
       { name: "Clients", url: "#", icon: '' },
     ],
+    class: "",
   },
 ];
 

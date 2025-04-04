@@ -16,6 +16,7 @@ const footerLinks = [
       { name: "Services", url: "/services", icon: "" },
       { name: "Projects", url: "/projects", icon: "" },
     ],
+    class: "",
   },
   {
     section: "Company Info",
@@ -23,6 +24,7 @@ const footerLinks = [
       { name: "Contact Us", url: "/contact", icon: "" },
       { name: "About Us", url: "/about", icon: "" },
     ],
+    class:"justify-end md:justify-normal text-right md:text-left",
   },
   {
     section: "Contact Us",

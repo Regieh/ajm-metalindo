@@ -47,10 +47,10 @@ const crafted: string = Astro.currentLocale === "id" ? "Fabriqué par" : "Crafte
       <!-- Dynamic Footer Links -->
       {strings.footerLinks.map((section) => (
         <div class="col-span-1">
-          <h3 class="font-bold text-white dark:text-neutral-200">
+          <h3 class={`font-bold text-white dark:text-neutral-200 ${section.class}`}>
             {section.section}
           </h3>
-          <ul class="mt-3 grid space-y-3">
+          <ul class={`mt-3 grid space-y-3 ${section.class}`}>
             {section.links.map((link) => {
               // Ensure iconSrc is a valid imported image
               const iconSrc = link.icon && iconMap[link.icon as keyof typeof iconMap];
