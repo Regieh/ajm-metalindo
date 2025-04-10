@@ -71,15 +71,15 @@ const links = [
             {formTitle}
           </h2>
   
-          <form>
+          <form id="contactForm">
             <div class="grid gap-4">
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <TextInput id="hs-firstname-contacts" label="First Name" name="hs-firstname-contacts" />
-                <TextInput id="hs-lastname-contacts" label="Last Name" name="hs-firstname-contacts" />
+                <TextInput id="firstName" label="First Name" name="firstName" />
+                <TextInput id="lastName" label="Last Name" name="lastName" />
               </div>
-              <EmailContactInput id="hs-email-contacts" />
-              <PhoneInput id="hs-phone-number" />
-              <TextAreaInput id="hs-about-contacts" label="Details" name="hs-about-contacts" />
+              <EmailContactInput id="email" name="email" />
+              <PhoneInput id="phone" name="phone" />
+              <TextAreaInput id="message" label="Pesan" name="message" />
             </div>
   
             <div class="mt-4 grid">
@@ -105,6 +105,53 @@ const links = [
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
-</div>
-
 </section>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("contactForm");
+    const submitButton = form?.querySelector("button[type='submit']");
+
+    if (!form || !submitButton) return;
+
+    form.addEventListener("submit", async function(event) {
+      event.preventDefault();
+      submitButton.disabled = true;
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          await Swal.fire({
+            icon: "success",
+            title: "Message Sent!",
+            text: "We'll get back to you soon.",
+          });
+          form.reset();
+        } else {
+          const result = await response.json();
+          await Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: result.error || "Something went wrong.",
+          });
+        }
+      } catch (error) {
+        console.error("Submission error:", error);
+        await Swal.fire({
+          icon: "error",
+          title: "Server Error!",
+          text: "Failed to send message. Try again later.",
+        });
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  });
+</script>

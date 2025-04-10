@@ -9,6 +9,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   // https://docs.astro.build/en/guides/images/#authorizing-remote-images
+  envPrefix: ['RESEND_'],
   site: "https://ajmmetalindo.co.id",
   server: {
     headers: {
