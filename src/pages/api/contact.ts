@@ -34,7 +34,7 @@ export const POST: APIRoute = async ({ request }) => {
         <p><strong>Message:</strong></p>
         <p>${message}</p>
         <br/>
-        <p>Best regards,<br/>Your Website</p>
+        <p>Best regards,<br/>${firstName ?? ""} ${lastName ?? ""}</p>
       `,
     });
 

@@ -5,6 +5,7 @@ import compressor from "astro-compressor";
 import starlight from "@astrojs/starlight";
 
 import mdx from "@astrojs/mdx";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -120,4 +121,6 @@ export default defineConfig({
   experimental: {
     clientPrerender: true,
   },
+  output: "server",
+  adapter: vercel()
 });
