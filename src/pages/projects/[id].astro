@@ -12,6 +12,7 @@ import { SITE } from "@data/constants";
 import type { CollectionEntry } from "astro:content";
 import { partnersData } from "@/data_files/constants";
 import ClientsSection from "@components/sections/landing/ClientsSection.astro";
+import { getCollection } from "astro:content";
 
 const currentPath = Astro.url.pathname;
 
@@ -37,7 +38,17 @@ export async function getStaticPaths() {
   });
 }
 
-const { product } = Astro.props;
+const { id } = Astro.params;
+
+const projectEntry = await getCollection("projects", ({ id: entryId }) =>
+  entryId === `en/${id}`
+);
+
+if (!projectEntry || projectEntry.length === 0) {
+  return new Response("Project not found", { status: 404 });
+}
+
+const product = projectEntry[0];
 const images = product.data.images;
 
 const projects: CollectionEntry<"projects">[] = (
