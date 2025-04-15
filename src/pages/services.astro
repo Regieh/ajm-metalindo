@@ -81,10 +81,10 @@ const services = [
   <SubHeroSection title="Services" src={bg1} alt="Services" />
 
   {/* First part: Booth & Display, Showroom, Rack Sliding (indices 0-2) */}
-  <div class="container mx-auto px-4 pt-0 pb-8">
+  <div class="container mx-auto px-4 pt-0 pb-8 mt-12 md:mt-0 default-p">
     {services.slice(0, 3).map((service, index) => (
       <section
-        class={`service-section relative flex flex-col ${
+        class={`service-section relative flex flex-col default-p ${
           index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
         } items-center gap-8 ${index === 0 ? "mt-0 mb-12" : "my-12"} ${
           service.title === "Booth & Display" ? "with-bg" : ""
@@ -137,7 +137,7 @@ const services = [
   <div class="container mx-auto px-4 pt-0 pb-8">
     {services.slice(3).map((service, index) => (
       <section
-        class={`service-section relative flex flex-col ${
+        class={`service-section relative flex flex-col default-p ${
           (index + 3) % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
         } items-center gap-8 my-12`}
       >
