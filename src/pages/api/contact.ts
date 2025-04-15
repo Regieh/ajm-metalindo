@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Send email using Resend
     const response = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>', // Use a verified domain later
-      to: 'adorrajayamakmur@gmail.com', // Your personal email to receive form submissions
+      to: 'raphaelghakim@gmail.com', // Your personal email to receive form submissions
       subject: `You have been contacted from ${firstName ?? "Unknown"}`,
       html: `
         <p><strong>Name:</strong> ${firstName ?? ""} ${lastName ?? ""}</p>
