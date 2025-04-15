@@ -12,7 +12,6 @@ import { recommendData } from "@/data_files/constants";
 import ProjectSection from "@/components/sections/projects/ProjectSection.astro";
 import { Image } from "astro:assets";
 
-import '@/styles/global.css';
 import FeatureOver from "@/components/sections/features/FeatureOver.astro";
 import RecommendSection from "@/components/sections/landing/RecommendSection.astro";
 import GiveHelp from "@/components/sections/landing/GiveHelp.astro";
@@ -40,7 +39,7 @@ const avatarSrcs: Array<string> = [
 
   <div class="relative w-full">
     <!-- Content -->
-    <div class="relative z-10 mx-auto min-w-screen overflow-x-hidden">
+    <div class="relative z-10 mx-auto min-w-full overflow-x-hidden">
       <!-- Product Section with Proper Spacing -->
         <ProjectSection />
 

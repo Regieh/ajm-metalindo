@@ -44,6 +44,8 @@ const isActive = currentPath.startsWith("/projects");
 
 <!-- Fix Scroll-based Styling & Dropdown Toggling -->
 <script>
+  const navLinks = document.querySelectorAll(".navlink");
+
   document.addEventListener("DOMContentLoaded", function () {
     const dropdownToggles = document.querySelectorAll("[data-dropdown-toggle]");
 
@@ -67,26 +69,17 @@ const isActive = currentPath.startsWith("/projects");
       }
     });
 
-    // Scroll-based styling for navlinks
-    const elements = document.querySelectorAll(".navlink");
-
-    function updateNavOnScroll() {
-      const isScrolled = window.scrollY > 0;
-      elements.forEach((element) => {
-        if (!element.classList.contains("text-redP")) { // Prevents overriding active class
-          if (isScrolled) {
-            element.classList.add("text-black");
-            element.classList.remove("text-white");
-          } else {
-            element.classList.add("text-white");
-            element.classList.remove("text-black");
-          }
-        }
-      });
-    }
-
-    // Run on scroll and when page loads
-    window.addEventListener("scroll", updateNavOnScroll);
-    updateNavOnScroll();
+    window.addEventListener("scroll", () => {
+    navLinks.forEach(link => {
+      // Preserve active state color
+      if (link.classList.contains("text-redP")) {
+        link.classList.remove("text-black"); // Remove unwanted black color
+        link.classList.add("text-redP"); // Ensure red color stays
+      } else {
+        link.classList.remove("text-black"); // Remove unwanted black color
+        link.classList.add("text-white"); // Ensure white color stays
+      }
+    });
   });
+});
 </script>

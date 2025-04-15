@@ -21,7 +21,7 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
 >
   <!-- Navigation container -->
   <nav
-    class="relative w-screen bg-neutral-700/40 dark:border-neutral-700/40 dark:bg-transparent md:flex md:items-center md:justify-between"
+    class="relative w-full bg-neutral-700/40 dark:border-neutral-700/40 dark:bg-transparent md:flex md:items-center md:justify-between"
     aria-label="Global"
     id="global-nav"
   >
@@ -107,41 +107,19 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
 <!-- Theme Appearance script to manage light/dark modes -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    let nav = document.getElementById('global-nav');
-    // let brandLogo = document.getElementById('logo-p');
-    // let whiteLogoSrc = document.getElementById('logo-w');
-
-    if (nav) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 0) {
-          nav.classList.add('bg-white/50', 'backdrop-blur-md', 'dark:backdrop-blur-md');
-          nav.classList.remove('bg-neutral-700/40');
-          // whiteLogoSrc?.classList.add('hidden');
-          // brandLogo?.classList.add('block');
-          // brandLogo?.classList.remove('hidden');
-          // whiteLogoSrc?.classList.remove('block');
-        } else {
-          nav.classList.remove('bg-white/50', 'backdrop-blur-md', 'dark:backdrop-blur-md');
-          nav.classList.add('bg-neutral-700/40');
-          // brandLogo?.classList.remove('block');
-          // brandLogo?.classList.add('hidden');
-          // whiteLogoSrc?.classList.add('block');
-          // whiteLogoSrc?.classList.remove('hidden');
-        }
-      });
-    }
-
+  let nav = document.getElementById('global-nav');
+  if (nav) {
     window.addEventListener('scroll', () => {
-      const hamburger = document.getElementById('hamburger');
       if (window.scrollY > 0) {
-        hamburger?.classList.add('text-neutral-600');
-        hamburger?.classList.remove('text-whitet');
+        nav.classList.add('bg-gray-700/40', 'backdrop-blur-md');
+        nav.classList.remove('bg-neutral-700/40');
       } else {
-        hamburger?.classList.remove('text-neutral-600');
-        hamburger?.classList.add('text-whitet');
+        nav.classList.remove('bg-gray-700/40', 'backdrop-blur-md');
+        nav.classList.add('bg-neutral-700/40');
       }
     });
-  });
+  }
+});
 </script>
 <script is:inline>
   const HSThemeAppearance = {

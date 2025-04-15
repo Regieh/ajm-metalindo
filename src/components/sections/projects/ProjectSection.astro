@@ -5,43 +5,45 @@ import bg1 from "@images/bg-1.png";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-
 // Fetching and sorting projects
 const product: CollectionEntry<"projects">[] = (
   await getCollection("projects", ({ id }) => id.startsWith("en/"))
 ).sort((a, b) => a.data.main.id - b.data.main.id)
 .filter(project => project.data.show);
-
-const title: string = `<span class="font-bold">What We <br />OFFER?</span>`;
+const title: string = `<span class="font-bold">What We <br class="hidden sm:block" />OFFER?</span>`;
 const subTitle: string = `Kami adalah solusi untuk semua kebutuhan <b>produksi kustom kreatif dan profesional</b> Anda. Dengan bangga, kami menawarkan layanan berikut:`;
 ---
-
-<div class="relative mx-auto max-w-screen default-p 2xl:max-w-full flex-col flex md:flex-row gap-x-4 justify-between overflow-x-hidden">
+<div class="relative mx-auto w-full default-p flex flex-col gap-y-8 overflow-hidden py-12">
   
   <!-- Background Wrapper -->
-  <div class="absolute inset-0 w-max-full h-[80%] md:h-[50%] lg:h-[60%]">
+  <div class="absolute inset-0 w-full">
     <div class="absolute inset-0 bg-redP bg-opacity-85"></div>
   </div>  
-
-  <!-- Content Section -->
-  <div class="relative z-10 mb-4 flex flex-col items-start justify-between gap-8 sm:mb-8 md:mb-12 pt-8">
-    <div class="flex items-center gap-12">
-      <h1 class="font-oswald text-balance text-3xl font-bold tracking-tight text-white md:text-6xl md:leading-tight">
-        <Fragment set:html={title} />
-      </h1>
+  
+  <!-- Content Container -->
+  <div class="relative z-10 container mx-auto px-4 md:px-6 lg:px-8">
+    <!-- Title Section -->
+    <div class="flex flex-col gap-6 mb-8">
+      <div class="flex items-start">
+        <h1 class="font-oswald text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+          <Fragment set:html={title} />
+        </h1>
+      </div>
+      <div class="w-full sm:w-3/4 md:w-1/2 border-b-4 border-redP"></div>
     </div>
-    <div class="w-[80%] border-b-4 border-redP"></div>
-  </div>
-
-  <!-- Product Grid -->
-  <div class="relative z-10 flex flex-col">
-    <div class="flex flex-col sm:flex-row items-center pt-8">
-      <h3 class="text-balance text-sm tracking-tight text-white md:text-base md:leading-tight pb-4 sm:pr-4">
+    
+    <!-- Subtitle and CTA -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+      <h3 class="text-sm sm:text-base md:text-lg text-white max-w-3xl">
         <Fragment set:html={subTitle} />
       </h3>
-      <SecondaryCTA title="More Services" url="/services" noArrow={true} />
+      <div class="flex-shrink-0">
+        <SecondaryCTA title="More Services" url="/services" noArrow={true} />
+      </div>
     </div>
-    <section class="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:gap-8 my-4">
+    
+    <!-- Product Grid -->
+    <section class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
       {
         product.map((product, index) => <CardSmall product={product} />)
       }

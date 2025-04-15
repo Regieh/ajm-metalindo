@@ -40,35 +40,21 @@ interface Props {
 }
 ---
 <section class="mx-auto max-w-full h-[40dvh] max-h-screen overflow-hidden w-screen">
-  <!-- Video Background -->
-  <!-- <video
-    src="https://doyuoc5cbvnwlzsd.public.blob.vercel-storage.com/ajmHeroVideo-FuT0UOctgdGZeABAyEVqGKYXW5jCS0.mp4"
-    autoplay
-    loop
-    muted
-    playsinline
-    class="absolute inset-0 w-full h-full object-cover z-0"
-    draggable="false"
-  /> -->
-
   <Image
     src={src}
-    alt="Hero Image"
-    class="absolute inset-0 w-screen h-[50dvh] object-cover object-left z-0"
+    alt={alt || "Hero Image"}
+    class="absolute inset-0 w-full h-[55%] object-cover object-left z-0"
   />
   
-  <div class="absolute inset-0 w-screen h-[50dvh] bg-black opacity-60"></div>
-  
-  <!-- Gradient Overlay -->
-  <!-- <div class="absolute inset-0 bg-gradient-to-l from-transparent via-black/80 to-black/80 z-1"></div> -->
+  <div class="absolute inset-0 w-full h-[55%] bg-black opacity-60"></div>
   
   <!-- Content Container -->
-  <div class="relative z-10 h-[30dvh] flex items-center default-p">
-    <div class="max-w-2xl h-full pl-4 flex flex-col justify-end">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 py-8 flex items-start min-h-[20rem]">
+    <div class="max-w-2xl">
       <h1 class="block uppercase font-oswald text-balance text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-8xl lg:leading-tight">
         <Fragment set:html={title} />
       </h1>
-      <div class="h-1 bg-redP w-4/12"></div>
+      <div class="h-1 bg-red-600 w-4/12 mt-2"></div>
     </div>
   </div>
 </section>

@@ -61,18 +61,18 @@ export default {
     function ({ addComponents, theme }) {
       addComponents({
         '.default-p': {
-          marginLeft: 'auto',           // mx-auto
-          marginRight: 'auto',          // mx-auto
-          maxWidth: theme('screens.2xl'), // max-w-screen-2xl
-          paddingLeft: theme('spacing.4'),  // Default px-4 (16px) for small screens
-          paddingRight: theme('spacing.4'), // Default px-4 (16px)
-          '@screen sm': {               // sm:px-6 (24px)
-            paddingLeft: theme('spacing.6'),
-            paddingRight: theme('spacing.6'),
+          marginLeft: 'auto',           // Centers the container horizontally (mx-auto)
+          marginRight: 'auto',          // Centers the container horizontally (mx-auto)
+          maxWidth: theme('screens.2xl'), // Sets max-width to the 2xl breakpoint (e.g., 1536px)
+          paddingLeft: theme('spacing.4'),  // 16px padding on small screens
+          paddingRight: theme('spacing.4'), // 16px padding on small screens
+          '@screen sm': {               // At sm breakpoint (e.g., 640px)
+            paddingLeft: theme('spacing.6'),  // 24px padding
+            paddingRight: theme('spacing.6'), // 24px padding
           },
-          '@screen md': {               // md:px-36 (144px)
-            paddingLeft: theme('spacing.36'),
-            paddingRight: theme('spacing.36'),
+          '@screen md': {               // At md breakpoint (e.g., 768px)
+            paddingLeft: theme('spacing.36'),  // 144px padding
+            paddingRight: theme('spacing.36'), // 144px padding
           },
         },
         '.default-ps': {
@@ -90,7 +90,7 @@ export default {
             paddingRight: theme('spacing.31'),
           },
         },
-      });      
+      });
     },
   ],
 };
