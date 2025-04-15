@@ -90,7 +90,22 @@ export default {
             paddingRight: theme('spacing.31'),
           },
         },
-      });
+        '.default-2p': {
+          marginLeft: 'auto',           // mx-auto
+          marginRight: 'auto',          // mx-auto
+          maxWidth: theme('screens.4xl'), // max-w-screen-2xl
+          paddingLeft: theme('spacing.8'),  // Default px-4 (16px) for small screens
+          paddingRight: theme('spacing.8'), // Default px-4 (16px)
+          '@screen sm': {               // sm:px-6 (24px)
+            paddingLeft: theme('spacing.12'),
+            paddingRight: theme('spacing.12'),
+          },
+          '@screen md': {               // md:px-36 (144px)
+            paddingLeft: theme('spacing.72'),
+            paddingRight: theme('spacing.72'),
+          },
+        },
+      });      
     },
   ],
 };
