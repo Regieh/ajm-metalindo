@@ -1,18 +1,14 @@
 ---
-// Importing necessary components
 import MainLayout from "@/layouts/MainLayout.astro";
 import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
 import CardSmall from "@components/ui/cards/CardSmall.astro";
 import SubHeroSection from "@/components/sections/landing/SubHeroSection.astro";
 
-// Importing necessary functions from Astro
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { SITE } from "@data/constants";
-import Image from "astro/components/Image.astro";
 import projectBg from "@images/project-hero.png";
 
-// Fetching all the product related content and sorting it by main.id
 const product: CollectionEntry<"projects">[] = (
   await getCollection("projects", ({ id }) => {
     return id.startsWith("en/");
@@ -22,12 +18,10 @@ const product: CollectionEntry<"projects">[] = (
     a.data.main.id - b.data.main.id,
 );
 
-// Define variables for page content
 const title: string = "Our Projects";
 const subTitle: string =
   "At Metalindo, we offer a wide range of creative solutions tailored to meet your Designs:";
 
-// Testimonial data that will be rendered in the component
 const testimonials = [
   // First testimonial data
   {
