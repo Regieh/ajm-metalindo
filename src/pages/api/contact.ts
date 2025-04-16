@@ -13,7 +13,7 @@ export const POST: APIRoute = async ({ request }) => {
   const phoneNumber = formData.get("number") as string | null;
   const message = formData.get("message") as string | null;
 
-  // Validate required fields
+  // Validate required fields 
   if (!email || !message) {
     return new Response(JSON.stringify({ error: "Email and message are required." }), {
       status: 400,
