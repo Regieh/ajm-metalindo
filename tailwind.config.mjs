@@ -71,8 +71,8 @@ export default {
             paddingRight: theme('spacing.6'), // 24px padding
           },
           '@screen md': {               // At md breakpoint (e.g., 768px)
-            paddingLeft: theme('spacing.36'),  // 144px padding
-            paddingRight: theme('spacing.36'), // 144px padding
+            paddingLeft: theme('spacing.20'),  // 144px padding
+            paddingRight: theme('spacing.20'), // 144px padding
           },
         },
         '.default-ps': {

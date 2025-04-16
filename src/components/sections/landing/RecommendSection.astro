@@ -30,7 +30,7 @@ interface Props {
           // Format the ID to always have 2 digits (e.g., 1 -> 01)
           const formattedId = String(data.id).padStart(2, '0');
           return (
-            <div class="w-full h-auto min-h-[13rem] bg-redP py-4 px-4 sm:px-6 md:px-8 rounded-xs flex flex-col">
+            <div class="w-full h-auto min-h-auto md:min-h-[13rem] bg-redP py-4 px-4 sm:px-6 md:px-8 rounded-xs flex flex-col">
               <!-- Display the formatted ID and title -->
               <div class="flex flex-row justify-start items-center gap-x-2 border-b-2 border-white pb-3">
                 <span class="font-oswald text-white text-4xl sm:text-5xl md:text-6xl font-bold">{formattedId}</span>
