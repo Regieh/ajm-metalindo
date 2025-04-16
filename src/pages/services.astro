@@ -19,13 +19,15 @@ const pageTitle: string = `About | ${SITE.title}`;
 const services = [
   {
     title: "Booth & Display",
-    description: "Kami menciptakan Booth dan Display kustom untuk membuat merek Anda menonjol di acara dan pameran.",
+    description:
+      "Kami menciptakan Booth dan Display kustom untuk membuat merek Anda menonjol di acara dan pameran.",
     image: boothdisplay,
     alt: "Exhibition Image",
   },
   {
     title: "Showroom",
-    description: "Kami merancang dan membangun pengaturan interior dan eksterior yang fungsional serta memukau secara visual untuk showroom anda.",
+    description:
+      "Kami merancang dan membangun pengaturan interior dan eksterior yang fungsional serta memukau secara visual untuk showroom anda.",
     images: [
       { src: showroom1Image, alt: "Showroom Image 1" },
       { src: showroom2Image, alt: "Showroom Image 2" },
@@ -33,19 +35,22 @@ const services = [
   },
   {
     title: "Rack Sliding",
-    description: "Optimalkan kebutuhan penyimpanan dan display Anda dengan solusi rak kustom dari kami. Mulai dari rak sliding untuk efisiensi ruang hingga rak tile untuk supermarket dan gudang.",
+    description:
+      "Optimalkan kebutuhan penyimpanan dan display Anda dengan solusi rak kustom dari kami. Mulai dari rak sliding untuk efisiensi ruang hingga rak tile untuk supermarket dan gudang.",
     image: racksliding,
     alt: "RackSliding Image",
   },
   {
     title: "Interior",
-    description: "Solusi interior kustom untuk berbagai kebutuhan rumah, termasuk kitchen set, ruang tamu, ruang rapat, dan elemen dekoratif.",
+    description:
+      "Solusi interior kustom untuk berbagai kebutuhan rumah, termasuk kitchen set, ruang tamu, ruang rapat, dan elemen dekoratif.",
     image: interior,
     alt: "Interior Image",
   },
   {
     title: "Exterior",
-    description: "Solusi eksterior yang tahan lama untuk rumah, serta lapangan luar dan dalam ruangan, dengan menawarkan kualitas yang tinggi dan instalasi dekoratif.",
+    description:
+      "Solusi eksterior yang tahan lama untuk rumah, serta lapangan luar dan dalam ruangan, dengan menawarkan kualitas yang tinggi dan instalasi dekoratif.",
     images: [
       { src: exterior1Image, alt: "Exterior Image 1" },
       { src: exterior2Image, alt: "Exterior Image 2" },
@@ -53,7 +58,8 @@ const services = [
   },
   {
     title: "Acrylic & Digital Printing",
-    description: "Solusi cetak akrilik dan digital printing kustom untuk papan nama, display promosi, dan item dekoratif yang dipersonalisasi.",
+    description:
+      "Solusi cetak akrilik dan digital printing kustom untuk papan nama, display promosi, dan item dekoratif yang dipersonalisasi.",
     image: acrylicdigitalprinting,
     alt: "Acrylic & Digital Printing Image",
   },
@@ -68,12 +74,14 @@ const services = [
     "@id": "http://localhost:4321/contact",
     url: "http://localhost:4321/contact",
     name: "Services | Metalindo",
-    description: "Don't hesitate to contact us. Let's collaborate and bring your vision to life—because at Metalindo, your satisfaction is our priority.",
+    description:
+      "Don't hesitate to contact us. Let's collaborate and bring your vision to life—because at Metalindo, your satisfaction is our priority.",
     isPartOf: {
       "@type": "WebSite",
       url: "http://localhost:4321",
       name: "Metalindo",
-      description: "Kita menyediakan solusi untuk layanan pembuatan custom & modular berbasis metal, kayu, akrilik hingga printing untuk keperluan kegiatan event dan promosi.",
+      description:
+        "Kita menyediakan solusi untuk layanan pembuatan custom & modular berbasis metal, kayu, akrilik hingga printing untuk keperluan kegiatan event dan promosi.",
     },
     inLanguage: "en-US",
   }}
@@ -81,102 +89,109 @@ const services = [
   <SubHeroSection title="Services" src={bg1} alt="Services" />
 
   {/* First part: Booth & Display, Showroom, Rack Sliding (indices 0-2) */}
-<div class="mx-auto default-p pt-0 pb-8 z-10">
-  {services.slice(0, 3).map((service, index) => (
-    <section
-      class={`service-section relative flex flex-col ${
-        index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-      } items-center gap-8 ${index === 0 ? "mt-0 mb-12" : "my-12"} ${
-        service.title === "Booth & Display" ? "with-bg" : ""
-      }`}
-    >
-      {service.title === "Booth & Display" && (
-        <div
-          class="bg-container absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-screen overflow-hidden z-[-1]"
-          aria-hidden="true"
+  <div class="default-p z-10 mx-auto pb-8 pt-0">
+    {
+      services.slice(0, 3).map((service, index) => (
+        <section
+          class={`service-section relative flex flex-col ${
+            index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+          } items-center gap-8 ${index === 0 ? "mb-12 mt-0" : "my-12"} ${
+            service.title === "Booth & Display" ? "with-bg" : ""
+          }`}
         >
+          {service.title === "Booth & Display" && (
+            <div
+              class="bg-container absolute bottom-0 left-1/2 top-0 z-[-1] w-screen -translate-x-1/2 overflow-hidden"
+              aria-hidden="true"
+            >
+              <div
+                class="bg-image absolute inset-0 bg-cover bg-center"
+                style={`background-image: url(${bg1.src});`}
+              />
+              <div class="absolute inset-0 bg-red-600 bg-opacity-80" />
+            </div>
+          )}
+          {service.image && (
+            <div class="w-full pt-8 md:w-1/2 md:pt-2">
+              <Image
+                src={service.image}
+                alt={service.alt}
+                class="h-64 w-full rounded-md object-cover max-md:pt-5 md:h-80"
+              />
+            </div>
+          )}
+          {service.images && (
+            <div class="flex w-full flex-row gap-4 md:w-1/2">
+              {service.images.map((img) => (
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  class="h-64 w-1/2 rounded-md object-cover md:h-80"
+                />
+              ))}
+            </div>
+          )}
+          {/* Conditionally add the text-white class for "Booth & Display" */}
           <div
-            class="bg-image absolute inset-0 bg-cover bg-center"
-            style={`background-image: url(${bg1.src});`}
-          ></div>
-          <div class="absolute inset-0 bg-red-600 bg-opacity-80"></div>
-        </div>
-      )}
-      {service.image && (
-        <div class="w-full md:w-1/2 pt-8 md:pt-2">
-          <Image
-            src={service.image}
-            alt={service.alt}
-            class="rounded-md object-cover w-full h-64 md:h-80 max-md:pt-5"
-          />
-        </div>
-      )}
-      {service.images && (
-        <div class="w-full md:w-1/2 flex flex-row gap-4">
-          {service.images.map((img) => (
-            <Image
-              src={img.src}
-              alt={img.alt}
-              class="rounded-md object-cover w-1/2 h-64 md:h-80"
-            />
-          ))}
-        </div>
-      )}
-      {/* Conditionally add the text-white class for "Booth & Display" */}
-      <div class={`w-full md:w-1/2 flex flex-col gap-4 ${
-        service.title === "Booth & Display" ? "text-white" : ""
-      }`}>
-        <h2 class="text-3xl md:text-4xl font-bold font-oswald">
-          {service.title}
-        </h2>
-        <div class="w-1/4 border-b-4 border-red-600"></div>
-        <p class="text-lg">{service.description}</p>
-      </div>
-    </section>
-  ))}
-</div>
-
+            class={`flex w-full flex-col gap-4 md:w-1/2 ${
+              service.title === "Booth & Display" ? "text-white" : ""
+            }`}
+          >
+            <h2 class="font-oswald text-3xl font-bold md:text-4xl">
+              {service.title}
+            </h2>
+            <div class="w-1/4 border-b-4 border-red-600" />
+            <p class="text-lg">{service.description}</p>
+          </div>
+        </section>
+      ))
+    }
+  </div>
 
   {/* GiveHelp section outside the container to ensure full width */}
   <GiveHelp />
 
-  {/* Second part: Interior, Exterior, Acrylic & Digital Printing (indices 3-5) */}
-  <div class="container mx-auto default-p pt-0 pb-8">
-    {services.slice(3).map((service, index) => (
-      <section
-        class={`service-section relative flex flex-col ${
-          (index + 3) % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-        } items-center gap-8 my-12`}
-      >
-        {service.image && (
-          <div class="w-full md:w-1/2">
-            <Image
-              src={service.image}
-              alt={service.alt}
-              class="rounded-md object-cover w-full h-64 md:h-80"
-            />
-          </div>
-        )}
-        {service.images && (
-          <div class="w-full md:w-1/2 flex flex-row gap-4">
-            {service.images.map((img) => (
+  {
+    /* Second part: Interior, Exterior, Acrylic & Digital Printing (indices 3-5) */
+  }
+  <div class="container default-p mx-auto pb-8 pt-0">
+    {
+      services.slice(3).map((service, index) => (
+        <section
+          class={`service-section relative flex flex-col ${
+            (index + 3) % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+          } my-12 items-center gap-8`}
+        >
+          {service.image && (
+            <div class="w-full md:w-1/2">
               <Image
-                src={img.src}
-                alt={img.alt}
-                class="rounded-md object-cover w-1/2 h-64 md:h-80"
+                src={service.image}
+                alt={service.alt}
+                class="h-64 w-full rounded-md object-cover md:h-80"
               />
-            ))}
+            </div>
+          )}
+          {service.images && (
+            <div class="flex w-full flex-row gap-4 md:w-1/2">
+              {service.images.map((img) => (
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  class="h-64 w-1/2 rounded-md object-cover md:h-80"
+                />
+              ))}
+            </div>
+          )}
+          <div class="flex w-full flex-col gap-4 md:w-1/2">
+            <h2 class="font-oswald text-3xl font-bold md:text-4xl">
+              {service.title}
+            </h2>
+            <div class="w-1/4 border-b-4 border-red-600" />
+            <p class="text-lg">{service.description}</p>
           </div>
-        )}
-        <div class="w-full md:w-1/2 flex flex-col gap-4">
-          <h2 class="text-3xl md:text-4xl font-bold font-oswald">
-            {service.title}
-          </h2>
-          <div class="w-1/4 border-b-4 border-red-600"></div>
-          <p class="text-lg">{service.description}</p>
-        </div>
-      </section>
-    ))}
+        </section>
+      ))
+    }
   </div>
 </MainLayout>
 
@@ -194,6 +209,7 @@ const services = [
     position: relative;
     padding-top: 4rem;
     padding-bottom: 4rem;
+    min-height: 400px; /* Adjust this value as needed */
   }
 
   .bg-container {
@@ -262,9 +278,9 @@ const services = [
         const element = section as HTMLElement; // Explicitly cast to HTMLElement
         gsap.fromTo(
           element,
-          { 
+          {
             opacity: 0,
-            y: 30 // Reduced from 50 for subtler animation
+            y: 30, // Reduced from 50 for subtler animation
           },
           {
             opacity: 1,
@@ -274,9 +290,9 @@ const services = [
             scrollTrigger: {
               trigger: element,
               start: "top 85%", // Start earlier
-              toggleActions: "play none none none" // Don't reverse on scroll up
-            }
-          }
+              toggleActions: "play none none none", // Don't reverse on scroll up
+            },
+          },
         );
       });
 
@@ -291,13 +307,16 @@ const services = [
               y: "-10%",
               ease: "none",
               scrollTrigger: {
-                trigger: ((container as HTMLElement).closest('.with-bg') as HTMLElement) || container,
+                trigger:
+                  ((container as HTMLElement).closest(
+                    ".with-bg",
+                  ) as HTMLElement) || container,
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 0.5, // Smoother scrub with slight delay
-                invalidateOnRefresh: true // Recalculate on resize
-              }
-            }
+                invalidateOnRefresh: true, // Recalculate on resize
+              },
+            },
           );
         }
       });
@@ -305,5 +324,28 @@ const services = [
       // Clear any ScrollTriggers that might be causing issues
       ScrollTrigger.refresh();
     }, 100);
+
+    // Specially handle the Booth & Display section
+    const boothSection = document.querySelector(".with-bg.service-section");
+    if (boothSection) {
+      gsap.fromTo(
+        boothSection,
+        {
+          opacity: 0,
+          y: 15, // Reduced vertical movement
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: boothSection,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }
   });
 </script>
