@@ -67,34 +67,34 @@ const elementId = url === "/" ? "home" : url.replace("/", "");
     const navElement = document.getElementById(elementId);
 
     // Apply active styling immediately
-    if (navElement && !navElement.getAttribute("aria-haspopup")) {
-      navElement.classList.remove(
-        "text-white",
-        "text-black",
-        "dark:text-neutral-400",
-        "hover:text-neutral-300",
-        "dark:hover:text-neutral-300",
-        "font-medium"
-      );
-      navElement.classList.add("text-redP", "font-bold", "underline", "underline-offset-8");
-      navElement.setAttribute("aria-current", "page");
+  if (navElement && !navElement.getAttribute("aria-haspopup")) {
+    navElement.classList.remove(
+      "text-black",
+      "dark:text-neutral-400",
+      "hover:text-neutral-300",
+      "dark:hover:text-neutral-300"
+    );
+    navElement.classList.add("text-redP", "font-bold", "underline", "underline-offset-8");
+    navElement.setAttribute("aria-current", "page");
+  }
+
+  window.addEventListener("scroll", () => {
+  const navLinks = document.querySelectorAll(".navlink");
+  const scrolled = window.scrollY > 0;
+
+  navLinks.forEach((link) => {
+    // For active links - always keep them text-redP
+    if (link.id === elementId && !link.getAttribute("aria-haspopup")) {
+      link.classList.add("text-redP");
+      link.classList.remove("text-white");
+    } 
+    // For non-active links - always keep them text-white
+    else {
+      link.classList.add("text-white");
+      link.classList.remove("text-redP");
     }
-
-    // Scroll behavior for styling nav links
-    window.addEventListener("scroll", () => {
-      const navLinks = document.querySelectorAll(".navlink");
-      const scrolled = window.scrollY > 0;
-
-      navLinks.forEach((link) => {
-        if (link.id === elementId && !link.getAttribute("aria-haspopup")) {
-          link.classList.toggle("text-redP", !scrolled);
-          link.classList.toggle("text-white", scrolled);
-        } else {
-          link.classList.toggle("text-black", scrolled);
-          link.classList.toggle("text-white", !scrolled);
-        }
-      });
-    });
+  });
+});
 
     // Dropdown toggle behavior
     const toggle = document.querySelector("[data-dropdown-toggle]");
