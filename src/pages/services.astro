@@ -269,83 +269,67 @@ const services = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Wait for everything to load properly
   document.addEventListener("DOMContentLoaded", () => {
-    // Create a small delay to ensure everything is rendered
+    // Create a timeline for each section to keep animations synchronized
     setTimeout(() => {
-      // Re-enable the fade-in animations, but with smoother settings
+      // Handle all sections consistently
       gsap.utils.toArray(".service-section").forEach((section) => {
-        const element = section as HTMLElement; // Explicitly cast to HTMLElement
-        gsap.fromTo(
+        const element = section as HTMLElement;
+        const isBoothSection = element.classList.contains("with-bg");
+        
+        // Create a timeline for this section
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: element,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        });
+        
+        // Fade in with minimal vertical movement
+        tl.fromTo(
           element,
           {
             opacity: 0,
-            y: 30, // Reduced from 50 for subtler animation
+            y: isBoothSection ? 10 : 20, // Even smaller movement for booth section
           },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8, // Shorter duration for smoother feel
-            ease: "power2.out", // Smoother easing
-            scrollTrigger: {
-              trigger: element,
-              start: "top 85%", // Start earlier
-              toggleActions: "play none none none", // Don't reverse on scroll up
-            },
-          },
+            duration: 0.9,
+            ease: "power2.out"
+          }
         );
-      });
-
-      // Smoother parallax for background images
-      gsap.utils.toArray(".bg-container").forEach((container) => {
-        const bgImage = (container as HTMLElement).querySelector(".bg-image");
-        if (bgImage) {
-          gsap.fromTo(
-            bgImage,
-            { y: 0 },
-            {
-              y: "-10%",
-              ease: "none",
-              scrollTrigger: {
-                trigger:
-                  ((container as HTMLElement).closest(
-                    ".with-bg",
-                  ) as HTMLElement) || container,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.5, // Smoother scrub with slight delay
-                invalidateOnRefresh: true, // Recalculate on resize
-              },
-            },
-          );
+        
+        // If this is booth section with background, handle the bg separately
+        if (isBoothSection) {
+          const bgContainer = element.querySelector(".bg-container");
+          if (bgContainer) {
+            const bgImage = bgContainer.querySelector(".bg-image");
+            if (bgImage) {
+              // Create a separate animation for parallax that doesn't affect layout
+              gsap.fromTo(
+                bgImage,
+                { y: "0%" },
+                {
+                  y: "-5%", // Reduce the parallax amount for subtlety
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: element,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 0.8, // Smoother scrub
+                    invalidateOnRefresh: true,
+                  },
+                }
+              );
+            }
+          }
         }
       });
 
-      // Clear any ScrollTriggers that might be causing issues
-      ScrollTrigger.refresh();
-    }, 100);
-
-    // Specially handle the Booth & Display section
-    const boothSection = document.querySelector(".with-bg.service-section");
-    if (boothSection) {
-      gsap.fromTo(
-        boothSection,
-        {
-          opacity: 0,
-          y: 15, // Reduced vertical movement
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: boothSection,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        },
-      );
-    }
+      // Force a refresh at the end to ensure all is well
+      ScrollTrigger.refresh(true);
+    }, 200); // Slightly longer delay for more reliable rendering
   });
 </script>
