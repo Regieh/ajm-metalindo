@@ -81,7 +81,6 @@ const services = [
   <SubHeroSection title="Services" src={bg1} alt="Services" />
 
   {/* First part: Booth & Display, Showroom, Rack Sliding (indices 0-2) */}
-{/* First part: Booth & Display, Showroom, Rack Sliding (indices 0-2) */}
 <div class="mx-auto default-p pt-0 pb-8 z-10">
   {services.slice(0, 3).map((service, index) => (
     <section
@@ -187,6 +186,7 @@ const services = [
   }
 
   .service-section {
+    opacity: 1; /* Start fully visible to avoid flicker */
     transition: opacity 0.5s ease-in;
   }
 
@@ -198,11 +198,13 @@ const services = [
 
   .bg-container {
     height: 100%;
+    overflow: hidden; /* Prevent overflow */
   }
 
   .bg-image {
     width: 100%;
     height: 125%;
+    will-change: transform; /* Optimize for animation */
   }
 
   @media (max-width: 768px) {
@@ -251,34 +253,57 @@ const services = [
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // gsap.utils.toArray<Element>(".service-section").forEach((section) => {
-  //   gsap.from(section, {
-  //     opacity: 0,
-  //     y: 50,
-  //     duration: 1,
-  //     scrollTrigger: {
-  //       trigger: section,
-  //       start: "top 80%",
-  //       end: "bottom 20%",
-  //       toggleActions: "play none none reverse",
-  //     },
-  //   });
-  // });
+  // Wait for everything to load properly
+  document.addEventListener("DOMContentLoaded", () => {
+    // Create a small delay to ensure everything is rendered
+    setTimeout(() => {
+      // Re-enable the fade-in animations, but with smoother settings
+      gsap.utils.toArray(".service-section").forEach((section) => {
+        const element = section as HTMLElement; // Explicitly cast to HTMLElement
+        gsap.fromTo(
+          element,
+          { 
+            opacity: 0,
+            y: 30 // Reduced from 50 for subtler animation
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8, // Shorter duration for smoother feel
+            ease: "power2.out", // Smoother easing
+            scrollTrigger: {
+              trigger: element,
+              start: "top 85%", // Start earlier
+              toggleActions: "play none none none" // Don't reverse on scroll up
+            }
+          }
+        );
+      });
 
-  gsap.utils.toArray<Element>(".bg-container").forEach((container) => {
-    gsap.fromTo(
-      container.querySelector(".bg-image"),
-      { y: 0 },
-      {
-        y: "-10%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: container,
-          start: "top 80%",
-          end: "center top",
-          scrub: true,
-        },
-      }
-    );
+      // Smoother parallax for background images
+      gsap.utils.toArray(".bg-container").forEach((container) => {
+        const bgImage = (container as HTMLElement).querySelector(".bg-image");
+        if (bgImage) {
+          gsap.fromTo(
+            bgImage,
+            { y: 0 },
+            {
+              y: "-10%",
+              ease: "none",
+              scrollTrigger: {
+                trigger: ((container as HTMLElement).closest('.with-bg') as HTMLElement) || container,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.5, // Smoother scrub with slight delay
+                invalidateOnRefresh: true // Recalculate on resize
+              }
+            }
+          );
+        }
+      });
+
+      // Clear any ScrollTriggers that might be causing issues
+      ScrollTrigger.refresh();
+    }, 100);
   });
 </script>

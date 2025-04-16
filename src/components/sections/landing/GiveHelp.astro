@@ -2,23 +2,19 @@
 import SecondaryCTA from "@components/ui/buttons/SecondaryCTA.astro";
 import { SITE } from "@data/constants";
 import bg2 from "@images/bg-2.png";
-
 const title = `Kami siap membantu Anda`;
 const subTitle = `Hubungi kami hari ini dan wujudkan ide kreatif Anda bersama <b>${SITE.title}</b>!`;
 ---
-
 <section class="relative min-w-full w-full default-p 2xl:max-w-full h-[30dvh] sm:h-[20dvh] md:h-[30dvh] flex items-center overflow-hidden">
   <!-- Background Image Container -->
-  <div class="bg-container absolute inset-0 w-full h-full overflow-hidden">
+  <div class="give-help-bg-container absolute inset-0 w-full h-full overflow-hidden">
     <div
-      class="bg-image w-full h-[150%] absolute top-0 bg-cover bg-center"
+      class="give-help-bg-image w-full h-[150%] absolute top-0 bg-cover bg-center"
       style={`background-image: url(${bg2.src});`}
     ></div>
   </div>
-
   <!-- Red Overlay -->
   <div class="absolute inset-0 bg-redP bg-opacity-85"></div>
-
   <!-- Text Content -->
   <div class="relative z-10 flex flex-col items-start gap-6 w-full text-white">
     <div class="flex flex-row justify-between items-center w-full space-x-4">
@@ -35,35 +31,47 @@ const subTitle = `Hubungi kami hari ini dan wujudkan ide kreatif Anda bersama <b
   </div>
 </section>
 
+<style>
+  .give-help-bg-container {
+    overflow: hidden;
+    will-change: transform; /* Optimize for animation */
+  }
+  
+  .give-help-bg-image {
+    will-change: transform; /* Optimize for animation */
+    transform: translateZ(0); /* Force GPU acceleration */
+  }
+</style>
+
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
   gsap.registerPlugin(ScrollTrigger);
-
-  // Calculate the maximum scroll distance based on image height
-  const scrollDistance = () => {
-    const bgImage = document.querySelector<HTMLElement>('.bg-image');
-    const container = document.querySelector<HTMLElement>('.bg-container');
-    if (!bgImage || !container) return 0;
-    return bgImage.offsetHeight - container.offsetHeight;
-  };
-
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: ".bg-container",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-      invalidateOnRefresh: true // Ensures recalculation on resize
-    }
-  })
-  .fromTo(
-    ".bg-image",
-    { y: 0 }, // Start at top position
-    { 
-      y: () => -scrollDistance(), // Move up by the difference between image and container height
-      ease: "none"
-    }
-  );
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    // Use unique class names to avoid conflicts with other components
+    const bgImage = document.querySelector('.give-help-bg-image');
+    const container = document.querySelector('.give-help-bg-container');
+    
+    if (!bgImage || !container) return;
+    
+    // Create a simple parallax effect with proper constraints
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top bottom", // Start when top of section enters bottom of viewport
+        end: "bottom top",   // End when bottom of section leaves top of viewport
+        scrub: 0.5,          // Smoother scrub with slight delay
+        invalidateOnRefresh: true
+      }
+    })
+    .fromTo(
+      bgImage,
+      { y: 0 }, 
+      { 
+        y: "-20%",  // Move up by 20% (reduced to prevent excessive movement)
+        ease: "none"
+      }
+    );
+  });
 </script>
