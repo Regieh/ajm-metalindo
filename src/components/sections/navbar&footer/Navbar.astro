@@ -1,5 +1,4 @@
 ---
-//Import relevant dependencies
 import ThemeIcon from "@components/ThemeIcon.astro";
 import NavLink from "@components/ui/links/NavLink.astro";
 import Authentication from "../misc/Authentication.astro";
@@ -10,16 +9,13 @@ import BrandLogoWhite from "@/components/BrandLogoWhite.astro";
 import LanguagePicker from "@components/ui/LanguagePicker.astro";
 import DropdownLink from "@/components/ui/links/DropdownLink.astro";
 
-// Select the correct translation based on the page's lang prop:
 const strings = Astro.currentLocale === "id" ? idStrings : enStrings;
 const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
 ---
 
-<!-- Main header component -->
 <header
   class="sticky top-0 z-50 flex flex-wrap text-sm md:flex-nowrap md:justify-start md:h-24 w-screen"
 >
-  <!-- Navigation container -->
   <nav
     class="relative w-full bg-neutral-700/40 dark:border-neutral-700/40 dark:bg-transparent md:flex md:items-center md:justify-between"
     aria-label="Global"
@@ -27,22 +23,18 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
   >
     <div class="default-p w-full flex flex-col md:flex-row items-center justify-between">
       <div class="flex items-center justify-between w-full">
-        <!-- Brand logo -->
         <a
           class="flex-none rounded-lg text-xl font-bold outline-none ring-zinc-500 focus-visible:ring dark:ring-zinc-200 dark:focus:outline-none"
           href={homeUrl}
           aria-label="Brand"
         >
-          <!-- <BrandLogoWhite id="logo-w" class="h-auto w-16" /> -->
           <BrandLogo id="logo-p" class="h-auto w-32" />
         </a>
-        <!-- Collapse toggle for smaller screens -->
         <div class="ml-auto mr-5 md:hidden">
           <button
             id="hamburger"
             type="button"
             class="hs-collapse-toggle flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white hover:text-gray-600 transition duration-300 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-50 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-none"
-            data-hs-collapse="#navbar-collapse-with-animation"
             aria-controls="navbar-collapse-with-animation"
             aria-label="Toggle navigation"
           >
@@ -77,21 +69,34 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
             </svg>
           </button>
         </div>
-        <!-- ThemeIcon component specifically for smaller screens -->
-        <!-- <span class="inline-block md:hidden">
-          <ThemeIcon />
-        </span> -->
       </div>
-      <!-- Contains navigation links -->
       <div
         id="navbar-collapse-with-animation"
-        class="hs-collapse hidden grow basis-full transition-all duration-300 md:block p-4 md:p-0"
+        class="hs-collapse hidden fixed inset-0 bg-gray-900/95 dark:bg-neutral-800/95 md:static md:bg-transparent md:dark:bg-transparent md:block transition-all duration-300 md:p-0"
       >
-        <!-- Navigation links container -->
-        <div
-          class="mt-5 flex flex-col gap-x-0 gap-y-4 md:mt-0 md:flex-row md:items-center md:justify-end md:gap-x-4 lg:gap-x-7 md:gap-y-0 md:ps-7"
+        <button
+          id="close-nav"
+          class="md:hidden absolute top-5 right-5 flex h-10 w-10 items-center justify-center rounded-full text-white hover:text-gray-600 transition duration-300 hover:bg-neutral-200 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:outline-none"
+          aria-label="Close navigation"
         >
-          <!-- Navigation links and Authentication component -->
+          <svg
+            class="h-6 w-6"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+        <div
+          class="flex flex-col items-center justify-center h-full gap-y-6 md:mt-0 md:flex-row md:items-center md:justify-end md:gap-x-4 lg:gap-x-7 md:gap-y-0 md:ps-7"
+        >
           {strings.navBarLinks.map((link) =>
             link.dropdown ? (
               <DropdownLink url={link.url} name={link.name} dropdown={link.dropdown} />
@@ -104,30 +109,287 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
     </div>
   </nav>
 </header>
-<!-- Theme Appearance script to manage light/dark modes -->
+
+<style>
+  .hs-collapse-open {
+    display: block !important;
+  }
+  #navbar-collapse-with-animation {
+    z-index: 50;
+  }
+  @media (max-width: 767px) {
+    .hs-collapse {
+      transition: none; /* GSAP will handle transitions */
+    }
+    .hs-collapse-open {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .hs-collapse:not(.hs-collapse-open) {
+      opacity: 0;
+      transform: translateX(100%);
+      pointer-events: none;
+    }
+    .hs-collapse .flex {
+      gap: 2rem;
+    }
+    .hs-collapse a,
+    .hs-collapse button {
+      font-size: 1.5rem;
+      color: white;
+      transition: color 0.3s ease;
+    }
+    .hs-collapse a:hover,
+    .hs-collapse button:hover {
+      color: #60a5fa;
+    }
+    #close-nav {
+      z-index: 60; /* Ensure close button is above nav content */
+    }
+    /* Disable hover on mobile */
+    .dropdown-container:hover #dropdown {
+      display: none;
+    }
+    /* Style submenu for mobile */
+    #dropdown {
+      display: none;
+      width: 100%;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+    #dropdown:not(.hidden) {
+      display: block;
+    }
+    #dropdown a {
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      color: white;
+      background-color: #1f2937; /* Match desktop dark theme */
+    }
+    #dropdown a:hover {
+      color: #60a5fa;
+    }
+  }
+  @media (min-width: 768px) {
+    .dropdown-container {
+      position: relative;
+    }
+    #dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background-color: #1f2937; /* Matches dark theme */
+      border: 1px solid #374151;
+      border-radius: 0.375rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .dropdown-container:hover #dropdown {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #dropdown a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: white;
+      font-size: 0.875rem;
+      transition: background-color 0.2s ease;
+    }
+    #dropdown a:hover {
+      background-color: #374151;
+    }
+    .dropdown-container > button {
+      color: white;
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s ease;
+    }
+    .dropdown-container > button:hover {
+      color: #60a5fa;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const hamburger = document.getElementById("hamburger");
+    const closeNav = document.getElementById("close-nav");
+    const navCollapse = document.getElementById("navbar-collapse-with-animation");
+    const body = document.body;
+
+    if (hamburger && closeNav && navCollapse) {
+      const navLinks = navCollapse.querySelectorAll("a:not([data-dropdown-toggle]), button:not([data-dropdown-toggle])");
+      const dropdownToggles = navCollapse.querySelectorAll("[data-dropdown-toggle]");
+      let isAnimating = false;
+
+      const toggleMenu = (open: boolean): void => {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        if (open) {
+          navCollapse.classList.add("hs-collapse-open");
+          body.classList.add("overflow-hidden");
+
+          gsap.fromTo(
+            navCollapse,
+            { x: "100%", opacity: 0 },
+            {
+              x: "0%",
+              opacity: 1,
+              duration: 0.6,
+              ease: "power3.out",
+              onComplete: () => {
+                isAnimating = false;
+              },
+            }
+          );
+
+          gsap.fromTo(
+            navCollapse.querySelectorAll("a, button"),
+            { y: 20, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.5,
+              stagger: 0.1,
+              ease: "power2.out",
+              delay: 0.3,
+            }
+          );
+        } else {
+          gsap.to(navCollapse.querySelectorAll("a, button"), {
+            y: 20,
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.05,
+            ease: "power2.in",
+          });
+
+          gsap.to(navCollapse, {
+            x: "100%",
+            opacity: 0,
+            duration: 0.6,
+            ease: "power3.in",
+            onComplete: () => {
+              navCollapse.classList.remove("hs-collapse-open");
+              body.classList.remove("overflow-hidden");
+              // Reset dropdown states
+              dropdownToggles.forEach((toggle) => {
+                toggle.setAttribute("aria-expanded", "false");
+                const menu = toggle.parentElement?.querySelector("#dropdown");
+                if (menu) menu.classList.add("hidden");
+              });
+              isAnimating = false;
+            },
+          });
+        }
+      };
+
+      hamburger.addEventListener("click", () => {
+        const isOpen = navCollapse.classList.contains("hs-collapse-open");
+        toggleMenu(!isOpen);
+      });
+
+      closeNav.addEventListener("click", () => {
+        toggleMenu(false);
+      });
+
+      // Handle dropdown toggle on mobile (click) and accessibility
+      dropdownToggles.forEach((toggle) => {
+        toggle.addEventListener("click", (e: Event) => {
+          if (window.innerWidth < 768) {
+            e.preventDefault();
+            e.stopPropagation();
+            const menu = toggle.parentElement?.querySelector("#dropdown");
+            const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+            // Only toggle submenu for "Projects"
+            const toggleText = toggle.textContent?.trim().toLowerCase() ?? "";
+            if (toggleText === "projects" || toggle.id === "projects") {
+              toggle.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+              if (menu) {
+                if (isExpanded) {
+                  menu.classList.add("hidden");
+                } else {
+                  menu.classList.remove("hidden");
+                }
+              }
+            } else {
+              // Other dropdowns close the menu
+              toggle.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+              if (menu) {
+                if (isExpanded) {
+                  menu.classList.add("hidden");
+                } else {
+                  menu.classList.remove("hidden");
+                }
+              }
+              if (navCollapse.classList.contains("hs-collapse-open")) {
+                toggleMenu(false);
+              }
+            }
+          }
+        });
+
+        // Keyboard accessibility
+        toggle.addEventListener("keydown", (e) => {
+          const event = e as KeyboardEvent;
+          if (event.key === "Enter" || event.key === " ") {
+            e.preventDefault();
+            (toggle as HTMLElement).dispatchEvent(new Event("click"));
+          }
+        });
+      });
+
+      // Close menu when clicking non-dropdown links
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          if (navCollapse.classList.contains("hs-collapse-open") && window.innerWidth < 768) {
+            toggleMenu(false);
+          }
+        });
+      });
+
+      // Handle submenu items to close the menu
+      const submenuItems = navCollapse.querySelectorAll("#dropdown a");
+      submenuItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          if (navCollapse.classList.contains("hs-collapse-open") && window.innerWidth < 768) {
+            toggleMenu(false);
+          }
+        });
+      });
+    }
+  });
+</script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-  let nav = document.getElementById('global-nav');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 0) {
-        nav.classList.add('bg-gray-700/40', 'backdrop-blur-md');
-        nav.classList.remove('bg-neutral-700/40');
-      } else {
-        nav.classList.remove('bg-gray-700/40', 'backdrop-blur-md');
-        nav.classList.add('bg-neutral-700/40');
-      }
-    });
-  }
-});
+    let nav = document.getElementById("global-nav");
+    if (nav) {
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 0) {
+          nav.classList.add("bg-gray-700/40", "backdrop-blur-md");
+          nav.classList.remove("bg-neutral-700/40");
+        } else {
+          nav.classList.remove("bg-gray-700/40", "backdrop-blur-md");
+          nav.classList.add("bg-neutral-700/40");
+        }
+      });
+    }
+  });
 </script>
+
 <script is:inline>
   const HSThemeAppearance = {
     init() {
-      // const defaultTheme = "default";
-      // let theme = localStorage.getItem("hs_theme") || defaultTheme;
-
-      // if (document.querySelector("html").classList.contains("dark")) return;
       this.setAppearance("default");
     },
     _resetStylesOnLoad() {
@@ -150,13 +412,11 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
           : "default";
       }
 
-      document.querySelector("html").classList.remove("dark");
-      document.querySelector("html").classList.remove("default");
-      document.querySelector("html").classList.remove("auto");
-
-      document
-        .querySelector("html")
-        .classList.add(this.getOriginalAppearance());
+      const htmlElement = document.querySelector("html");
+      if (htmlElement) {
+        htmlElement.classList.remove("dark", "default", "auto");
+        htmlElement.classList.add(this.getOriginalAppearance());
+      }
 
       setTimeout(() => {
         $resetStylesEl.remove();
@@ -164,7 +424,7 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
 
       if (dispatchEvent) {
         window.dispatchEvent(
-          new CustomEvent("on-hs-appearance-change", { detail: theme }),
+          new CustomEvent("on-hs-appearance-change", { detail: theme })
         );
       }
     },
@@ -194,28 +454,34 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
 
   window.addEventListener("load", () => {
     const $clickableThemes = document.querySelectorAll(
-      "[data-hs-theme-click-value]",
+      "[data-hs-theme-click-value]"
     );
     const $switchableThemes = document.querySelectorAll(
-      "[data-hs-theme-switch]",
+      "[data-hs-theme-switch]"
     );
 
     $clickableThemes.forEach(($item) => {
       $item.addEventListener("click", () =>
         HSThemeAppearance.setAppearance(
-          $item.getAttribute("data-hs-theme-click-value"),
+          $item.getAttribute("data-hs-theme-click-value") || "",
           true,
-          $item,
-        ),
+          true
+        )
       );
     });
 
     $switchableThemes.forEach(($item) => {
       $item.addEventListener("change", (e) => {
-        HSThemeAppearance.setAppearance(e.target.checked ? "dark" : "default");
+        HSThemeAppearance.setAppearance(
+          e.target && e.target.checked ? "dark" : "default"
+        );
       });
 
-      $item.checked = HSThemeAppearance.getAppearance() === "dark";
+      (function ($item) {
+        if ($item instanceof HTMLInputElement) {
+          $item.checked = HSThemeAppearance.getAppearance() === "dark";
+        }
+      })($item);
     });
 
     window.addEventListener("on-hs-appearance-change", (e) => {
@@ -225,37 +491,35 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
     });
   });
 </script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const header = document.querySelector('header');
-    const nav = document.getElementById('global-nav');
-    
-    // Check if this is the index page
-    const isIndexPage = window.location.pathname === '/' || 
-                        window.location.pathname === '/id' || 
-                        window.location.pathname.endsWith('/index');
-    
+    const header = document.querySelector("header");
+    const nav = document.getElementById("global-nav");
+
+    const isIndexPage =
+      window.location.pathname === "/" ||
+      window.location.pathname === "/id" ||
+      window.location.pathname.endsWith("/index");
+
     if (isIndexPage && header && nav) {
-      // For index page: Change to fixed and transparent
-      header.classList.remove('sticky');
-      header.classList.add('fixed');
-      nav.classList.remove('bg-neutral-700/40');
-      
-      window.addEventListener('scroll', () => {
+      header.classList.remove("sticky");
+      header.classList.add("fixed");
+      nav.classList.remove("bg-neutral-700/40");
+
+      window.addEventListener("scroll", () => {
         if (window.scrollY > 100) {
-          nav.classList.remove('bg-gray-700/40');
-          nav.classList.add('bg-gray-700/40', 'backdrop-blur-md');
+          nav.classList.remove("bg-gray-700/40");
+          nav.classList.add("bg-gray-700/40", "backdrop-blur-md");
         } else {
-          nav.classList.remove('bg-gray-700/40', 'backdrop-blur-md');
-          nav.classList.add('bg-gray-700/40');
+          nav.classList.remove("bg-gray-700/40", "backdrop-blur-md");
+          nav.classList.add("bg-neutral-700/40");
         }
       });
     }
   });
 </script>
-<!--Import the necessary Collapse and Overlay plugins-->
-<!--https://preline.co/plugins/html/collapse.html-->
-<!--https://preline.co/plugins/html/overlay.html-->
+
 <script>
   import "@preline/collapse/index.js";
   import "@preline/overlay/index.js";

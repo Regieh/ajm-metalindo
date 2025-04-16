@@ -15,24 +15,28 @@ const isActive = currentPath.startsWith("/projects");
 ---
 
 <!-- Navigation Item -->
-<div class="relative z-30">
+<div class="dropdown-container">
   <button
     id={url === "/" ? "home" : url.replace("/", "")}
     data-dropdown-toggle
     class={`navlink rounded-lg text-base font-medium outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base transition ${
       isActive ? "text-redP font-bold underline underline-offset-8" : "text-white"
     }`}
+    aria-haspopup="true"
+    aria-expanded="false"
   >
     {name}
   </button>
 
   {dropdown && (
-    <div id="dropdown" class="absolute hidden bg-white shadow-lg rounded-xs mt-1 z-40">
+    <div id="dropdown" class="hidden">
       {projects.map((project) => (
         <a
           href={`/projects/${project.data.tabName.toLowerCase()}`}
           class={`block px-4 py-2 text-sm transition ${
-            currentPath.includes(project.data.tabName.toLowerCase()) ? "bg-redP text-white" : "bg-white text-redP"
+            currentPath.includes(project.data.tabName.toLowerCase())
+              ? "bg-redP text-white"
+              : "text-white"
           } hover:bg-redP hover:text-white`}
         >
           {project.data.title}
@@ -41,45 +45,3 @@ const isActive = currentPath.startsWith("/projects");
     </div>
   )}
 </div>
-
-<!-- Fix Scroll-based Styling & Dropdown Toggling -->
-<script>
-  const navLinks = document.querySelectorAll(".navlink");
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const dropdownToggles = document.querySelectorAll("[data-dropdown-toggle]");
-
-    // Toggle dropdown on click
-    dropdownToggles.forEach((toggle) => {
-      toggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        const dropdown = toggle.parentElement?.querySelector("#dropdown");
-        if (dropdown) dropdown.classList.toggle("hidden");
-      });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener("click", (e) => {
-      const target = e.target as HTMLElement;
-
-      if (!target.closest("[data-dropdown-toggle]")) {
-        document.querySelectorAll("#dropdown").forEach((dropdown) => {
-          dropdown.classList.add("hidden");
-        });
-      }
-    });
-
-    window.addEventListener("scroll", () => {
-    navLinks.forEach(link => {
-      // Preserve active state color
-      if (link.classList.contains("text-redP")) {
-        link.classList.remove("text-black"); // Remove unwanted black color
-        link.classList.add("text-redP"); // Ensure red color stays
-      } else {
-        link.classList.remove("text-black"); // Remove unwanted black color
-        link.classList.add("text-white"); // Ensure white color stays
-      }
-    });
-  });
-});
-</script>
