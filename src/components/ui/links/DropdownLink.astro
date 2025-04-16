@@ -3,45 +3,153 @@ const { url, name, dropdown } = Astro.props;
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
-const currentPath = Astro.url.pathname; // Get current page path
+const currentPath = Astro.url.pathname;
+// Fetch projects for dropdown only if needed
+const projects: CollectionEntry<"projects">[] = dropdown
+  ? (await getCollection("projects", ({ id }) => id.startsWith("en/")))
+      .sort((a, b) => a.data.main.id - b.data.main.id)
+  : [];
 
-// Fetch projects for dropdown
-const projects: CollectionEntry<"projects">[] = (
-  await getCollection("projects", ({ id }) => id.startsWith("en/"))
-).sort((a, b) => a.data.main.id - b.data.main.id);
-
-// Check if the current page is inside the `/projects/*` section
 const isActive = currentPath.startsWith("/projects");
+const elementId = url === "/" ? "home" : url.replace("/", "");
 ---
 
-<!-- Navigation Item -->
-<div class="dropdown-container">
-  <button
-    id={url === "/" ? "home" : url.replace("/", "")}
-    data-dropdown-toggle
-    class={`navlink rounded-lg text-base font-medium outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base transition ${
-      isActive ? "text-redP font-bold underline underline-offset-8" : "text-white"
-    }`}
-    aria-haspopup="true"
-    aria-expanded="false"
-  >
-    {name}
-  </button>
+<!-- Navigation Item (Dropdown or Regular Link) -->
+<div class="dropdown-container relative">
+  {dropdown ? (
+    <button
+      id={elementId}
+      data-dropdown-toggle="dropdown"
+      class={`navlink rounded-lg text-base font-medium outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base transition whitespace-nowrap ${
+        isActive ? "text-redP font-bold underline underline-offset-8" : "text-white"
+      }`}
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      {name}
+    </button>
+  ) : (
+    <a
+      id={elementId}
+      href={url}
+      data-astro-prefetch
+      class="navlink rounded-lg text-base font-medium text-white outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base transition whitespace-nowrap"
+    >
+      {name}
+    </a>
+  )}
 
   {dropdown && (
-    <div id="dropdown" class="hidden">
-      {projects.map((project) => (
-        <a
-          href={`/projects/${project.data.tabName.toLowerCase()}`}
-          class={`block px-4 py-2 text-sm transition ${
-            currentPath.includes(project.data.tabName.toLowerCase())
-              ? "bg-redP text-white"
-              : "text-white"
-          } hover:bg-redP hover:text-white`}
-        >
-          {project.data.title}
-        </a>
-      ))}
+    <div 
+      id="dropdown-menu" 
+      class="dropdown-menu absolute left-0 mt-2 hidden w-max bg-black shadow-lg z-50"
+    >
+      {projects.map((project) => {
+        const isProjectActive = currentPath.includes(project.data.tabName.toLowerCase());
+        return (
+          <a
+            href={`/projects/${project.data.tabName.toLowerCase()}`}
+            class={`block px-4 py-2 text-sm transition whitespace-nowrap ${
+              isProjectActive ? "bg-redP text-white" : "text-white"
+            } hover:bg-redP hover:text-white`}
+          >
+            {project.data.title}
+          </a>
+        );
+      })}
     </div>
   )}
 </div>
+
+<script>
+  // Enhanced dropdown handling
+  document.addEventListener("DOMContentLoaded", function() {
+    // Track dropdown state for both mobile and desktop
+    let isDropdownOpen = false;
+    
+    // Set up dropdown toggle handlers
+    const toggles = document.querySelectorAll("[data-dropdown-toggle]");
+    
+    toggles.forEach(toggle => {
+      if (toggle) {
+        // Find the dropdown menu related to this toggle
+        const dropdownMenu = toggle.parentElement?.querySelector(".dropdown-menu");
+        
+        if (dropdownMenu) {
+          // Click handler for both mobile and desktop
+          toggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            isDropdownOpen = !isDropdownOpen;
+            toggle.setAttribute("aria-expanded", isDropdownOpen.toString());
+            
+            if (isDropdownOpen) {
+              dropdownMenu.classList.remove("hidden");
+            } else {
+              dropdownMenu.classList.add("hidden");
+            }
+          });
+          
+          // Handle dropdown link clicks to close menu on mobile
+          const dropdownLinks = dropdownMenu.querySelectorAll("a");
+          dropdownLinks.forEach(link => {
+            link.addEventListener("click", () => {
+              // Only close hamburger menu on mobile
+              if (window.innerWidth < 768) {
+                const hamburgerMenu = document.getElementById("navbar-collapse-with-animation");
+                if (hamburgerMenu && hamburgerMenu.classList.contains("hs-collapse-open")) {
+                  const closeEvent = new CustomEvent("close-mobile-menu");
+                  document.dispatchEvent(closeEvent);
+                }
+              }
+            });
+          });
+        }
+      }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+      const target = e.target as Element;
+      if (!target.closest("[data-dropdown-toggle]") && !target.closest(".dropdown-menu")) {
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+          menu.classList.add("hidden");
+        });
+        
+        document.querySelectorAll("[data-dropdown-toggle]").forEach(toggle => {
+          toggle.setAttribute("aria-expanded", "false");
+        });
+        
+        isDropdownOpen = false;
+      }
+    });
+    
+    // Handle window resize event
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768) {
+        // Fix navbar visibility when switching from mobile to desktop
+        const navbar = document.getElementById("navbar-collapse-with-animation");
+        if (navbar) {
+          // Reset GSAP styles that might be causing the navbar to disappear
+          navbar.style.transform = "";
+          navbar.style.opacity = "";
+          navbar.style.display = "";
+          
+          // Ensure it's visible in desktop mode
+          if (window.innerWidth >= 768) {
+            navbar.classList.remove("hidden");
+          }
+        }
+      }
+    });
+    
+    // Custom event to handle mobile menu close
+    document.addEventListener("close-mobile-menu", () => {
+      const hamburger = document.getElementById("hamburger");
+      if (hamburger) {
+        hamburger.click(); // Trigger the hamburger click event to close mobile menu
+      }
+    });
+  });
+</script>

@@ -1,75 +1,74 @@
 ---
-// Destructure the properties from Astro.props
-const { url, name } = Astro.props;
+const { url, name, dropdown } = Astro.props;
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
-// Define TypeScript interface for the properties
-interface Props {
-  url: string;
-  name: string;
-}
+const currentPath = Astro.url.pathname;
+
+// Fetch projects for dropdown if needed
+const projects: CollectionEntry<"projects">[] = dropdown
+  ? (
+      await getCollection("projects", ({ id }) => id.startsWith("en/"))
+    ).sort((a, b) => a.data.main.id - b.data.main.id)
+  : [];
+
+const isActive = currentPath.startsWith("/projects");
+const elementId = url === "/" ? "home" : url.replace("/", "");
 ---
 
-<!--
-Re-usable link component for navigation bar. Highlights the active link
-by comparing the current URL with the href of each link.
-We assign an ID matching the URL for easy reference in our script.
-If URL is '/' (home page), assign ID as 'home' 
--->
-<a
-  id={url === "/" ? "home" : url.replace("/", "")}
-  href={url}
-  data-astro-prefetch
-  class="navlink rounded-lg text-base font-medium text-white outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base"
->
-  {name}
-</a>
+<!-- Navigation Item (Dropdown or Regular Link) -->
+<div class="dropdown-container relative">
+  {dropdown ? (
+    <button
+      id={elementId}
+      data-dropdown-toggle
+      class={`navlink rounded-lg text-base font-medium outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base transition whitespace-nowrap ${
+        isActive ? "text-redP font-bold underline underline-offset-8" : "text-white"
+      }`}
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      {name}
+    </button>
+  ) : (
+    <a
+      id={elementId}
+      href={url}
+      data-astro-prefetch
+      class="navlink rounded-lg text-base font-medium text-white outline-none ring-zinc-500 hover:text-neutral-300 focus-visible:ring dark:ring-zinc-200 dark:hover:text-neutral-300 dark:focus:outline-none md:py-3 md:text-sm 2xl:text-base transition whitespace-nowrap"
+    >
+      {name}
+    </a>
+  )}
+
+  {dropdown && (
+    <div id="dropdown" class="absolute left-0 mt-2 hidden w-max bg-black shadow-lg z-50">
+      {projects.map((project) => {
+        const isProjectActive = currentPath.includes(project.data.tabName.toLowerCase());
+        return (
+          <a
+            href={`/projects/${project.data.tabName.toLowerCase()}`}
+            class={`block px-4 py-2 text-sm transition whitespace-nowrap ${
+              isProjectActive ? "bg-redP text-white" : "text-white"
+            } hover:bg-redP hover:text-white`}
+          >
+            {project.data.title}
+          </a>
+        );
+      })}
+    </div>
+  )}
+</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    let url = window.location.pathname;
-    let urlSegments = url.split("/");
-    let navId;
+    const currentPath = window.location.pathname;
+    const elementId = currentPath === "/" ? "home" : currentPath.replace("/", "");
+    const navElement = document.getElementById(elementId);
 
-    if (url === "/") {
-      navId = "home";
-    } else {
-      navId = url.replace("/", "");
-    }
-
-    let nav = document.getElementById(navId);
-
-    if (nav) {
-      window.addEventListener('scroll', () => {
-        const elements = document.querySelectorAll('.navlink');
-        if (window.scrollY > 0) {
-          elements.forEach(element => {
-            if (element.id === navId) {
-              element.classList.add('text-redP');
-              element.classList.remove('text-white');
-            } else {
-              element.classList.add('text-black');
-              element.classList.remove('text-white');
-            }
-          });
-        } else {
-          elements.forEach(element => {
-            element.classList.add('text-white');
-            element.classList.remove('text-black');
-          });
-
-          nav.classList.remove(
-            "text-white",
-            "text-black",
-            "dark:text-neutral-400",
-            "hover:text-neutral-300",
-            "dark:hover:text-neutral-300",
-            "font-medium"
-          );
-          nav.classList.add("text-redP", "font-bold", "underline", "underline-offset-8");
-        }
-      });
-
-      nav.classList.remove(
+    // Apply active styling immediately
+    if (navElement && !navElement.getAttribute("aria-haspopup")) {
+      navElement.classList.remove(
         "text-white",
         "text-black",
         "dark:text-neutral-400",
@@ -77,8 +76,42 @@ If URL is '/' (home page), assign ID as 'home'
         "dark:hover:text-neutral-300",
         "font-medium"
       );
-      nav.classList.add("text-redP", "font-bold", "underline", "underline-offset-8");
-      nav.setAttribute("aria-current", "page");
+      navElement.classList.add("text-redP", "font-bold", "underline", "underline-offset-8");
+      navElement.setAttribute("aria-current", "page");
+    }
+
+    // Scroll behavior for styling nav links
+    window.addEventListener("scroll", () => {
+      const navLinks = document.querySelectorAll(".navlink");
+      const scrolled = window.scrollY > 0;
+
+      navLinks.forEach((link) => {
+        if (link.id === elementId && !link.getAttribute("aria-haspopup")) {
+          link.classList.toggle("text-redP", !scrolled);
+          link.classList.toggle("text-white", scrolled);
+        } else {
+          link.classList.toggle("text-black", scrolled);
+          link.classList.toggle("text-white", !scrolled);
+        }
+      });
+    });
+
+    // Dropdown toggle behavior
+    const toggle = document.querySelector("[data-dropdown-toggle]");
+    const dropdown = document.getElementById("dropdown");
+    if (toggle && dropdown) {
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        dropdown.classList.toggle("hidden");
+      });
     }
   });
+
+  window.addEventListener("resize", () => {
+  const dropdown = document.getElementById("dropdown");
+  if (window.innerWidth >= 768 && dropdown) {
+    dropdown.classList.remove("hidden");
+  }
+});
+
 </script>
