@@ -169,6 +169,22 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
     #dropdown a:hover {
       color: #60a5fa;
     }
+    /* Prevent interaction with content behind menu */
+    .nav-open :not(#navbar-collapse-with-animation, #navbar-collapse-with-animation *) {
+      pointer-events: none;
+    }
+    /* Dim content behind menu */
+    .nav-open::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 49; /* Below menu but above content */
+      pointer-events: none;
+    }
   }
   @media (min-width: 768px) {
     .dropdown-container {
@@ -235,11 +251,8 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
         isAnimating = true;
 
         if (open) {
-          // Lock body scroll completely
-          body.style.position = "fixed";
-          body.style.width = "100%";
-          body.style.top = `-${window.scrollY}px`; // Preserve scroll position
-
+          // Add nav-open class to body for styling
+          body.classList.add("nav-open");
           navCollapse.classList.add("hs-collapse-open");
 
           gsap.fromTo(
@@ -269,11 +282,8 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
             }
           );
         } else {
-          const scrollY = parseInt(body.style.top || "0") * -1;
-          body.style.position = "";
-          body.style.width = "";
-          body.style.top = "";
-          window.scrollTo(0, scrollY); // Restore scroll position
+          // Remove nav-open class
+          body.classList.remove("nav-open");
 
           gsap.to(navCollapse.querySelectorAll("a, button"), {
             y: 20,
@@ -319,33 +329,13 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
             e.stopPropagation();
             const menu = toggle.parentElement?.querySelector("#dropdown");
             const isExpanded = toggle.getAttribute("aria-expanded") === "true";
-            
-            // Check if this is the "Projects" link by its URL or ID
-            const toggleUrl = toggle.getAttribute("id"); // The ID is derived from the URL in DropdownLink
-            const isProjectsLink = toggleUrl?.includes("projects");
 
-            if (isProjectsLink) {
-              // Toggle the dropdown for "Projects"
-              toggle.setAttribute("aria-expanded", isExpanded ? "false" : "true");
-              if (menu) {
-                if (isExpanded) {
-                  menu.classList.add("hidden");
-                } else {
-                  menu.classList.remove("hidden");
-                }
-              }
-            } else {
-              // For other links, close the menu
-              toggle.setAttribute("aria-expanded", isExpanded ? "false" : "true");
-              if (menu) {
-                if (isExpanded) {
-                  menu.classList.add("hidden");
-                } else {
-                  menu.classList.remove("hidden");
-                }
-              }
-              if (navCollapse.classList.contains("hs-collapse-open")) {
-                toggleMenu(false);
+            toggle.setAttribute("aria-expanded", isExpanded ? "false" : "true");
+            if (menu) {
+              if (isExpanded) {
+                menu.classList.add("hidden");
+              } else {
+                menu.classList.remove("hidden");
               }
             }
           }
@@ -428,7 +418,7 @@ const homeUrl = Astro.currentLocale === "id" ? "/id" : "/";
       const htmlElement = document.querySelector("html");
       if (htmlElement) {
         htmlElement.classList.remove("dark", "default", "auto");
-        htmlElement.classList.add(this.getOriginalAppearance());
+        htmlElement.classList.add(theme);
       }
 
       setTimeout(() => {

@@ -89,7 +89,7 @@ const services = [
   <SubHeroSection title="Services" src={bg1} alt="Services" />
 
   {/* First part: Booth & Display, Showroom, Rack Sliding (indices 0-2) */}
-  <div class="default-p z-10 mx-auto pb-8 pt-0">
+  <div class="z-10 mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-0">
     {
       services.slice(0, 3).map((service, index) => (
         <section
@@ -116,22 +116,23 @@ const services = [
               <Image
                 src={service.image}
                 alt={service.alt}
-                class="h-64 w-full rounded-md object-cover max-md:pt-5 md:h-80"
+                class="w-full object-cover max-h-64 md:max-h-80"
               />
             </div>
           )}
           {service.images && (
             <div class="flex w-full flex-row gap-4 md:w-1/2">
               {service.images.map((img) => (
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  class="h-64 w-1/2 rounded-md object-cover md:h-80"
-                />
+                <div class="grow">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    class="w-full object-cover max-h-64 md:max-h-80"
+                  />
+                </div>
               ))}
             </div>
           )}
-          {/* Conditionally add the text-white class for "Booth & Display" */}
           <div
             class={`flex w-full flex-col gap-4 md:w-1/2 ${
               service.title === "Booth & Display" ? "text-white" : ""
@@ -148,13 +149,10 @@ const services = [
     }
   </div>
 
-  {/* GiveHelp section outside the container to ensure full width */}
   <GiveHelp />
 
-  {
-    /* Second part: Interior, Exterior, Acrylic & Digital Printing (indices 3-5) */
-  }
-  <div class="container default-p mx-auto pb-8 pt-0">
+  {/* Second part: Interior, Exterior, Acrylic & Digital Printing (indices 3-5) */}
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-8 pt-0">
     {
       services.slice(3).map((service, index) => (
         <section
@@ -167,18 +165,20 @@ const services = [
               <Image
                 src={service.image}
                 alt={service.alt}
-                class="h-64 w-full rounded-md object-cover md:h-80"
+                class="w-full object-cover max-h-64 md:max-h-80"
               />
             </div>
           )}
           {service.images && (
             <div class="flex w-full flex-row gap-4 md:w-1/2">
               {service.images.map((img) => (
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  class="h-64 w-1/2 rounded-md object-cover md:h-80"
-                />
+                <div class="grow">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    class="w-full object-cover max-h-64 md:max-h-80"
+                  />
+                </div>
               ))}
             </div>
           )}
@@ -196,12 +196,8 @@ const services = [
 </MainLayout>
 
 <style>
-  .container {
-    max-width: 1200px;
-  }
-
   .service-section {
-    opacity: 1; /* Start fully visible to avoid flicker */
+    opacity: 1;
     transition: opacity 0.5s ease-in;
   }
 
@@ -209,57 +205,18 @@ const services = [
     position: relative;
     padding-top: 4rem;
     padding-bottom: 4rem;
-    min-height: 400px; /* Adjust this value as needed */
+    min-height: 400px;
   }
 
   .bg-container {
     height: 100%;
-    overflow: hidden; /* Prevent overflow */
+    overflow: hidden;
   }
 
   .bg-image {
     width: 100%;
     height: 125%;
-    will-change: transform; /* Optimize for animation */
-  }
-
-  @media (max-width: 768px) {
-    .service-section {
-      flex-direction: column !important;
-    }
-
-    .service-section img {
-      height: 200px;
-    }
-
-    .with-bg {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-    }
-
-    h2 {
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .service-section img {
-      height: 150px;
-    }
-
-    .with-bg {
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
-    }
-
-    .container {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
+    will-change: transform;
   }
 </style>
 
@@ -270,55 +227,49 @@ const services = [
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Create a timeline for each section to keep animations synchronized
     setTimeout(() => {
-      // Handle all sections consistently
       gsap.utils.toArray(".service-section").forEach((section) => {
         const element = section as HTMLElement;
         const isBoothSection = element.classList.contains("with-bg");
         
-        // Create a timeline for this section
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: element,
             start: "top 85%",
-            toggleActions: "play none none none"
-          }
+            toggleActions: "play none none none",
+          },
         });
         
-        // Fade in with minimal vertical movement
         tl.fromTo(
           element,
           {
             opacity: 0,
-            y: isBoothSection ? 10 : 20, // Even smaller movement for booth section
+            y: isBoothSection ? 10 : 20,
           },
           {
             opacity: 1,
             y: 0,
             duration: 0.9,
-            ease: "power2.out"
+            ease: "power2.out",
           }
         );
         
-        // If this is booth section with background, handle the bg separately
         if (isBoothSection) {
           const bgContainer = element.querySelector(".bg-container");
           if (bgContainer) {
             const bgImage = bgContainer.querySelector(".bg-image");
             if (bgImage) {
-              // Create a separate animation for parallax that doesn't affect layout
               gsap.fromTo(
                 bgImage,
                 { y: "0%" },
                 {
-                  y: "-5%", // Reduce the parallax amount for subtlety
+                  y: "-5%",
                   ease: "none",
                   scrollTrigger: {
                     trigger: element,
                     start: "top bottom",
                     end: "bottom top",
-                    scrub: 0.8, // Smoother scrub
+                    scrub: 0.8,
                     invalidateOnRefresh: true,
                   },
                 }
@@ -328,8 +279,7 @@ const services = [
         }
       });
 
-      // Force a refresh at the end to ensure all is well
       ScrollTrigger.refresh(true);
-    }, 200); // Slightly longer delay for more reliable rendering
+    }, 200);
   });
 </script>
